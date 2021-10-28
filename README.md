@@ -1,7 +1,7 @@
 # Public Decision Database
 
 Backend API providing exposing the public decision data. 
-The stack was built starting from the [mu-project](https://github.com/mu-semtech/mu-project) template.
+Started from the [mu-project](https://github.com/mu-semtech/mu-project) template.
 
 ## Running and maintaining
 
