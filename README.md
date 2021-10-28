@@ -1,24 +1,33 @@
-# mu-project
+# Public Decision Database
 
-Bootstrap a mu.semte.ch microservices environment in three easy steps.
+Backend API providing exposing the public decision data. 
+The stack was built starting from the [mu-project](https://github.com/mu-semtech/mu-project) template.
 
-## How to
+## Running and maintaining
 
-Setting up your environment is done in three easy steps:  first you configure the running microservices and their names in `docker-compose.yml`, then you configure how requests are dispatched in `config/dispatcher.ex`, and lastly you start everything.
+General information on running, maintaining and installing the stack.
 
-### Hooking things up with docker-compose
+### How to setup the stack
 
-Alter the `docker-compose.yml` file so it contains all microservices you need.  The example content should be clear, but you can find more information in the [Docker Compose documentation](https://docs.docker.com/compose/).  Don't remove the `identifier` and `db` container, they are respectively the entry-point and the database of your application.  Don't forget to link the necessary microservices to the dispatcher and the database to the microservices.
+> **Prerequisites**: you have [docker](https://docs.docker.com/get-docker/), [docker-compose](https://docs.docker.com/get-docker/) and [git-lfs](https://github.com/git-lfs/git-lfs/wiki/Installation) installed on your system 
+> and [cloned the repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) to your system.
 
-### Configure the dispatcher
+#### Running the dev. setup
 
-Next, alter the file `config/dispatcher.ex` based on the example that is there by default.  Dispatch requests to the necessary microservices based on the names you used for the microservice.
+Move in to the directory
+```shell
+cd app-public-decision-database
+```
+Start the system:
+ ```shell
+ docker-compose up
+ ```
+ > docker-compose **up** CLI reference can be found [here](https://docs.docker.com/compose/reference/up/).
 
-### Boot up the system
+Wait for everything to boot to ensure clean caches.  
+You may choose to monitor the migrations service in a separate terminal to and wait for the overview of all migrations to appear: 
 
-Boot your microservices-enabled system using docker-compose.
-
-    cd /path/to/mu-project
-    docker-compose up
-
-You can shut down using `docker-compose stop` and remove everything using `docker-compose rm`.
+```shell
+docker-compose logs -f --tail=100 migrations.
+```
+> docker-compose **logs** CLI reference can be found [here](https://docs.docker.com/compose/reference/logs/).
