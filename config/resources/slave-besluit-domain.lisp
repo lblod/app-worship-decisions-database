@@ -35,7 +35,6 @@
   :features '(include-uri)
   :on-path "artikels")
 
-;;TODO how to relate to superclass 'Agent' for heeftAanwezige
 (define-resource behandeling-van-agendapunt ()
   :class (s-prefix "besluit:BehandelingVanAgendapunt")
   :properties `((:openbaar :boolean ,(s-prefix "besluit:openbaar"))
@@ -158,8 +157,6 @@
   :features '(include-uri)
   :on-path "bestuursorgaan-classificatie-codes")
 
-
-;;TODO how to relate to superclass 'Rechtsgrond' for citeert/corrigeert/gecorrigeerd door/verandert/...
 (define-resource rechtsgrond-besluit ()
   :class (s-prefix "eli:LegalResource")
   :properties `((:buitenwerkingtreding :date ,(s-prefix "eli:date_no_longer_in_force"))
@@ -206,7 +203,6 @@
   :features '(include-uri)
   :on-path "stemmingen")
 
-;;TODO how to relate to superclass 'Agent' for heeftAanwezige
 (define-resource zitting ()
   :class (s-prefix "besluit:Zitting")
   :properties `((:geplande-start :datetime ,(s-prefix "besluit:geplandeStart"))
