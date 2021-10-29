@@ -1,6 +1,9 @@
 # IDE
 !.idea
 
+# Environement
+.env
+
 # Virtuoso files /data/db
 /data/db/*
 !/data/db/virtuoso.ini
