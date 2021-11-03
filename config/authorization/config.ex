@@ -47,7 +47,7 @@ defmodule Acl.UserGroups.Config do
       # // Logged in users
       %GroupSpec{
         name: "readers",
-        useage: [:read, :read_for_write],
+        useage: [:read],
       access: access_by_role_for_single_graph( "PubliekeBesluitendatabank-BesluitendatabankLezer" ),
         graphs: [ %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/access-for-role/PubliekeBesluitendatabank-BesluitendatabankLezer",
