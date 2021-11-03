@@ -1,14 +1,35 @@
 defmodule Dispatcher do
   use Matcher
+
   define_accept_types [
     any: ["*/*"],
+    turtle: ["text/turtle", "application/n-triples"],
     html: [ "text/html", "application/xhtml+html" ],
     json: [ "application/json", "application/vnd.api+json" ]
   ]
 
   @any %{ accept: %{ any: true } }
-  @json %{ accept: %{ json: true } }
+  @turtle %{ accept: %{ turtle: true } }
   @html %{ accept: %{ html: true } }
+  @json %{ accept: %{ json: true } }
+
+  ###############################################################
+  # Registration and login
+  ###############################################################
+
+  match "/accounts/*path", @json do
+    Proxy.forward conn, path, "http://resource/accounts/"
+  end
+  match "/gebruikers/*path", @json do
+    Proxy.forward conn, path, "http://resource/gebruikers/"
+  end
+  match "/sessions/*path", @json do
+    Proxy.forward conn, path, "http://login/sessions/"
+  end
+  match "/mock/sessions/*path", @json do
+    Proxy.forward conn, path, "http://mocklogin/sessions/"
+  end
+
 
   ###############################################################
   # General/Shared
@@ -40,6 +61,32 @@ defmodule Dispatcher do
 
   get "/files/:id/download", @any do
     Proxy.forward conn, [], "http://file/files/" <> id <> "/download"
+  end
+
+  ###############################################################
+  # Searching
+  ###############################################################
+
+  get "/search/*path", @json do
+    Proxy.forward conn, path, "http://search/"
+  end
+  get "/search-queries/*path", @json do
+    Proxy.forward conn, path, "http://resource/search-queries/"
+  end
+  post "/search-queries/*path", @json do
+    Proxy.forward conn, path, "http://resource/search-queries/"
+  end
+  get "/search-queries/*path", @turtle do
+    Proxy.forward conn, path, "http://search-query-management/search-queries/"
+  end
+  put "/search-queries/*path", @turtle do
+    Proxy.forward conn, path, "http://search-query-management/search-queries/"
+  end
+  delete "/search-queries/*path", @turtle do
+    Proxy.forward conn, path, "http://search-query-management/search-queries/"
+  end
+  match "/search-query-forms/*path", @turtle do
+    Proxy.forward conn, path, "http://search-query-management/search-query-forms/"
   end
 
   #################################################################

@@ -1,14 +1,14 @@
-# IDE
-!.idea
-
-# Environement
-.env
-
 # Virtuoso files /data/db
 /data/db/*
-!/data/db/virtuoso.ini
+/data/elasticsearch/*
+/data/db/virtuoso.ini
 !/data/db/toLoad
 !/data/db/toLoad/*
+.DS_Store
+*~
+data/imports/*
 
 docker-compose.override.yml
-
+config/migrations/*-sensitive*
+config/search/*.store
+.env
