@@ -56,19 +56,6 @@ services:
     image: semtech/mu-authorization:0.6.0-beta.7
     environment:
       MU_SPARQL_ENDPOINT: "http://virtuoso:8890/sparql"
-      LOG_OUTGOING_SPARQL_QUERIES: "true"
-      LOG_INCOMING_SPARQL_QUERIES: "true"
-      LOG_ACCESS_RIGHTS: "true"
-      INSPECT_OUTGOING_SPARQL_QUERIES: "true"
-      INSPECT_INCOMING_SPARQL_QUERIES: "true"
-      LOG_SERVER_CONFIGURATION: "true"
-      INSPECT_ACCESS_RIGHTS_PROCESSING : "true"
-      LOG_DELTA_MESSAGES : "true"
-      LOG_DELTA_CLIENT_COMMUNICATION : "true"
-      LOG_TEMPLATE_MATCHER_PERFORMANCE : "true"
-      LOG_OUTGOING_SPARQL_QUERY_RESPONSES : "true"
-      INSPECT_OUTGOING_SPARQL_QUERY_RESPONSES : "true"
-      LOG_OUTGOING_SPARQL_QUERY_ROUNDTRIP : "true"
     volumes:
       - ./config/authorization:/config
     labels:
