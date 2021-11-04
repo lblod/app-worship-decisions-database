@@ -91,10 +91,11 @@ services:
     restart: always
     logging: *default-logging
   search:
-    image: semtech/mu-search:0.6.3
+    image: semtech/mu-search:0.8.0-beta.3
     volumes:
       - ./config/search:/config
       - ./data/files:/data
+      - ./data/tika/cache:/cache
     environment:
       NUMBER_OF_THREADS: 16 # overwrite for development
       JRUBY_OPTIONS: "-J-Xmx16g" # overwrite for development
@@ -109,10 +110,29 @@ services:
       - http.max_content_length=2000MB
     restart: always
     logging: *default-logging
+  tika:
+    image: apache/tika:1.24-full
+    logging: *default-logging
+    restart: always
+    labels:
+      - "logging=true"
   search-query-management:
     image: lblod/toezicht-search-query-management-service:0.3.6
     volumes:
       - ./config/search-query:/share/search-query
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
+  enrich-submission:
+    image: lblod/enrich-submission-service:0.9.0
+    volumes:
+      - ./config/semantic-forms:/share/semantic-forms
+      - ./data/files/submissions:/share/submissions
+    environment:
+      ACTIVE_FORM_FILE: "share://semantic-forms/20210706102126-forms.ttl"
+      PUBLIC_GRAPH: "http://mu.semte.ch/graphs/access-for-role/PubliekeBesluitendatabank-BesluitendatabankLezer"
+      FILE_GRAPH: "http://mu.semte.ch/graphs/access-for-role/PubliekeBesluitendatabank-BesluitendatabankLezer"
     labels:
       - "logging=true"
     restart: always

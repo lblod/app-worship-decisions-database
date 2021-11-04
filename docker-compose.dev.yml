@@ -10,6 +10,6 @@ services:
   mocklogin:
     image: lblod/mock-login-service:0.4.0
     environment:
-      MU_APPLICATION_GRAPH: "http://mu.semte.ch/graphs/access-for-role/PubliekeBesluitendatabank-BesluitendatabankLezer" # ABB
+      MU_APPLICATION_GRAPH: "http://mu.semte.ch/graphs/access-for-role/PubliekeBesluitendatabank-BesluitendatabankLezer"
     links:
       - virtuoso:database
