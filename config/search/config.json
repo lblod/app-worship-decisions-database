@@ -174,13 +174,7 @@
       },
       "mappings": {
         "properties": {
-          "data.attachment.content": {
-            "type": "text",
-            "analyzer": "dutchanalyzer",
-            "search_analyzer": "dutchanalyzer",
-            "term_vector": "with_positions_offsets_payloads"
-          },
-          "attachment.content": {
+          "data.content": {
             "type": "text",
             "analyzer": "dutchanalyzer",
             "search_analyzer": "dutchanalyzer",
