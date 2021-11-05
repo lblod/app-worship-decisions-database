@@ -121,21 +121,6 @@ fields:be405a12-0e67-453b-8773-2e4e340f4b82 a form:Field ;
 ##########################################################
 
 ##########################################################
-# START status
-##########################################################
-fields:b57d25cf-58b7-4933-b7d4-04820980ae01 a form:Field ;
-    mu:uuid "b57d25cf-58b7-4933-b7d4-04820980ae01";
-    sh:name "Toon enkel te behandelen dossiers" ;
-    sh:order 40 ;
-    search:emberQueryParameterKey "status" ;
-    sh:path searchToezicht:status ;
-    form:displayType displayTypes:switch ;
-    sh:group fields:015d85ac-7ff0-424d-862e-6c38626ea915 .
-##########################################################
-# END status
-##########################################################
-
-##########################################################
 # START administrative unit
 ##########################################################
 fields:8f6ee5fa-4d2b-40a3-86ab-a9d2115f4f91 a form:Field ;
@@ -468,9 +453,6 @@ fieldGroups:config a form:FieldGroup ;
 
                 ### Search search field
                 fields:be405a12-0e67-453b-8773-2e4e340f4b82,
-
-                ### Status switch
-                fields:b57d25cf-58b7-4933-b7d4-04820980ae01,
 
                 ### Administrative Unit select
                 fields:8f6ee5fa-4d2b-40a3-86ab-a9d2115f4f91,
