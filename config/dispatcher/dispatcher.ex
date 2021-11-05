@@ -121,6 +121,10 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/submission-document-statuses/"
   end
 
+  get "/submission-forms/*path", @json do
+    Proxy.forward conn, path, "http://enrich-submission/submission-documents/"
+  end
+
   get "/submission-documents/*path", @json do
     Proxy.forward conn, path, "http://cache/submission-documents/"
   end

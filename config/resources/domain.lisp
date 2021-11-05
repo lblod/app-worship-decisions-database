@@ -11,8 +11,10 @@
 (defparameter *max-group-sorted-properties* nil)
 (defparameter sparql:*experimental-no-application-graph-for-sudo-select-queries* t)
 
-(read-domain-file "slave-besluit-domain.lisp")
-(read-domain-file "slave-files-domain.lisp")
-(read-domain-file "slave-submissions-domain.lisp")
 (read-domain-file "slave-toezicht-domain.lisp")
+(read-domain-file "slave-files-domain.lisp")
+(read-domain-file "slave-besluit-domain.lisp")
 (read-domain-file "slave-users-domain.lisp")
+(read-domain-file "slave-leidinggevenden-domain.lisp")
+(read-domain-file "master-submissions-domain.lisp")
+(read-domain-file "master-search-query.lisp")
