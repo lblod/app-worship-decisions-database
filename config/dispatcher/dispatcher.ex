@@ -141,6 +141,32 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/concepts/"
   end
 
+  ###############################################################
+  # Frontend
+  ###############################################################
+  get "/favicon.ico", @any do
+    send_resp( conn, 404, "" )
+  end
+
+  get "/assets/*path", @any do
+    forward conn, path, "http://frontend/assets/"
+  end
+
+  get "/@appuniversum/*path", @any do
+    forward conn, path, "http://frontend/@appuniversum/"
+  end
+
+  match "/authorization/callback" , @html do
+    # For ACM/IDM login and torii
+    forward conn, [], "http://frontend/torii/redirect.html"
+  end
+
+  match "/*_path", @html do
+    # *_path allows a path to be supplied, but will not yield
+    # an error that we don't use the path variable.
+    forward conn, [], "http://frontend/index.html"
+  end
+
   #################################################################
   # Fallback
   #################################################################
