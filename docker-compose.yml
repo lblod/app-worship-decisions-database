@@ -20,8 +20,6 @@ services:
     image: semtech/mu-identifier:1.9.1
     links:
       - dispatcher:dispatcher
-    ports:
-      - "80:80"
     labels:
       - "logging=true"
     restart: always
