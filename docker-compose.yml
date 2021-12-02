@@ -173,3 +173,10 @@ services:
       labels:
         - "logging=true"
       logging: *default-logging
+  files-consumer:
+    image: lblod/delta-consumer-file-sync-submissions:0.1.0
+    environment:
+      FILES_ENDPOINT_BASE_URL: "https://loket.lblod.info"
+      SOURCE_FILES_DATA_GRAPH: "http://mu.semte.ch/graphs/original-physical-files-data"
+    volumes:
+      - ./data/files:/share
