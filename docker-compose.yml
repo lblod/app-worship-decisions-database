@@ -178,6 +178,7 @@ services:
   files-consumer:
     image: lblod/delta-consumer-file-sync-submissions:0.1.1
     environment:
+      CRON_PATTERN_FILE_SYNC: "*/5 * * * *"
       FILES_ENDPOINT_BASE_URL: "https://loket.lblod.info"
       SOURCE_FILES_DATA_GRAPH: "http://mu.semte.ch/graphs/original-physical-files-data"
     volumes:
