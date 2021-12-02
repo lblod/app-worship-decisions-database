@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.7'
 
 x-logging:
   &default-logging
@@ -34,13 +34,19 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  deltanotifier:
+    image: cecemel/delta-notifier:0.2.0-beta.2
+    volumes:
+      - ./config/delta:/config
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
   virtuoso:
     image: tenforce/virtuoso:1.3.2-virtuoso7.2.5.1
     environment:
       SPARQL_UPDATE: "true"
       DEFAULT_GRAPH: "http://mu.semte.ch/application"
-    ports:
-      - "8890:8890"
     volumes:
       - ./data/db:/data
       - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini # Note: on production override this setting
@@ -63,19 +69,6 @@ services:
     image: semtech/mu-authorization:0.6.0-beta.7
     environment:
       MU_SPARQL_ENDPOINT: "http://virtuoso:8890/sparql"
-      LOG_OUTGOING_SPARQL_QUERIES: "true"
-      LOG_INCOMING_SPARQL_QUERIES: "true"
-      LOG_ACCESS_RIGHTS: "true"
-      INSPECT_OUTGOING_SPARQL_QUERIES: "true"
-      INSPECT_INCOMING_SPARQL_QUERIES: "true"
-      LOG_SERVER_CONFIGURATION: "true"
-      INSPECT_ACCESS_RIGHTS_PROCESSING : "true"
-      LOG_DELTA_MESSAGES : "true"
-      LOG_DELTA_CLIENT_COMMUNICATION : "true"
-      LOG_TEMPLATE_MATCHER_PERFORMANCE : "true"
-      LOG_OUTGOING_SPARQL_QUERY_RESPONSES : "true"
-      INSPECT_OUTGOING_SPARQL_QUERY_RESPONSES : "true"
-      LOG_OUTGOING_SPARQL_QUERY_ROUNDTRIP : "true"
     volumes:
       - ./config/authorization:/config
     labels:
@@ -83,7 +76,7 @@ services:
     restart: always
     logging: *default-logging
   cache:
-    image: semtech/mu-cache:2.0.0
+    image: semtech/mu-cache:2.0.2
     links:
       - resource:backend
     labels:
@@ -119,10 +112,6 @@ services:
     environment:
       NUMBER_OF_THREADS: 16 # overwrite for development
       JRUBY_OPTIONS: "-J-Xmx16g" # overwrite for development
-      LOG_SCOPE_AUTHORIZATION: "debug"
-      LOG_SCOPE_SPARQL: "debug"
-      LOG_SCOPE_ELASTICSEARCH: "debug"
-      LOG_SCOPE_SEARCH: "debug"
     restart: always
     logging: *default-logging
   elasticsearch:
@@ -161,3 +150,36 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+################################################################################
+# DELTAS
+################################################################################
+  submissions-consumer:
+      image: lblod/delta-consumer:0.0.1
+      environment:
+        DCR_SYNC_BASE_URL: 'https://loket.lblod.info/'
+        DCR_SERVICE_NAME: 'submissions-consumer'
+        DCR_SYNC_FILES_PATH: '/sync/submissions/files'
+        DCR_SYNC_DATASET_SUBJECT: "http://data.lblod.info/datasets/delta-producer/dumps/SubmissionsCacheGraphDump"
+        DCR_INITIAL_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/initialSync/submissions"
+        DCR_JOB_CREATOR_URI: "http://data.lblod.info/services/id/submissions-consumer"
+        DCR_DISABLE_INITIAL_SYNC: 'true'
+        DCR_KEEP_DELTA_FILES: 'true'
+        DCR_DELTA_FILE_FOLDER: '/consumer-files'
+        DCR_DELTA_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/sumbissionFileSyncing"
+        INGEST_GRAPH: "http://mu.semte.ch/graphs/access-for-role/PubliekeBesluitendatabank-BesluitendatabankLezer"
+        BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'true'
+        FILE_SYNC_GRAPH: "http://mu.semte.ch/graphs/original-physical-files-data"
+      volumes:
+        - ./config/submissions-consumer/submissions-dispatching:/config/triples-dispatching/custom-dispatching
+        - ./data/files/consumer-files/submissions:/consumer-files/
+        - ./data/files:/share
+      restart: always
+      logging: *default-logging
+  files-consumer:
+    image: lblod/delta-consumer-file-sync-submissions:0.1.1
+    environment:
+      CRON_PATTERN_FILE_SYNC: "*/5 * * * *"
+      FILES_ENDPOINT_BASE_URL: "https://loket.lblod.info"
+      SOURCE_FILES_DATA_GRAPH: "http://mu.semte.ch/graphs/original-physical-files-data"
+    volumes:
+      - ./data/files:/share
