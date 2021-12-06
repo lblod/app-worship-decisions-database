@@ -167,7 +167,7 @@ services:
         DCR_DELTA_FILE_FOLDER: '/consumer-files'
         DCR_DELTA_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/sumbissionFileSyncing"
         INGEST_GRAPH: "http://mu.semte.ch/graphs/access-for-role/PubliekeBesluitendatabank-BesluitendatabankLezer"
-        BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'true'
+        BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'false'
         FILE_SYNC_GRAPH: "http://mu.semte.ch/graphs/original-physical-files-data"
       volumes:
         - ./config/submissions-consumer/submissions-dispatching:/config/triples-dispatching/custom-dispatching
@@ -176,9 +176,9 @@ services:
       restart: always
       logging: *default-logging
   files-consumer:
-    image: lblod/delta-consumer-file-sync-submissions:0.1.1
+    image: lblod/delta-consumer-file-sync-submissions:0.2.0
     environment:
-      CRON_PATTERN_FILE_SYNC: "*/5 * * * *"
+      DISABLE_INITIAL_SYNC: "true"
       FILES_ENDPOINT_BASE_URL: "https://loket.lblod.info"
       SOURCE_FILES_DATA_GRAPH: "http://mu.semte.ch/graphs/original-physical-files-data"
     volumes:
