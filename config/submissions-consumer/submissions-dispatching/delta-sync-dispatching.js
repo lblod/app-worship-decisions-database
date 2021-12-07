@@ -9,8 +9,6 @@ const { BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES,
         FILE_SYNC_GRAPH
       } = require('./config');
 const { batchedDbUpdate, partition } = require('./utils');
-const endpoint = BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES ? DIRECT_DATABASE_ENDPOINT : process.env.MU_SPARQL_ENDPOINT;
-
 
 /**
  * Dispatch the fetched information to a target graph.
@@ -32,7 +30,12 @@ async function dispatch(lib, data){
   const { termObjectChangeSets } =  data;
 
   for (let { deletes, inserts } of termObjectChangeSets) {
-    const deleteStatements = deletes.map(o => `${o.subject} ${o.predicate} ${o.object}.`);
+    const deletePartitions = partition(deletes, o => o.subject.startsWith('<share://'));
+    const regularDeletes = deletePartitions.fails;
+    const fileDeletes = deletePartitions.passes;
+    const fileDeleteStatements = fileDeletes.map(o => `${o.subject} ${o.predicate} ${o.object}.`);
+    const deleteStatements = regularDeletes.map(o => `${o.subject} ${o.predicate} ${o.object}.`);
+
     await batchedDbUpdate(
       muAuthSudo.updateSudo,
       INGEST_GRAPH,
@@ -46,10 +49,22 @@ async function dispatch(lib, data){
       "DELETE"
     );
 
+    await batchedDbUpdate(
+      muAuthSudo.updateSudo,
+      FILE_SYNC_GRAPH,
+      fileDeleteStatements,
+      { },
+      process.env.MU_SPARQL_ENDPOINT, //Note: this is the default endpoint through auth
+      BATCH_SIZE,
+      MAX_DB_RETRY_ATTEMPTS,
+      SLEEP_BETWEEN_BATCHES,
+      SLEEP_TIME_AFTER_FAILED_DB_OPERATION,
+      "DELETE"
+    );
 
-    const partitions = partition(inserts, o => o.subject.startsWith('<share://'));
-    const regularInserts = partitions.fails;
-    const fileInserts = partitions.passes;
+    const insertPartitions = partition(inserts, o => o.subject.startsWith('<share://'));
+    const regularInserts = insertPartitions.fails;
+    const fileInserts = insertPartitions.passes;
 
     await batchedDbUpdate(
       muAuthSudo.updateSudo,
@@ -69,7 +84,7 @@ async function dispatch(lib, data){
       FILE_SYNC_GRAPH,
       fileInserts.map(o => `${o.subject} ${o.predicate} ${o.object}.`),
       { 'mu-call-scope-id': MU_CALL_SCOPE_ID_INITIAL_SYNC },
-      endpoint,
+      process.env.MU_SPARQL_ENDPOINT,
       BATCH_SIZE,
       MAX_DB_RETRY_ATTEMPTS,
       SLEEP_BETWEEN_BATCHES,
