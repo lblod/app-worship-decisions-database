@@ -83,7 +83,7 @@ async function dispatch(lib, data){
       muAuthSudo.updateSudo,
       FILE_SYNC_GRAPH,
       fileInserts.map(o => `${o.subject} ${o.predicate} ${o.object}.`),
-      { 'mu-call-scope-id': MU_CALL_SCOPE_ID_INITIAL_SYNC },
+      { },
       process.env.MU_SPARQL_ENDPOINT,
       BATCH_SIZE,
       MAX_DB_RETRY_ATTEMPTS,
