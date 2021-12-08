@@ -93,7 +93,7 @@ To proceed (similar for mandaten and leidinggevenden):
       FILES_ENDPOINT_BASE_URL: 'https://dev.loket.lblod.info/' # The endpoint of your choice (see later what to choose)
       DISABLE_INITIAL_SYNC: 'false'
 ```
-6. Check the logs and wait for the message: `Initial sync was success`. Or query:
+6. Check the logs and wait for the message: `Full sync finished`. Or query:
 ```
    PREFIX adms: <http://www.w3.org/ns/adms#>
    PREFIX task: <http://redpencil.data.gift/vocabularies/tasks/>
@@ -108,7 +108,8 @@ To proceed (similar for mandaten and leidinggevenden):
     }
     ORDER BY DESC(?created)
 ```
-7. Once ok, you will have to enable automatic-syncing for the files consumer
+7. [OPTIONAL] Sometimes things might go wrong. It can help to rebuild the index ``/bin/bash config/scripts/reset-elastic.sh` to troubleshoot.
+8. Once ok, you will have to enable automatic-syncing for the files consumer
 ```
 # (...)
   files-consumer:
@@ -116,7 +117,7 @@ To proceed (similar for mandaten and leidinggevenden):
       # (...)
       - DISABLE_AUTOMATIC_SYNC: "false"
 ```
-8. `drc restart resource cache` is still needed after the intiial sync.
+9. `drc restart resource cache search-query-management` is still needed after the intiial sync.
 
 ### Additional notes:
 #### Performance
