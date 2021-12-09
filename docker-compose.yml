@@ -176,7 +176,7 @@ services:
       restart: always
       logging: *default-logging
   files-consumer:
-    image: lblod/delta-consumer-file-sync-submissions:0.3.0
+    image: lblod/delta-consumer-file-sync-submissions:0.3.1
     environment:
       DISABLE_AUTOMATIC_SYNC: "true"
       DISABLE_INITIAL_SYNC: "true"
