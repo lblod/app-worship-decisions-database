@@ -44,3 +44,56 @@ Start the system:
 ```shell
 docker-compose up
 ```
+## Ingesting data
+The app comes with no data, because it depends on external datasources.
+
+  *  [Submissions (sourced by loket)](https://loket.lokaalbestuur.vlaanderen.be/)
+
+You can follow the following procedure, for all data sources.
+
+The ingestion should be a one time operation per deployment, and is currenlty semi-automatic for various reasons (mainly related to performance)
+The ingestion is disabled by default. It is recommended, for performance, to start only one initial ingest at a time.
+
+To proceed (similar for mandaten and leidinggevenden):
+1. make sure the app is up and running. And the migrations have run.
+2. In docker-compose.override.yml (preferably) override the following parameters for submissions-consumer
+```
+# (...)
+  submissions-consumer:
+    environment:
+      SYNC_BASE_URL: 'https://dev.loket.lblod.info/' # The endpoint of your choice (see later what to choose)
+      DISABLE_INITIAL_SYNC: 'false'
+      BATCH_SIZE: 100 # if virtuoso is in prod mode, you can safely beef this up to 500/1000
+```
+3. `docker-compose up -d submissions-consumer` should start the ingestion.
+  This might take a while if yoh ingest production data.
+4. Check the logs, at some point this message should show up
+  `Initial sync was success, proceeding in Normal operation mode: ingest deltas`
+   or execute in the database:
+   ```
+   PREFIX adms: <http://www.w3.org/ns/adms#>
+   PREFIX task: <http://redpencil.data.gift/vocabularies/tasks/>
+   PREFIX dct: <http://purl.org/dc/terms/>
+   PREFIX cogs: <http://vocab.deri.ie/cogs#>
+
+   SELECT ?s ?status ?created WHERE {
+     ?s a <http://vocab.deri.ie/cogs#Job> ;
+       adms:status ?status ;
+       task:operation <http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/initialSync/submissions> ;
+       dct:created ?created ;
+       dct:creator <http://data.lblod.info/services/id/mandatendatabank-consumer> .
+    }
+    ORDER BY DESC(?created)
+   ```
+5. `drc restart resource cache` is still needed after the intiial sync.
+
+### Additional notes:
+#### Performance
+- The default virtuoso settings might be too weak if you need to ingest the production data. Hence, there is better config, you can take over in your `docker-compose.override.yml`
+```
+  virtuoso:
+    volumes:
+      - ./data/db:/data
+      - ./config/virtuoso/virtuoso-production.ini:/data/virtuoso.ini
+      - ./config/virtuoso/:/opt/virtuoso-scripts
+```

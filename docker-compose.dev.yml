@@ -1,16 +1,60 @@
-version: '3.4'
+version: '3.7'
 
 services:
   identifier:
     ports:
       - "80:80"
+    restart: "no"
+  dispatcher:
+    restart: "no"
   virtuoso:
     ports:
       - "8890:8890"
+    restart: "no"
+  resource:
+    restart: "no"
+  database:
+    environment:
+      LOG_OUTGOING_SPARQL_QUERIES: "true"
+      LOG_INCOMING_SPARQL_QUERIES: "true"
+      LOG_ACCESS_RIGHTS: "true"
+      INSPECT_OUTGOING_SPARQL_QUERIES: "true"
+      INSPECT_INCOMING_SPARQL_QUERIES: "true"
+      LOG_SERVER_CONFIGURATION: "true"
+      INSPECT_ACCESS_RIGHTS_PROCESSING : "true"
+      LOG_DELTA_MESSAGES : "true"
+      LOG_DELTA_CLIENT_COMMUNICATION : "true"
+      LOG_TEMPLATE_MATCHER_PERFORMANCE : "true"
+      LOG_OUTGOING_SPARQL_QUERY_RESPONSES : "true"
+      INSPECT_OUTGOING_SPARQL_QUERY_RESPONSES : "true"
+      LOG_OUTGOING_SPARQL_QUERY_ROUNDTRIP : "true"
+    restart: "no"
+  cache:
+    restart: "no"
   mocklogin:
     image: lblod/mock-login-service:0.4.0
-    links:
-      - virtuoso:database
+    restart: "no"
+  migrations:
+    restart: "no"
+  file:
+    restart: "no"
+  search:
+    environment:
+      LOG_SCOPE_AUTHORIZATION: "debug"
+      LOG_SCOPE_SPARQL: "debug"
+      LOG_SCOPE_ELASTICSEARCH: "debug"
+      LOG_SCOPE_SEARCH: "debug"
+    restart: "no"
+  elasticsearch:
+    restart: "no"
+  tika:
+    restart: "no"
+  search-query-management:
+    restart: "no"
+  enrich-submission:
+    restart: "no"
+  submissions-consumer:
+    restart: "no"
   kibana:
     image: docker.elastic.co/kibana/kibana:7.2.0
     environment:
