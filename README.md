@@ -81,11 +81,43 @@ To proceed (similar for mandaten and leidinggevenden):
        adms:status ?status ;
        task:operation <http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/initialSync/submissions> ;
        dct:created ?created ;
-       dct:creator <http://data.lblod.info/services/id/mandatendatabank-consumer> .
+       dct:creator <http://data.lblod.info/services/id/submissions-consumer> .
     }
     ORDER BY DESC(?created)
    ```
-5. `drc restart resource cache` is still needed after the intiial sync.
+5. Now the submissions are synced, a smilar procedure for the syncing of the files.
+```
+# (...)
+  files-consumer:
+    environment:
+      FILES_ENDPOINT_BASE_URL: 'https://dev.loket.lblod.info/' # The endpoint of your choice (see later what to choose)
+      DISABLE_INITIAL_SYNC: 'false'
+```
+6. Check the logs and wait for the message: `Full sync finished`. Or query:
+```
+   PREFIX adms: <http://www.w3.org/ns/adms#>
+   PREFIX task: <http://redpencil.data.gift/vocabularies/tasks/>
+   PREFIX dct: <http://purl.org/dc/terms/>
+   PREFIX cogs: <http://vocab.deri.ie/cogs#>
+
+   SELECT ?s ?status ?created WHERE {
+     ?s a <http://vocab.deri.ie/cogs#Job> ;
+       adms:status ?status ;
+       task:operation <http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/physicalFileSync> ;
+       dct:created <http://data.lblod.info/services/id/delta-consumer-file-sync-submissions> .
+    }
+    ORDER BY DESC(?created)
+```
+7. [OPTIONAL] Sometimes things might go wrong. It can help to rebuild the index ``/bin/bash config/scripts/reset-elastic.sh` to troubleshoot.
+8. Once ok, you will have to enable automatic-syncing for the files consumer
+```
+# (...)
+  files-consumer:
+    environment:
+      # (...)
+      - DISABLE_AUTOMATIC_SYNC: "false"
+```
+9. `drc restart resource cache search-query-management` is still needed after the intiial sync.
 
 ### Additional notes:
 #### Performance

@@ -115,7 +115,7 @@ services:
     restart: always
     logging: *default-logging
   elasticsearch:
-    image: semtech/mu-search-elastic-backend:1.0.0
+    image: semtech/mu-search-elastic-backend:1.0.1
     volumes:
       - ./data/elasticsearch/:/usr/share/elasticsearch/data
     environment:
@@ -176,9 +176,10 @@ services:
       restart: always
       logging: *default-logging
   files-consumer:
-    image: lblod/delta-consumer-file-sync-submissions:0.1.1
+    image: lblod/delta-consumer-file-sync-submissions:0.4.0
     environment:
-      CRON_PATTERN_FILE_SYNC: "*/5 * * * *"
+      DISABLE_AUTOMATIC_SYNC: "true"
+      DISABLE_INITIAL_SYNC: "true"
       FILES_ENDPOINT_BASE_URL: "https://loket.lblod.info"
       SOURCE_FILES_DATA_GRAPH: "http://mu.semte.ch/graphs/original-physical-files-data"
     volumes:
