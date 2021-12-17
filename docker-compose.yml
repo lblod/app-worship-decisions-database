@@ -154,7 +154,7 @@ services:
 # DELTAS
 ################################################################################
   submissions-consumer:
-      image: lblod/delta-consumer:0.0.1
+      image: lblod/delta-consumer:0.0.4
       environment:
         DCR_SYNC_BASE_URL: 'https://loket.lblod.info/'
         DCR_SERVICE_NAME: 'submissions-consumer'
