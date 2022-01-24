@@ -285,35 +285,6 @@ fields:db613412-727e-486f-8a11-7fc25abed640 a form:Field ;
 ##########################################################
 
 ##########################################################
-# START sent date [second version]
-##########################################################
-fields:b965ac5a-b057-44cb-98b6-602de06001c1 a form:Field ;
- mu:uuid "b965ac5a-b057-44cb-98b6-602de06001c1" ;
- sh:name "Periode verstuurd" ;
- sh:order 120 ;
- form:displayType displayTypes:dateRange ;
- dateRange:from fields:c5ef6328-dca5-4e65-b9d8-0a1b5387f288;
- dateRange:to fields:a4317e79-bf56-4a8d-95c9-35960a44ec05;
- sh:group fields:2c6ae26c-c3de-4bbc-9021-9cb45b886742 .
-
-fields:c5ef6328-dca5-4e65-b9d8-0a1b5387f288 a form:Field ;
- mu:uuid "c5ef6328-dca5-4e65-b9d8-0a1b5387f288" ;
- sh:order 2001 ;
- search:emberQueryParameterKey "sentDateFrom" ;
- sh:path searchToezicht:sentDateFrom ;
- sh:group fields:2c6ae26c-c3de-4bbc-9021-9cb45b886742 .
-
-fields:a4317e79-bf56-4a8d-95c9-35960a44ec05 a form:Field ;
- mu:uuid "a4317e79-bf56-4a8d-95c9-35960a44ec05" ;
- sh:order 2002 ;
- search:emberQueryParameterKey "sentDateTo" ;
- sh:path searchToezicht:sentDateTo ;
- sh:group fields:2c6ae26c-c3de-4bbc-9021-9cb45b886742 .
-##########################################################
-#  END sent date
-##########################################################
-
-##########################################################
 # START chart of account
 ##########################################################
 fields:23094e06-3d68-4c90-b4a6-725893feddeb a form:Field ;
@@ -431,10 +402,7 @@ fieldGroups:filter a form:FieldGroup ;
                 fields:edcd6b86-2a9c-4c2a-a283-e536f49fbe7b,
 
                 ### Session Date From-To datepicker
-                fields:6565db60-c0d3-4878-b240-35d661b3ca86,
-
-                ### Sent Date From-To datepicker
-                fields:b965ac5a-b057-44cb-98b6-602de06001c1.
+                fields:6565db60-c0d3-4878-b240-35d661b3ca86.
 
 form: a form:Form ;
     mu:uuid "6b70a6f0-cce2-4afe-81f5-5911f45b0b27" ;
