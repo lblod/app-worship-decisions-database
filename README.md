@@ -92,6 +92,7 @@ To proceed (similar for mandaten and leidinggevenden):
     environment:
       FILES_ENDPOINT_BASE_URL: 'https://dev.loket.lblod.info/' # The endpoint of your choice (see later what to choose)
       DISABLE_INITIAL_SYNC: 'false'
+       SECRET_KEY: "the-secret-key-configured-in-the-source"
 ```
 6. Check the logs and wait for the message: `Full sync finished`. Or query:
 ```
