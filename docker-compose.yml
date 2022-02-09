@@ -9,7 +9,7 @@ x-logging:
 
 services:
   frontend:
-    image: lblod/frontend-public-decisions:0.0.2
+    image: lblod/frontend-public-decisions:0.1.0
     volumes:
       - ./config/frontend:/config
     labels:
@@ -61,6 +61,20 @@ services:
       CACHE_CLEAR_PATH: "http://cache/.mu/clear-keys"
     volumes:
       - ./config/resources:/config
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
+  login:
+    image: lblod/acmidm-login-service:0.10.0-beta.1
+    environment:
+      MU_APPLICATION_AUTH_DISCOVERY_URL: "https://authenticatie-ti.vlaanderen.be/op"
+      MU_APPLICATION_AUTH_CLIENT_ID: "b772fce4-ebd8-4980-b51c-8e0d73fe75d2"
+      MU_APPLICATION_AUTH_REDIRECT_URI: "https://besluiten.lokaalbestuur.lblod.info/authorization/callback"
+      MU_APPLICATION_AUTH_CLIENT_SECRET: "secret"
+      MU_APPLICATION_AUTH_USERID_CLAIM: "sub"
+      MU_APPLICATION_AUTH_ACCOUNTID_CLAIM: "sub"
+      MU_APPLICATION_AUTH_ROLE_CLAIM: "abb_besluitendatabank_rol_2d"
     labels:
       - "logging=true"
     restart: always
@@ -176,7 +190,7 @@ services:
       restart: always
       logging: *default-logging
   files-consumer:
-    image: lblod/delta-consumer-file-sync-submissions:0.5.0
+    image: lblod/delta-consumer-file-sync-submissions:0.5.1
     environment:
       DISABLE_AUTOMATIC_SYNC: "true"
       DISABLE_INITIAL_SYNC: "true"
