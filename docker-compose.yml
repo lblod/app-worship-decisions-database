@@ -65,6 +65,18 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  login:
+    image: lblod/acmidm-login-service:0.9.2
+    environment:
+      MU_APPLICATION_AUTH_DISCOVERY_URL: "https://authenticatie-ti.vlaanderen.be/op"
+      MU_APPLICATION_AUTH_CLIENT_ID: "b772fce4-ebd8-4980-b51c-8e0d73fe75d2"
+      MU_APPLICATION_AUTH_REDIRECT_URI: "https://besluiten.lokaalbestuur.lblod.info/authorization/callback"
+      MU_APPLICATION_AUTH_CLIENT_SECRET: "secret"
+      LOG_SINK_URL: "http://sink"
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
   database:
     image: semtech/mu-authorization:0.6.0-beta.7
     environment:
