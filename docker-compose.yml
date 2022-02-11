@@ -9,7 +9,7 @@ x-logging:
 
 services:
   frontend:
-    image: lblod/frontend-public-decisions:0.1.0
+    image: lblod/frontend-public-decisions:0.1.1
     volumes:
       - ./config/frontend:/config
     labels:
