@@ -44,11 +44,29 @@ defmodule Acl.UserGroups.Config do
                         "http://data.vlaanderen.be/ns/besluit#Bestuurseenheid"
                       ]
                     } } ] },
+      %GroupSpec{
+        name: "org",
+        useage: [:read],
+        access: %AccessByQuery{
+          vars: ["session_group"],
+          query: "PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
+                  PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+                  SELECT ?session_group ?session_role WHERE {
+                    <SESSION_ID> ext:sessionGroup/mu:uuid ?session_group.
+                    }" },
+        graphs: [ %GraphSpec{
+                    graph: "http://mu.semte.ch/graphs/organizations/",
+                    constraint: %ResourceConstraint{
+                      resource_types: [
+                        "http://xmlns.com/foaf/0.1/Person",
+                        "http://xmlns.com/foaf/0.1/OnlineAccount",
+                        "http://www.w3.org/ns/adms#Identifier",
+                      ] } } ] },
       # // Logged in users
       %GroupSpec{
         name: "readers",
         useage: [:read],
-      access: access_by_role_for_single_graph( "PubliekeBesluitendatabank-BesluitendatabankLezer" ),
+      access: access_by_role_for_single_graph( "BesluitendatabankGebruiker" ),
         graphs: [ %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/access-for-role/PubliekeBesluitendatabank-BesluitendatabankLezer",
                     constraint: %ResourceConstraint{
