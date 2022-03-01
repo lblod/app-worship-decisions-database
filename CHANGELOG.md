@@ -1,4 +1,6 @@
 # Changelog
+## 1.0.0 (2022-03-01)
+- initial release
 ## 0.3.2 (2022-02-24)
 - fix broken form
 ## 0.3.1 (2022-02-23)
