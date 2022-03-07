@@ -49,12 +49,12 @@ The app comes with no data, because it depends on external datasources.
 
   *  [Submissions (sourced by loket)](https://loket.lokaalbestuur.vlaanderen.be/)
 
-You can follow the following procedure, for all data sources.
+You can follow the following procedure, for all data sources (currently there is only one).
 
 The ingestion should be a one time operation per deployment, and is currenlty semi-automatic for various reasons (mainly related to performance)
 The ingestion is disabled by default. It is recommended, for performance, to start only one initial ingest at a time.
 
-To proceed (similar for mandaten and leidinggevenden):
+To proceed:
 1. make sure the app is up and running. And the migrations have run.
 2. In docker-compose.override.yml (preferably) override the following parameters for submissions-consumer
 ```
