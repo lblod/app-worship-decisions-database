@@ -61,8 +61,8 @@ To proceed:
 # (...)
   submissions-consumer:
     environment:
-      SYNC_BASE_URL: 'https://dev.loket.lblod.info/' # The endpoint of your choice (see later what to choose)
-      DISABLE_INITIAL_SYNC: 'false'
+      DCR_SYNC_BASE_URL: 'https://dev.loket.lblod.info/' # The endpoint of your choice (see later what to choose)
+      DCR_DISABLE_INITIAL_SYNC: 'false'
       BATCH_SIZE: 100 # if virtuoso is in prod mode, you can safely beef this up to 500/1000
 ```
 3. `docker-compose up -d submissions-consumer` should start the ingestion.
