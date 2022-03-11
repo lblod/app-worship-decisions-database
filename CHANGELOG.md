@@ -1,4 +1,7 @@
 # Changelog
+## 1.1.0 (2022-03-01)
+- documentation updates
+- minor fixes labels
 ## 1.0.0 (2022-03-01)
 - initial release
 ## 0.3.2 (2022-02-24)
