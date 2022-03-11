@@ -215,7 +215,7 @@ fields:edcd6b86-2a9c-4c2a-a283-e536f49fbe7b a form:Field ;
     search:emberQueryParameterKey "decisionTypes" ;
     form:options  """{"conceptScheme":"http://lblod.data.gift/concept-schemes/71e6455e-1204-46a6-abf4-87319f58eaa5"}""" ;
     form:displayType displayTypes:conceptSchemeMultiSelector ;
-    form:help "vb. Specifiek besluiten: Reglementen en verordeningen, belasting of retributie, ... of agenda, besluitenlijst of notulen" ;
+    form:help "vb. Reglementen en verordeningen, meerjarenplan, rechtspositieregeling, besluitenlijst…" ;
     sh:group fields:f950e7b3-b09b-4343-84aa-6083aa0241c6 ;
     form:hasConditionalFieldGroup fields:0ae400e4-6897-4d86-982a-e1f74ead1f93. ### Regelementen en Verorderingen
 
