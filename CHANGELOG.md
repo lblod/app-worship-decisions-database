@@ -1,4 +1,7 @@
 # Changelog
+## 1.2.1 (2022-04-04)
+- fix: vo-entiteiten in correct graph
+- fix: configurable frontend on startup
 ## 1.2.0 (2022-04-04)
 - Add vo-entiteiten migration
 ## 1.1.0 (2022-03-01)
