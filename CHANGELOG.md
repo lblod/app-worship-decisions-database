@@ -1,4 +1,10 @@
 # Changelog
+## 1.3.0 (2022-05-18)
+- feature: update frontend to v1.4.0
+    - Update Appuniversum to the latest version
+    - Update ember-submission-form-fields to the latest version
+    - textual improvements
+- feature: new "erediensten" forms
 ## 1.2.2 (2022-04-15)
 - fix: bump frontend
 ## 1.2.1 (2022-04-15)
