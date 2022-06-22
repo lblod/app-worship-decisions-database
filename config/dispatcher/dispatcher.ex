@@ -55,13 +55,14 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/bestuursorgaan-classificatie-codes/"
   end
 
+  get "/files/:id/download", @any do
+    Proxy.forward conn, [], "http://file/files/" <> id <> "/download"
+  end
+
   get "/files/*path", @json do
     Proxy.forward conn, path, "http://resource/files/"
   end
 
-  get "/files/:id/download", @any do
-    Proxy.forward conn, [], "http://file/files/" <> id <> "/download"
-  end
 
   ###############################################################
   # Searching
