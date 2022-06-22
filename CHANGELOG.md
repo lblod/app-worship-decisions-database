@@ -1,4 +1,6 @@
 # Changelog
+## 1.3.1 (2022-06-22)
+- hotfix: tweak dispatcher rules for more variations in browser-requests with regard to the download attribute.
 ## 1.3.0 (2022-05-18)
 - feature: update frontend to v1.4.0
     - Update Appuniversum to the latest version
