@@ -1,6 +1,6 @@
-# Public Decision Database
+# Worship Decision Database
 
-Backend API providing exposing the public decision data.
+Backend API providing exposing the worship decision data.
 Started from the [mu-project](https://github.com/mu-semtech/mu-project) template.
 
 ## Running and maintaining
@@ -17,7 +17,7 @@ General information on running, maintaining and installing the stack.
 
 Move in to the directory:
 ```shell
-cd app-public-decision-database
+cd app-worship-decision-database
 ```
 Start the system:
 ```shell
