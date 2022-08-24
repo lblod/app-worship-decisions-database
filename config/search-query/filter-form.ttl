@@ -100,7 +100,7 @@ fields:8f6ee5fa-4d2b-40a3-86ab-a9d2115f4f91 a form:Field ;
     sh:order 50 ;
     search:emberQueryParameterKey "administrativeUnites" ;
     sh:path searchToezicht:administrativeUnit ;
-    form:options  """{"conceptScheme":"http://lblod.data.gift/concept-schemes/7e2b965e-c824-474f-b5d5-b1c115740083"}""" ;
+    form:options  """{"conceptScheme":"http://lblod.data.gift/concept-schemes/2f12f269-5024-4cb2-8ca4-f18d21d5fa39"}""" ;
     form:displayType displayTypes:conceptSchemeMultiSelector ;
     form:help "vb. Gemeente Hasselt, OCMW Gent" ;
     sh:group fields:cb08e556-459d-4378-a79b-51f35c9a965e .
@@ -186,20 +186,8 @@ fields:edcd6b86-2a9c-4c2a-a283-e536f49fbe7b a form:Field ;
     search:emberQueryParameterKey "decisionTypes" ;
     form:options  """{"conceptScheme":"http://lblod.data.gift/concept-schemes/71e6455e-1204-46a6-abf4-87319f58eaa5"}""" ;
     form:displayType displayTypes:conceptSchemeMultiSelector ;
-    form:help "vb. Reglementen en verordeningen, meerjarenplan, rechtspositieregeling, besluitenlijst…" ;
-    sh:group fields:f950e7b3-b09b-4343-84aa-6083aa0241c6 ;
-    form:hasConditionalFieldGroup fields:0ae400e4-6897-4d86-982a-e1f74ead1f93. ### Regelementen en Verorderingen
-
-fields:0ae400e4-6897-4d86-982a-e1f74ead1f93 a form:ConditionalFieldGroup ;
-    mu:uuid "0ae400e4-6897-4d86-982a-e1f74ead1f93";
-    form:conditions
-      [ a form:ContainsCodelistValue ;
-        form:grouping form:Bag ;
-        sh:path searchToezicht:decisionType ;
-        form:conceptScheme <http://lblod.data.gift/concept-schemes/71e6455e-1204-46a6-abf4-87319f58eaa5> ;
-        form:customValue <https://data.vlaanderen.be/id/concept/BesluitType/67378dd0-5413-474b-8996-d992ef81637a>
-      ] ;
-    form:hasFieldGroup fieldGroups:3a60def6-107e-4716-bc5f-2f2e108f7fab .
+    form:help "vb. Notulen, budget, advies bij jaarrekening eredienstbestuur…" ;
+    sh:group fields:f950e7b3-b09b-4343-84aa-6083aa0241c6 .
 
 fieldGroups:3a60def6-107e-4716-bc5f-2f2e108f7fab a form:FieldGroup;
     mu:uuid "3a60def6-107e-4716-bc5f-2f2e108f7fab" ;

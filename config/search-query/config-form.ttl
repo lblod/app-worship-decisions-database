@@ -129,7 +129,7 @@ fields:8f6ee5fa-4d2b-40a3-86ab-a9d2115f4f91 a form:Field ;
     sh:order 50 ;
     search:emberQueryParameterKey "administrativeUnites" ;
     sh:path searchToezicht:administrativeUnit ;
-    form:options  """{"conceptScheme":"http://lblod.data.gift/concept-schemes/7e2b965e-c824-474f-b5d5-b1c115740083"}""" ;
+    form:options  """{"conceptScheme":"http://lblod.data.gift/concept-schemes/2f12f269-5024-4cb2-8ca4-f18d21d5fa39"}""" ;
     form:displayType displayTypes:conceptSchemeMultiSelector ;
     form:help "vb. Gemeente Hasselt, OCMW Gent" ;
     sh:group fields:cb08e556-459d-4378-a79b-51f35c9a965e .
