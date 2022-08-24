@@ -100,7 +100,7 @@ fields:8f6ee5fa-4d2b-40a3-86ab-a9d2115f4f91 a form:Field ;
     sh:order 50 ;
     search:emberQueryParameterKey "administrativeUnites" ;
     sh:path searchToezicht:administrativeUnit ;
-    form:options  """{"conceptScheme":"http://lblod.data.gift/concept-schemes/2f12f269-5024-4cb2-8ca4-f18d21d5fa39"}""" ;
+    form:options  """{"conceptScheme":"http://lblod.data.gift/concept-schemes/7e2b965e-c824-474f-b5d5-b1c115740083"}""" ;
     form:displayType displayTypes:conceptSchemeMultiSelector ;
     form:help "vb. Gemeente Hasselt, OCMW Gent" ;
     sh:group fields:cb08e556-459d-4378-a79b-51f35c9a965e .
@@ -189,58 +189,8 @@ fields:edcd6b86-2a9c-4c2a-a283-e536f49fbe7b a form:Field ;
     form:help "vb. Notulen, budget, advies bij jaarrekening eredienstbestuur…" ;
     sh:group fields:f950e7b3-b09b-4343-84aa-6083aa0241c6 .
 
-fieldGroups:3a60def6-107e-4716-bc5f-2f2e108f7fab a form:FieldGroup;
-    mu:uuid "3a60def6-107e-4716-bc5f-2f2e108f7fab" ;
-    form:hasField
-                ### Regulation Type
-                fields:4f174cb2-6c9b-42ac-ba62-5fb5d738ca7f .
 ##########################################################
 # END decision type
-##########################################################
-
-##########################################################
-# START regulation type
-##########################################################
-fields:4f174cb2-6c9b-42ac-ba62-5fb5d738ca7f a form:Field ;
-    mu:uuid "4f174cb2-6c9b-42ac-ba62-5fb5d738ca7f" ;
-    sh:name "Subcategorie: Type reglement of verordening" ;
-    sh:order 100 ;
-    search:emberQueryParameterKey "regulationTypes" ;
-    sh:path searchToezicht:regulationType ;
-    form:options  """{"conceptScheme":"http://lblod.data.gift/concept-schemes/c93ccd41-aee7-488f-86d3-038de890d05a"}""" ;
-    form:displayType displayTypes:conceptSchemeMultiSelector ;
-    form:help "vb. Politiereglement of personeelsregelment";
-    sh:group fields:f950e7b3-b09b-4343-84aa-6083aa0241c6 ;
-    form:hasConditionalFieldGroup fields:677d5e15-bb3f-41b7-bc4f-f8b7cb620d46. ### MAR Code, Soort belasting, Belasting geldt vanaf, Belasting geldt tot
-
-fields:677d5e15-bb3f-41b7-bc4f-f8b7cb620d46 a form:ConditionalFieldGroup ;
-    mu:uuid "677d5e15-bb3f-41b7-bc4f-f8b7cb620d46";
-    form:conditions
-      [ a form:ContainsCodelistValue ;
-        form:grouping form:Bag ;
-        sh:path searchToezicht:regulationType ;
-        form:conceptScheme <http://lblod.data.gift/concept-schemes/c93ccd41-aee7-488f-86d3-038de890d05a> ;
-        form:customValue <https://data.vlaanderen.be/id/concept/BesluitType/efa4ec5a-b006-453f-985f-f986ebae11bc> # Belastingreglement
-      ] ;
-    form:hasFieldGroup fieldGroups:cb4d9fb6-6867-4cdd-9581-494c99d6f30e .
-
-fieldGroups:cb4d9fb6-6867-4cdd-9581-494c99d6f30e a form:FieldGroup;
-    mu:uuid "cb4d9fb6-6867-4cdd-9581-494c99d6f30e" ;
-    form:hasField
-                ### MAR Code
-                fields:23094e06-3d68-4c90-b4a6-725893feddeb ,
-
-                ### Soort belasting
-                fields:5fadd9bf-25be-4098-bc9a-a46d3d51f39b ,
-
-                ### Belasting geldt vanaf
-                fields:ebb08452-0f6d-4125-a04a-52cb75d95bf8 ,
-
-                ### Belasting geldt tot
-                fields:fbcfc425-b7a2-4212-a649-de9998280e5a .
-
-##########################################################
-# END regulation type
 ##########################################################
 
 ##########################################################
