@@ -4614,12 +4614,18 @@ ns5:ffd50ffa9db3d272d31657600ce0d1f560a67b920b7d137f1721540d43b03569	rdf:type	ns
 	skos:prefLabel	"Provincie" ;
 	skos:topConceptOf	<http://data.lblod.info/concept-schemes/id/3193c5d3-1bee-4d64-aa2d-fd2753a177a0> .
 @prefix ns10:	<http://data.vlaanderen.be/id/conceptscheme/> .
-<http://data.vlaanderen.be/id/concept/BestuurseenheidClassificatieCode/5ab0e9b8a3b2ca7c5e000000>	skos:topConceptOf	ns10:BestuurseenheidClassificatieCode .
+<http://data.vlaanderen.be/id/concept/BestuurseenheidClassificatieCode/5ab0e9b8a3b2ca7c5e000000>	skos:topConceptOf	ns10:BestuurseenheidClassificatieCode ;
+	skos:inScheme	<http://lblod.data.gift/concept-schemes/06bad311-e964-48a4-9b6b-f765819e76e0> ,
+		<http://data.lblod.info/concept-schemes/id/3193c5d3-1bee-4d64-aa2d-fd2753a177a0> ,
+		ns10:BestuurseenheidClassificatieCode .
 <http://data.vlaanderen.be/id/concept/BestuurseenheidClassificatieCode/5ab0e9b8a3b2ca7c5e000001>	rdf:type	ns4:BestuurseenheidClassificatieCode ,
 		skos:Concept ;
 	ns2:uuid	"5ab0e9b8a3b2ca7c5e000001" ;
 	skos:prefLabel	"Gemeente" ;
 	skos:topConceptOf	<http://data.lblod.info/concept-schemes/id/3193c5d3-1bee-4d64-aa2d-fd2753a177a0> ,
+		ns10:BestuurseenheidClassificatieCode ;
+	skos:inScheme	<http://lblod.data.gift/concept-schemes/06bad311-e964-48a4-9b6b-f765819e76e0> ,
+		<http://data.lblod.info/concept-schemes/id/3193c5d3-1bee-4d64-aa2d-fd2753a177a0> ,
 		ns10:BestuurseenheidClassificatieCode .
 <http://data.lblod.info/id/bestuurseenheden/26cb6d59-bf46-4315-acaa-6706d649f58d>	rdf:type	ns8:Location ;
 	rdfs:label	"Lievegem" ;
@@ -7707,7 +7713,9 @@ ns7:fdb1cc68-2efd-4f9b-ae94-6bf4199f5cbd	rdf:type	ns1:Bestuursorgaan ;
 		skos:Concept ;
 	ns2:uuid	"66ec74fd-8cfc-4e16-99c6-350b35012e86" ;
 	skos:prefLabel	"Bestuur van de eredienst" ;
-	skos:topConceptOf	ns10:BestuurseenheidClassificatieCode .
+	skos:topConceptOf	ns10:BestuurseenheidClassificatieCode ;
+	skos:inScheme	ns10:BestuurseenheidClassificatieCode ,
+		<http://lblod.data.gift/concept-schemes/06bad311-e964-48a4-9b6b-f765819e76e0> .
 <http://data.lblod.info/id/bestuursorganen/007002db02772e65a63cc5ca3cfa18c963a623011d9bca55bb4142c88d623bc0>	rdf:type	ns1:Bestuursorgaan ;
 	ns2:uuid	"007002db02772e65a63cc5ca3cfa18c963a623011d9bca55bb4142c88d623bc0" ;
 	skos:prefLabel	"Financieel directeur Gemeente Kraainem" ;
