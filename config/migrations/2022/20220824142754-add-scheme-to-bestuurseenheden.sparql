@@ -3,8 +3,8 @@ PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#>
 
 INSERT {
     GRAPH ?g {
-        ?s skos:topConceptOf <http://lblod.data.gift/concept-schemes/2f12f269-5024-4cb2-8ca4-f18d21d5fa39>.
-        ?s skos:inScheme <http://lblod.data.gift/concept-schemes/2f12f269-5024-4cb2-8ca4-f18d21d5fa39>.
+        ?s skos:topConceptOf <http://lblod.data.gift/concept-schemes/7e2b965e-c824-474f-b5d5-b1c115740083>.
+        ?s skos:inScheme <http://lblod.data.gift/concept-schemes/7e2b965e-c824-474f-b5d5-b1c115740083>.
     }
 } WHERE {
     GRAPH ?h {
