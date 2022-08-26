@@ -136,7 +136,7 @@ fields:35465e1a-531a-4bab-8b19-bbd59f19cd4a a form:Field ;
     sh:path searchToezicht:administrativeUnitClassification ;
     form:options  """{"conceptScheme":"http://data.vlaanderen.be/id/conceptscheme/BestuurseenheidClassificatieCode"}""" ;
     form:displayType displayTypes:conceptSchemeMultiSelector ;
-    form:help "vb. OCMW of gemeente" ;
+    form:help "vb. Kerkfabriek of gemeente" ;
     sh:group fields:cb08e556-459d-4378-a79b-51f35c9a965e ;
     form:hasConditionalFieldGroup fields:0fe2e436-673e-4cc8-9e29-f227f18dabb2. ## Governing Body Classification
 
@@ -169,7 +169,7 @@ fields:d18e810d-1ec8-4cdc-ac17-ee6b9d8958b6 a form:Field ;
     sh:path searchToezicht:governingBodyClassification ;
     form:options  """{"conceptScheme":"http://data.vlaanderen.be/id/conceptscheme/BestuursorgaanClassificatieCode"}""" ;
     form:displayType displayTypes:conceptSchemeMultiSelector ;
-    form:help "vb. Burgemeester of gemeenteraad" ;
+    form:help "vb. kerkraad of gemeenteraad" ;
     sh:group fields:cb08e556-459d-4378-a79b-51f35c9a965e .
 ##########################################################
 # END governing body classification
