@@ -168,27 +168,27 @@ services:
 # DELTAS
 ################################################################################
   submissions-consumer:
-      image: lblod/delta-consumer:0.0.5
-      environment:
-        DCR_SYNC_BASE_URL: 'https://loket.lblod.info/'
-        DCR_SERVICE_NAME: 'submissions-consumer'
-        DCR_SYNC_FILES_PATH: '/sync/submissions/files'
-        DCR_SYNC_DATASET_SUBJECT: "http://data.lblod.info/datasets/delta-producer/dumps/SubmissionsCacheGraphDump"
-        DCR_INITIAL_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/initialSync/submissions"
-        DCR_JOB_CREATOR_URI: "http://data.lblod.info/services/id/submissions-consumer"
-        DCR_DISABLE_INITIAL_SYNC: 'true'
-        DCR_KEEP_DELTA_FILES: 'true'
-        DCR_DELTA_FILE_FOLDER: '/consumer-files'
-        DCR_DELTA_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/sumbissionFileSyncing"
-        INGEST_GRAPH: "http://mu.semte.ch/graphs/access-for-role/PubliekeBesluitendatabank-BesluitendatabankLezer"
-        BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'true'
-        FILE_SYNC_GRAPH: "http://mu.semte.ch/graphs/original-physical-files-data"
-      volumes:
-        - ./config/submissions-consumer/submissions-dispatching:/config/triples-dispatching/custom-dispatching
-        - ./data/files/consumer-files/submissions:/consumer-files/
-        - ./data/files:/share
-      restart: always
-      logging: *default-logging
+    image: lblod/delta-consumer:0.0.5
+    environment:
+      DCR_SYNC_BASE_URL: 'https://loket.lblod.info/'
+      DCR_SERVICE_NAME: 'submissions-consumer'
+      DCR_SYNC_FILES_PATH: '/sync/submissions/files'
+      DCR_SYNC_DATASET_SUBJECT: "http://data.lblod.info/datasets/delta-producer/dumps/SubmissionsCacheGraphDump"
+      DCR_INITIAL_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/initialSync/submissions"
+      DCR_JOB_CREATOR_URI: "http://data.lblod.info/services/id/submissions-consumer"
+      DCR_DISABLE_INITIAL_SYNC: 'true'
+      DCR_KEEP_DELTA_FILES: 'true'
+      DCR_DELTA_FILE_FOLDER: '/consumer-files'
+      DCR_DELTA_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/sumbissionFileSyncing"
+      INGEST_GRAPH: "http://mu.semte.ch/graphs/access-for-role/PubliekeBesluitendatabank-BesluitendatabankLezer"
+      BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: 'true'
+      FILE_SYNC_GRAPH: "http://mu.semte.ch/graphs/original-physical-files-data"
+    volumes:
+      - ./config/submissions-consumer/submissions-dispatching:/config/triples-dispatching/custom-dispatching
+      - ./data/files/consumer-files/submissions:/consumer-files/
+      - ./data/files:/share
+    restart: always
+    logging: *default-logging
   files-consumer:
     image: lblod/delta-consumer-file-sync-submissions:0.5.1
     environment:

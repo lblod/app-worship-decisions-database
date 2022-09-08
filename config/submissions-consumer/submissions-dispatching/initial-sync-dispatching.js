@@ -11,6 +11,8 @@ const { BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES,
 const { batchedDbUpdate, partition } = require('./utils');
 const endpoint = BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES ? DIRECT_DATABASE_ENDPOINT : process.env.MU_SPARQL_ENDPOINT;
 
+// TODO update it to dispatch to the org graphs
+
 /**
  * Dispatch the fetched information to a target graph.
  * @param { mu, muAuthSudo } lib - The provided libraries from the host service.
