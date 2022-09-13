@@ -289,6 +289,9 @@ async function moveFromTmpToOrgGraph(subject, update, unitsUuids, tmpGraph) {
   `);
 }
 
+/**
+ * Get subjects that are related to a submission and have triples in the tmp graph to be moved to org graphs
+ */
 async function getMovableSubjectsFromSubmission(submission, type, pathToSubmission, tmpGraph, sparqlEscapeUri, query) {
   // This is extremely implict: the pathToSubmission expects the name
   // `?subject` as root node, and `?submission` as submission
@@ -298,11 +301,12 @@ async function getMovableSubjectsFromSubmission(submission, type, pathToSubmissi
   const queryStr = `
     SELECT DISTINCT ?subject WHERE {
       ${bindSubmission}
-
       ?subject a ${sparqlEscapeUri(type)}.
 
+      ${pathToSubmission}
+
       GRAPH ${sparqlEscapeUri(tmpGraph)} {
-        ${pathToSubmission}
+        ?subject ?p ?o .
       }
     }
   `;
