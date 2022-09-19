@@ -172,7 +172,7 @@ services:
     environment:
       DCR_SYNC_BASE_URL: 'https://loket.lblod.info/'
       DCR_SERVICE_NAME: 'submissions-consumer'
-      DCR_SYNC_FILES_PATH: '/sync/submissions/files'
+      DCR_SYNC_FILES_PATH: '/sync/worship-submissions/files'
       DCR_SYNC_DATASET_SUBJECT: "http://data.lblod.info/datasets/delta-producer/dumps/SubmissionsCacheGraphDump"
       DCR_INITIAL_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/initialSync/submissions"
       DCR_JOB_CREATOR_URI: "http://data.lblod.info/services/id/submissions-consumer"
