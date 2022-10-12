@@ -1,0 +1,20 @@
+{
+    "analysis": {
+    "analyzer": {
+        "dutchanalyzer": {
+        "tokenizer": "standard",
+        "filter": [
+            "lowercase",
+            "asciifolding",
+            "dutchstemmer"
+        ]
+        }
+    },
+    "filter": {
+        "dutchstemmer": {
+        "type": "stemmer",
+        "name": "dutch"
+        }
+    }
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "version": "0.1",
+    "scripts": [
+      {
+        "documentation": {
+          "command": "build-elasticsearch-config",
+          "description": "build elasticsearch configuration",
+          "arguments": []
+        },
+        "environment": {
+          "image": "rubylang/ruby",
+          "interactive": true,
+          "script": "build-elasticsearch-config/build.sh",
+          "join_networks": true
+        },
+        "mounts": {
+            "app": "/data/app/"
+        }
+      }
+    ]
+  }
+  
