@@ -19,10 +19,12 @@ def query()
             PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#>
             PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
 
-            SELECT DISTINCT ?uuid WHERE {
+            SELECT DISTINCT ?s ?uuid ?label WHERE {
               ?s a besluit:Bestuurseenheid;
+                skos:prefLabel ?label;
                 mu:uuid ?uuid.
             }
+            ORDER BY ?label ?uuid
         |
     return client.query(q)
 end
@@ -30,9 +32,7 @@ end
 def get_eager_index_groups()
     data = query();
     search_conf = []
-    session_group = data.map { |b| b.uuid.value };
-
-    session_group.each do |sg|
+    data.each do |sg|
         json = %|
             [
                 {
@@ -44,8 +44,9 @@ def get_eager_index_groups()
                 "name": "public"
                 },
                 {
+                "comment": "Config for #{sg.label.value} (#{sg.s.value})",
                 "name": "#{SPEC_NAME}",
-                "variables": ["#{sg}", "#{ROLE}"]
+                "variables": ["#{sg.uuid.value}", "#{ROLE}"]
                 }
             ]
         |
