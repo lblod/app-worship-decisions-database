@@ -6,9 +6,9 @@ alias Acl.GroupSpec, as: GroupSpec
 alias Acl.GroupSpec.GraphCleanup, as: GraphCleanup
 
 defmodule Acl.UserGroups.Config do
-  defp access_by_role_for_single_graph( group_string ) do
+  defp access_by_role( group_string ) do
     %AccessByQuery{
-      vars: [],
+      vars: ["session_group","session_role"],
       query: sparql_query_for_access_role( group_string ) }
   end
 
@@ -34,14 +34,21 @@ defmodule Acl.UserGroups.Config do
       %GroupSpec{
         name: "public",
         useage: [:read],
-        access: %AlwaysAccessible{}, # Needed for mock-login page
+        access: %AlwaysAccessible{}, # Needed for mock-login
         graphs: [ %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/public",
                     constraint: %ResourceConstraint{
                       resource_types: [
                         "http://xmlns.com/foaf/0.1/Person",
                         "http://xmlns.com/foaf/0.1/OnlineAccount",
-                        "http://data.vlaanderen.be/ns/besluit#Bestuurseenheid"
+                        "http://data.vlaanderen.be/ns/besluit#Bestuurseenheid",
+                        "http://mu.semte.ch/vocabularies/ext/BestuurseenheidClassificatieCode",
+                        "http://data.vlaanderen.be/ns/besluit#Bestuursorgaan",
+                        "http://mu.semte.ch/vocabularies/ext/BestuursorgaanClassificatieCode",
+                        "http://mu.semte.ch/vocabularies/ext/AuthenticityType",
+                        "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+                        "http://www.w3.org/2004/02/skos/core#Concept",
+                        "http://www.w3.org/ns/prov#Location"
                       ]
                     } } ] },
       %GroupSpec{
@@ -66,31 +73,27 @@ defmodule Acl.UserGroups.Config do
       %GroupSpec{
         name: "readers",
         useage: [:read],
-      access: access_by_role_for_single_graph( "BesluitendatabankGebruiker" ),
+      access: access_by_role( "ABB_databankErediensten_LB_CompEnts_gebruiker" ),
         graphs: [ %GraphSpec{
-                    graph: "http://mu.semte.ch/graphs/access-for-role/PubliekeBesluitendatabank-BesluitendatabankLezer",
+                    graph: "http://mu.semte.ch/graphs/organizations/",
                     constraint: %ResourceConstraint{
                       resource_types: [
-                        "http://data.vlaanderen.be/ns/besluit#Bestuurseenheid",
-                        "http://xmlns.com/foaf/0.1/Person",
-                        "http://xmlns.com/foaf/0.1/OnlineAccount",
                         "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject",
                         "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject",
-                        "http://www.w3.org/ns/prov#Location",
-                        "http://mu.semte.ch/vocabularies/ext/BestuurseenheidClassificatieCode",
-                        "http://data.vlaanderen.be/ns/besluit#Bestuursorgaan",
-                        "http://mu.semte.ch/vocabularies/ext/BestuursorgaanClassificatieCode",
-                        "http://data.vlaanderen.be/ns/besluit#Bestuurseenheid",
-                        "http://mu.semte.ch/vocabularies/ext/ChartOfAccount",
-                        "http://mu.semte.ch/vocabularies/ext/AuthenticityType",
-                        "http://mu.semte.ch/vocabularies/ext/TaxType",
-                        "http://www.w3.org/2004/02/skos/core#ConceptScheme",
-                        "http://www.w3.org/2004/02/skos/core#Concept",
                         "http://xmlns.com/foaf/0.1/Document",
                         "http://rdf.myexperiment.org/ontologies/base/Submission",
                         "http://mu.semte.ch/vocabularies/ext/SubmissionDocument",
-                        "http://lblod.data.gift/vocabularies/besluit/TaxRate",
                         "http://lblod.data.gift/vocabularies/automatische-melding/FormData",
+                        "http://xmlns.com/foaf/0.1/Person",
+                        "http://xmlns.com/foaf/0.1/OnlineAccount",
+                        "http://data.vlaanderen.be/ns/besluit#Bestuurseenheid",
+                        "http://mu.semte.ch/vocabularies/ext/BestuurseenheidClassificatieCode",
+                        "http://data.vlaanderen.be/ns/besluit#Bestuursorgaan",
+                        "http://mu.semte.ch/vocabularies/ext/BestuursorgaanClassificatieCode",
+                        "http://mu.semte.ch/vocabularies/ext/AuthenticityType",
+                        "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+                        "http://www.w3.org/2004/02/skos/core#Concept",
+                        "http://www.w3.org/ns/prov#Location"
                       ]
                     } } ] },
       # // CLEANUP
