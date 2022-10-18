@@ -14,23 +14,23 @@ def client
     @client ||= SPARQL::Client.new(SPARQL_CLIENT)
 end
 
-def query(role) 
+def query()
     q = %|
-            PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
+            PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#>
             PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
-            SELECT DISTINCT ?session_group  WHERE {
-            ?sessionId ext:sessionGroup/mu:uuid ?session_group;
-                        ext:sessionRole ?session_role.
-            FILTER( ?session_role = "#{role}" )
+
+            SELECT DISTINCT ?uuid WHERE {
+              ?s a besluit:Bestuurseenheid;
+                mu:uuid ?uuid.
             }
-        |   
-    return  client.query(q)
+        |
+    return client.query(q)
 end
 
-def get_eager_index_groups() 
-    data = query(ROLE);
+def get_eager_index_groups()
+    data = query();
     search_conf = []
-    session_group = data.map { |b| b.session_group.value };
+    session_group = data.map { |b| b.uuid.value };
 
     session_group.each do |sg|
         json = %|
@@ -56,10 +56,10 @@ def get_eager_index_groups()
 end
 
 
-def make_config() 
+def make_config()
     groups = get_eager_index_groups();
 
-    config = %| 
+    config = %|
         {
         "batch_size": 128,
         "max_batches": 0,
