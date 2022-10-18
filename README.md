@@ -130,3 +130,9 @@ To proceed:
       - ./config/virtuoso/virtuoso-production.ini:/data/virtuoso.ini
       - ./config/virtuoso/:/opt/virtuoso-scripts
 ```
+
+#### Scripts
+- Build elasticsearch config:
+  * make the `scripts/project/build-elasticsearch-config/build.sh` executable (`chmod a+x`)
+  * make sure the virtuoso image is running
+  * run `mu script project-scripts build-elasticsearch-config`
