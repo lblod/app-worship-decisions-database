@@ -46,21 +46,4 @@ export default [
       ignoreFromSelf: true
     }
   },
-  {
-    match: {
-      graph: {
-        type: 'uri',
-        value: 'http://mu.semte.ch/graphs/temp/for-dispatch'
-      }
-    },
-    callback: {
-      url: 'http://submissions-dispatcher/delta',
-      method: 'POST'
-    },
-    options: {
-      resourceFormat: "v0.0.1",
-      gracePeriod: 10000,
-      ignoreFromSelf: true
-    }
-  }
 ];
