@@ -1,194 +1,204 @@
 [
-    {
-      "type": "submission",
-      "on_path": "submissions",
-      "rdf_type": "http://rdf.myexperiment.org/ontologies/base/Submission",
+  {
+    "type": "bestuurseenheid",
+    "on_path": "bestuurseenheden",
+    "rdf_type": "http://data.vlaanderen.be/ns/besluit#Bestuurseenheid",
+    "properties": {
+      "administrativeUnitLabel": [
+        "http://www.w3.org/2004/02/skos/core#prefLabel"
+      ]
+    }
+  },
+  {
+    "type": "submission",
+    "on_path": "submissions",
+    "rdf_type": "http://rdf.myexperiment.org/ontologies/base/Submission",
+    "properties": {
+      "administrativeUnit": [
+        "http://purl.org/pav/createdBy",
+        "http://www.w3.org/2004/02/skos/core#prefLabel"
+      ],
+      "administrativeUnitURI": [
+        "http://purl.org/pav/createdBy"
+      ],
+      "province": [
+        "http://purl.org/pav/createdBy",
+        "http://mu.semte.ch/vocabularies/ext/inProvincie",
+        "http://www.w3.org/2000/01/rdf-schema#label"
+      ],
+      "provinceURI": [
+        "http://purl.org/pav/createdBy",
+        "http://mu.semte.ch/vocabularies/ext/inProvincie"
+      ],
+      "administrativeUnitClassification": [
+        "http://purl.org/pav/createdBy",
+        "http://data.vlaanderen.be/ns/besluit#classificatie",
+        "http://www.w3.org/2004/02/skos/core#prefLabel"
+      ],
+      "administrativeUnitClassificationURI": [
+        "http://purl.org/pav/createdBy",
+        "http://data.vlaanderen.be/ns/besluit#classificatie"
+      ],
+      "documentTypeURI": [
+        "http://www.w3.org/ns/prov#generated",
+        "http://purl.org/dc/terms/type"
+      ],
+      "documentType": [
+        "http://www.w3.org/ns/prov#generated",
+        "http://purl.org/dc/terms/type",
+        "http://www.w3.org/2004/02/skos/core#prefLabel"
+      ],
+      "governingBodyClassificationURI": [
+        "http://www.w3.org/ns/prov#generated",
+        "http://data.europa.eu/eli/ontology#passed_by",
+        "http://data.vlaanderen.be/ns/mandaat#isTijdspecialisatieVan",
+        "http://data.vlaanderen.be/ns/besluit#classificatie"
+      ],
+      "governingBodyClassification": [
+        "http://www.w3.org/ns/prov#generated",
+        "http://data.europa.eu/eli/ontology#passed_by",
+        "http://data.vlaanderen.be/ns/mandaat#isTijdspecialisatieVan",
+        "http://data.vlaanderen.be/ns/besluit#classificatie",
+        "http://www.w3.org/2004/02/skos/core#prefLabel"
+      ],
+      "decisionType": [
+        "http://www.w3.org/ns/prov#generated",
+        "http://mu.semte.ch/vocabularies/ext/decisionType",
+        "http://www.w3.org/2004/02/skos/core#prefLabel"
+      ],
+      "decisionTypeURI": [
+        "http://www.w3.org/ns/prov#generated",
+        "http://mu.semte.ch/vocabularies/ext/decisionType"
+      ],
+      "regulationType": [
+        "http://www.w3.org/ns/prov#generated",
+        "http://mu.semte.ch/vocabularies/ext/regulationType",
+        "http://www.w3.org/2004/02/skos/core#prefLabel"
+      ],
+      "regulationTypeURI": [
+        "http://www.w3.org/ns/prov#generated",
+        "http://mu.semte.ch/vocabularies/ext/regulationType"
+      ],
+      "taxTypeURI": [
+        "http://www.w3.org/ns/prov#generated",
+        "http://mu.semte.ch/vocabularies/ext/taxType"
+      ],
+      "taxType": [
+        "http://www.w3.org/ns/prov#generated",
+        "http://mu.semte.ch/vocabularies/ext/taxType",
+        "http://www.w3.org/2004/02/skos/core#prefLabel"
+      ],
+      "sentDate": "http://www.semanticdesktop.org/ontologies/2007/03/22/nmo#sentDate",
+      "status": [
+        "^http://schema.org/itemReviewed",
+        "http://www.w3.org/ns/adms#status",
+        "http://www.w3.org/2004/02/skos/core#prefLabel"
+      ],
+      "statusURI": [
+        "^http://schema.org/itemReviewed",
+        "http://www.w3.org/ns/adms#status"
+      ],
+      "sessionDatetime": [
+        "http://www.w3.org/ns/prov#generated",
+        "http://mu.semte.ch/vocabularies/ext/sessionStartedAtTime"
+      ],
+      "chartOfAccount": [
+        "http://www.w3.org/ns/prov#generated",
+        "http://lblod.data.gift/vocabularies/besluit/chartOfAccount",
+        "http://www.w3.org/2004/02/skos/core#prefLabel"
+      ],
+      "chartOfAccountSearch": [
+        "http://www.w3.org/ns/prov#generated",
+        "http://lblod.data.gift/vocabularies/besluit/chartOfAccount",
+        "http://mu.semte.ch/vocabularies/ext/searchLabel"
+      ],
+      "chartOfAccountURI": [
+        "http://www.w3.org/ns/prov#generated",
+        "http://lblod.data.gift/vocabularies/besluit/chartOfAccount"
+      ],
+      "dateOfEntryIntoForce": [
+        "http://www.w3.org/ns/prov#generated",
+        "http://data.europa.eu/eli/ontology#first_date_entry_in_force"
+      ],
+      "dateNoLongerInForce": [
+        "http://www.w3.org/ns/prov#generated",
+        "http://data.europa.eu/eli/ontology#date_no_longer_in_force"
+      ],
+      "data": {
+        "via": [
+          "http://www.w3.org/ns/prov#generated",
+          "http://purl.org/dc/terms/hasPart",
+          "^http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource"
+        ],
+        "attachment_pipeline": "attachment"
+      }
+    },
+    "mappings": {
       "properties": {
-        "administrativeUnit": [
-          "http://purl.org/pav/createdBy",
-          "http://www.w3.org/2004/02/skos/core#prefLabel"
-        ],
-        "administrativeUnitURI": [
-          "http://purl.org/pav/createdBy"
-        ],
-        "province": [
-          "http://purl.org/pav/createdBy",
-          "http://mu.semte.ch/vocabularies/ext/inProvincie",
-          "http://www.w3.org/2000/01/rdf-schema#label"
-        ],
-        "provinceURI": [
-          "http://purl.org/pav/createdBy",
-          "http://mu.semte.ch/vocabularies/ext/inProvincie"
-        ],
-        "administrativeUnitClassification": [
-          "http://purl.org/pav/createdBy",
-          "http://data.vlaanderen.be/ns/besluit#classificatie",
-          "http://www.w3.org/2004/02/skos/core#prefLabel"
-        ],
-        "administrativeUnitClassificationURI": [
-          "http://purl.org/pav/createdBy",
-          "http://data.vlaanderen.be/ns/besluit#classificatie"
-        ],
-        "documentTypeURI": [
-          "http://www.w3.org/ns/prov#generated",
-          "http://purl.org/dc/terms/type"
-        ],
-        "documentType": [
-          "http://www.w3.org/ns/prov#generated",
-          "http://purl.org/dc/terms/type",
-          "http://www.w3.org/2004/02/skos/core#prefLabel"
-        ],
-        "governingBodyClassificationURI": [
-          "http://www.w3.org/ns/prov#generated",
-          "http://data.europa.eu/eli/ontology#passed_by",
-          "http://data.vlaanderen.be/ns/mandaat#isTijdspecialisatieVan",
-          "http://data.vlaanderen.be/ns/besluit#classificatie"
-        ],
-        "governingBodyClassification": [
-          "http://www.w3.org/ns/prov#generated",
-          "http://data.europa.eu/eli/ontology#passed_by",
-          "http://data.vlaanderen.be/ns/mandaat#isTijdspecialisatieVan",
-          "http://data.vlaanderen.be/ns/besluit#classificatie",
-          "http://www.w3.org/2004/02/skos/core#prefLabel"
-        ],
-        "decisionType": [
-          "http://www.w3.org/ns/prov#generated",
-          "http://mu.semte.ch/vocabularies/ext/decisionType",
-          "http://www.w3.org/2004/02/skos/core#prefLabel"
-        ],
-        "decisionTypeURI": [
-          "http://www.w3.org/ns/prov#generated",
-          "http://mu.semte.ch/vocabularies/ext/decisionType"
-        ],
-        "regulationType": [
-          "http://www.w3.org/ns/prov#generated",
-          "http://mu.semte.ch/vocabularies/ext/regulationType",
-          "http://www.w3.org/2004/02/skos/core#prefLabel"
-        ],
-        "regulationTypeURI": [
-          "http://www.w3.org/ns/prov#generated",
-          "http://mu.semte.ch/vocabularies/ext/regulationType"
-        ],
-        "taxTypeURI": [
-          "http://www.w3.org/ns/prov#generated",
-          "http://mu.semte.ch/vocabularies/ext/taxType"
-        ],
-        "taxType": [
-          "http://www.w3.org/ns/prov#generated",
-          "http://mu.semte.ch/vocabularies/ext/taxType",
-          "http://www.w3.org/2004/02/skos/core#prefLabel"
-        ],
-        "sentDate": "http://www.semanticdesktop.org/ontologies/2007/03/22/nmo#sentDate",
-        "status": [
-          "^http://schema.org/itemReviewed",
-          "http://www.w3.org/ns/adms#status",
-          "http://www.w3.org/2004/02/skos/core#prefLabel"
-        ],
-        "statusURI": [
-          "^http://schema.org/itemReviewed",
-          "http://www.w3.org/ns/adms#status"
-        ],
-        "sessionDatetime": [
-          "http://www.w3.org/ns/prov#generated",
-          "http://mu.semte.ch/vocabularies/ext/sessionStartedAtTime"
-        ],
-        "chartOfAccount": [
-          "http://www.w3.org/ns/prov#generated",
-          "http://lblod.data.gift/vocabularies/besluit/chartOfAccount",
-          "http://www.w3.org/2004/02/skos/core#prefLabel"
-        ],
-        "chartOfAccountSearch": [
-          "http://www.w3.org/ns/prov#generated",
-          "http://lblod.data.gift/vocabularies/besluit/chartOfAccount",
-          "http://mu.semte.ch/vocabularies/ext/searchLabel"
-        ],
-        "chartOfAccountURI": [
-          "http://www.w3.org/ns/prov#generated",
-          "http://lblod.data.gift/vocabularies/besluit/chartOfAccount"
-        ],
-        "dateOfEntryIntoForce": [
-          "http://www.w3.org/ns/prov#generated",
-          "http://data.europa.eu/eli/ontology#first_date_entry_in_force"
-        ],
-        "dateNoLongerInForce": [
-          "http://www.w3.org/ns/prov#generated",
-          "http://data.europa.eu/eli/ontology#date_no_longer_in_force"
-        ],
-        "data": {
-          "via": [
-            "http://www.w3.org/ns/prov#generated",
-            "http://purl.org/dc/terms/hasPart",
-            "^http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource"
-          ],
-          "attachment_pipeline": "attachment"
-        }
-      },
-      "mappings": {
-        "properties": {
-          "data.content": {
-            "type": "text",
-            "analyzer": "dutchanalyzer",
-            "search_analyzer": "dutchanalyzer",
-            "term_vector": "with_positions_offsets_payloads"
-          },
-          "province": {
-            "type": "keyword"
-          },
-          "status": {
-            "type": "keyword"
-          },
-          "administrativeUnit": {
-            "type": "keyword"
-          },
-          "administrativeUnitClassification": {
-            "type": "keyword"
-          },
-          "decisionType": {
-            "type": "keyword"
-          },
-          "documentType": {
-            "type": "keyword"
-          },
-          "administrativeUnitURI": {
-            "type": "keyword"
-          },
-          "administrativeUnitClassificationURI": {
-            "type": "keyword"
-          },
-          "governingBodyClassificationURI": {
-            "type": "keyword"
-          },
-          "provinceURI": {
-            "type": "keyword"
-          },
-          "documentTypeURI": {
-            "type": "keyword"
-          },
-          "regulationTypeURI": {
-            "type": "keyword"
-          },
-          "taxTypeURI": {
-            "type": "keyword"
-          },
-          "statusURI": {
-            "type": "keyword"
-          },
-          "chartOfAccountURI": {
-            "type": "keyword"
-          },
-          "sentDate": {
-            "type": "date"
-          },
-          "sessionDatetime": {
-            "type": "date"
-          },
-          "dateOfEntryIntoForce": {
-            "type": "date"
-          },
-          "dateNoLongerInForce": {
-            "type": "date"
-          }
+        "data.content": {
+          "type": "text",
+          "analyzer": "dutchanalyzer",
+          "search_analyzer": "dutchanalyzer",
+          "term_vector": "with_positions_offsets_payloads"
+        },
+        "province": {
+          "type": "keyword"
+        },
+        "status": {
+          "type": "keyword"
+        },
+        "administrativeUnit": {
+          "type": "keyword"
+        },
+        "administrativeUnitClassification": {
+          "type": "keyword"
+        },
+        "decisionType": {
+          "type": "keyword"
+        },
+        "documentType": {
+          "type": "keyword"
+        },
+        "administrativeUnitURI": {
+          "type": "keyword"
+        },
+        "administrativeUnitClassificationURI": {
+          "type": "keyword"
+        },
+        "governingBodyClassificationURI": {
+          "type": "keyword"
+        },
+        "provinceURI": {
+          "type": "keyword"
+        },
+        "documentTypeURI": {
+          "type": "keyword"
+        },
+        "regulationTypeURI": {
+          "type": "keyword"
+        },
+        "taxTypeURI": {
+          "type": "keyword"
+        },
+        "statusURI": {
+          "type": "keyword"
+        },
+        "chartOfAccountURI": {
+          "type": "keyword"
+        },
+        "sentDate": {
+          "type": "date"
+        },
+        "sessionDatetime": {
+          "type": "date"
+        },
+        "dateOfEntryIntoForce": {
+          "type": "date"
+        },
+        "dateNoLongerInForce": {
+          "type": "date"
         }
       }
     }
-  ]
+  }
+]

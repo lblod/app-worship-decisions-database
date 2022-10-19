@@ -55,12 +55,8 @@ services:
     restart: "no"
   submissions-consumer:
     restart: "no"
-  kibana:
-    image: docker.elastic.co/kibana/kibana:7.2.0
-    environment:
-      ELASTICSEARCH_URL: "http://elasticsearch:9200"
+
+  hq:
+    image: elastichq/elasticsearch-hq
     ports:
-      - "5601:5601"
-    user: root
-    command: /usr/local/bin/kibana-docker --allow-root
-    restart: "no"
+      - 5000:5000
