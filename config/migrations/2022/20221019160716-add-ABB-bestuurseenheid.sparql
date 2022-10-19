@@ -1,0 +1,8 @@
+INSERT DATA {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+<http://data.lblod.info/id/bestuurseenheden/141d9d6b-54af-4d17-b313-8d1c30bc3f5b>	<http://purl.org/dc/terms/identifier>	"OVO001835" .
+<http://data.lblod.info/id/bestuurseenheden/141d9d6b-54af-4d17-b313-8d1c30bc3f5b>	<http://mu.semte.ch/vocabularies/core/uuid>	"141d9d6b-54af-4d17-b313-8d1c30bc3f5b" .
+<http://data.lblod.info/id/bestuurseenheden/141d9d6b-54af-4d17-b313-8d1c30bc3f5b>	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>	<http://data.vlaanderen.be/ns/besluit#Bestuurseenheid> .
+<http://data.lblod.info/id/bestuurseenheden/141d9d6b-54af-4d17-b313-8d1c30bc3f5b>	<http://www.w3.org/2004/02/skos/core#prefLabel>	"Agentschap Binnenlands Bestuur" .
+  }
+}
