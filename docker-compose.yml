@@ -169,6 +169,12 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  submissions-dispatcher:
+    image: lblod/worship-submissions-graph-dispatcher-service:0.1.0
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
   ################################################################################
   # DELTAS
   ################################################################################

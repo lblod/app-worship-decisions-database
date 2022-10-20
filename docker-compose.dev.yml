@@ -55,6 +55,8 @@ services:
     restart: "no"
   submissions-consumer:
     restart: "no"
+  submissions-dispatcher:
+    restart: "no"
   kibana:
     image: docker.elastic.co/kibana/kibana:7.2.0
     environment:
