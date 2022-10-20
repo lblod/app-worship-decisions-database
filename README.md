@@ -121,6 +121,16 @@ To proceed:
 9. `drc restart resource cache search-query-management` is still needed after the intiial sync.
 
 ### Additional notes:
+#### elasticsearch max_shards_per_node
+By default elastic search has not enough shards for all org graph.
+This will crash search and a workaround should be applied
+```
+drc exec elasticearch bash
+curl -X PUT localhost:9200/_cluster/settings -H "Content-Type: application/json" -d '{ "persistent": { "cluster.max_shards_per_node": "7000" } }'curl -X PUT localhost:9200/_cluster/settings -H "Content-Type: application/json" -d '{ "persistent": { "cluster.max_shards_per_node": "7000" } }'
+exit
+drc up -d
+```
+
 #### Performance
 - The default virtuoso settings might be too weak if you need to ingest the production data. Hence, there is better config, you can take over in your `docker-compose.override.yml`
 ```
