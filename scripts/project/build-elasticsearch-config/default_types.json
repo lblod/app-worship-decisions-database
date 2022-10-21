@@ -1,15 +1,5 @@
 [
   {
-    "type": "bestuurseenheid",
-    "on_path": "bestuurseenheden",
-    "rdf_type": "http://data.vlaanderen.be/ns/besluit#Bestuurseenheid",
-    "properties": {
-      "administrativeUnitLabel": [
-        "http://www.w3.org/2004/02/skos/core#prefLabel"
-      ]
-    }
-  },
-  {
     "type": "submission",
     "on_path": "submissions",
     "rdf_type": "http://rdf.myexperiment.org/ontologies/base/Submission",
