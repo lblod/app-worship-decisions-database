@@ -125,8 +125,8 @@ To proceed:
 By default elastic search has not enough shards for all org graph.
 This will crash search and a workaround should be applied
 ```
-drc exec elasticearch bash
-curl -X PUT localhost:9200/_cluster/settings -H "Content-Type: application/json" -d '{ "persistent": { "cluster.max_shards_per_node": "7000" } }'curl -X PUT localhost:9200/_cluster/settings -H "Content-Type: application/json" -d '{ "persistent": { "cluster.max_shards_per_node": "7000" } }'
+drc exec elasticsearch bash
+curl -X PUT localhost:9200/_cluster/settings -H "Content-Type: application/json" -d '{ "persistent": { "cluster.max_shards_per_node": "7000" } }'
 exit
 drc up -d
 ```
