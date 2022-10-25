@@ -207,6 +207,7 @@ services:
       DISABLE_AUTOMATIC_SYNC: "true"
       DISABLE_INITIAL_SYNC: "true"
       FILES_ENDPOINT_BASE_URL: "https://loket.lblod.info"
+      SYNC_LOGIN_ENDPOINT: "https://loket.lblod.info/sync/worship-submissions/login" # don't forget SECRET_KEY in docker-compose.override.yml
       SOURCE_FILES_DATA_GRAPH: "http://mu.semte.ch/graphs/temp/original-physical-files-data"
     volumes:
       - ./data/files:/share
