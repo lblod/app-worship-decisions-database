@@ -182,6 +182,7 @@ services:
     image: lblod/delta-consumer:0.0.9
     environment:
       DCR_SYNC_BASE_URL: "https://loket.lblod.info/"
+      DCR_SYNC_LOGIN_ENDPOINT: 'https://loket.lblod.info/sync/worship-submissions/login' # don't forget DCR_SECRET_KEY in docker-compose.override.yml
       DCR_SERVICE_NAME: "submissions-consumer"
       DCR_SYNC_FILES_PATH: "/sync/worship-submissions/files"
       DCR_SYNC_DATASET_SUBJECT: "http://data.lblod.info/datasets/delta-producer/dumps/SubmissionsCacheGraphDump"
