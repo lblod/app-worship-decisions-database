@@ -14,7 +14,7 @@ services:
       - ./scripts/project:/app/scripts/
     restart: "no"
   frontend:
-    image: lblod/frontend-worship-decisions:0.1.0
+    image: lblod/frontend-worship-decisions:0.2.0
     volumes:
       - ./config/frontend:/config
     labels:
@@ -169,6 +169,12 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  submissions-dispatcher:
+    image: lblod/worship-submissions-graph-dispatcher-service:0.1.0
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
   ################################################################################
   # DELTAS
   ################################################################################
@@ -176,6 +182,7 @@ services:
     image: lblod/delta-consumer:0.0.9
     environment:
       DCR_SYNC_BASE_URL: "https://loket.lblod.info/"
+      DCR_SYNC_LOGIN_ENDPOINT: 'https://loket.lblod.info/sync/worship-submissions/login' # don't forget DCR_SECRET_KEY in docker-compose.override.yml
       DCR_SERVICE_NAME: "submissions-consumer"
       DCR_SYNC_FILES_PATH: "/sync/worship-submissions/files"
       DCR_SYNC_DATASET_SUBJECT: "http://data.lblod.info/datasets/delta-producer/dumps/SubmissionsCacheGraphDump"
@@ -200,6 +207,7 @@ services:
       DISABLE_AUTOMATIC_SYNC: "true"
       DISABLE_INITIAL_SYNC: "true"
       FILES_ENDPOINT_BASE_URL: "https://loket.lblod.info"
+      SYNC_LOGIN_ENDPOINT: "https://loket.lblod.info/sync/worship-submissions/login" # don't forget SECRET_KEY in docker-compose.override.yml
       SOURCE_FILES_DATA_GRAPH: "http://mu.semte.ch/graphs/temp/original-physical-files-data"
     volumes:
       - ./data/files:/share

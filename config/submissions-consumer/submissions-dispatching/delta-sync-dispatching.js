@@ -40,7 +40,7 @@ async function dispatch(lib, data){
       muAuthSudo.updateSudo,
       INGEST_GRAPH,
       deleteStatements,
-      { },
+      { 'mu-call-scope-id': 'http://redpencil.data.gift/id/concept/muScope/deltas/write-for-dispatch' },
       process.env.MU_SPARQL_ENDPOINT, //Note: this is the default endpoint through auth
       BATCH_SIZE,
       MAX_DB_RETRY_ATTEMPTS,
@@ -53,7 +53,7 @@ async function dispatch(lib, data){
       muAuthSudo.updateSudo,
       FILE_SYNC_GRAPH,
       fileDeleteStatements,
-      { },
+      { 'mu-call-scope-id': 'http://redpencil.data.gift/id/concept/muScope/deltas/write-for-dispatch' },
       process.env.MU_SPARQL_ENDPOINT, //Note: this is the default endpoint through auth
       BATCH_SIZE,
       MAX_DB_RETRY_ATTEMPTS,

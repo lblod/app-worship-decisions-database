@@ -30,25 +30,24 @@ def query()
 end
 
 def get_eager_index_groups()
+    #                "comment": "Config for #{sg.label.value} (#{sg.s.value})",
     data = query();
-    search_conf = []
+    search_conf = [];
     data.each do |sg|
         json = %|
-            [
-                {
-                "variables": [],
-                "name": "clean"
-                },
-                {
-                "variables": [],
-                "name": "public"
-                },
-                {
-                "comment": "Config for #{sg.label.value} (#{sg.s.value})",
+        [{"name": "clean", "variables": []}, {"name": "public", "variables" : []}, {"name": "readers", "variables" : []},
+            {
                 "name": "#{SPEC_NAME}",
                 "variables": ["#{sg.uuid.value}", "#{ROLE}"]
-                }
-            ]
+            }
+        ,
+            {
+                "name": "org",
+                "variables": ["#{sg.uuid.value}", "org"]
+            }
+
+        ]
+
         |
         search_conf << json
 
@@ -66,30 +65,15 @@ def make_config()
         "max_batches": 0,
         "attachments_path_base": "/data/",
         "eager_indexing_sparql_query": false,
-        "additive_indexes": true,
+        "additive_indexes": false,
         "persist_indexes": true,
         "update_wait_interval_minutes": 0,
         "automatic_index_updates": true,
         "eager_indexing_groups": [
-            [
-                {
-                  "name": "clean",
-                  "variables": []
-                }
-            ],
-            [
-                {
-                  "name": "public",
-                  "variables": []
-                }
-            ],
-            [
-                {
-                  "name": "readers",
-                  "variables": []
-                }
-            ],
-            #{groups}
+                [{"name": "clean", "variables": []}, {"name": "public", "variables" : []}],
+                [{"name": "clean", "variables": []}, {"name": "public", "variables" : []}, {"name": "readers", "variables" : []}],
+
+                #{groups}
         ],
         "default_settings": #{File.read('./default_settings.json')},
         "types": #{File.read("./default_types.json")}
