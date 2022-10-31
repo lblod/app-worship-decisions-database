@@ -137,84 +137,11 @@ services:
     image: semtech/mu-search-elastic-backend:1.1.0
     volumes:
       - ./data/elasticsearch/:/usr/share/elasticsearch/data
-      - ./data/elastic_cluster_shared_folder:/shared_folder
     environment:
-      - "node.name=elasticsearch"
-      - "bootstrap.memory_lock=false"  
-      - "cluster.name=es-cluster"
-      - "discovery.seed_hosts=elasticsearch2,elasticsearch3"
-      - "cluster.initial_master_nodes=elasticsearch,elasticsearch2,elasticsearch3"
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.index.number_of_replicas=0 -Des.enforce.bootstrap.checks=true"
-      - "xpack.security.enabled=false"
-      - "xpack.security.http.ssl.enabled=false"
-      - "xpack.security.transport.ssl.enabled=false"
-      - "xpack.ml.enabled=false"
-      - "xpack.graph.enabled=false"
-      - "xpack.watcher.enabled=false"
-      - "path.repo=/shared_folder"
-      # - discovery.type=single-node
+      - discovery.type=single-node
       - http.max_content_length=2000MB
     restart: always
     logging: *default-logging
-  elasticsearch2:
-    image: semtech/mu-search-elastic-backend:1.1.0
-    volumes:
-      - ./data/elasticsearch2/:/usr/share/elasticsearch/data
-      - ./data/elastic_cluster_shared_folder:/shared_folder
-    environment:
-      - "node.name=elasticsearch2"
-      - "bootstrap.memory_lock=false" 
-      - "cluster.name=es-cluster"
-      - "discovery.seed_hosts=elasticsearch,elasticsearch3"
-      - "cluster.initial_master_nodes=elasticsearch,elasticsearch2,elasticsearch3"
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.index.number_of_replicas=0 -Des.enforce.bootstrap.checks=true"
-      - "xpack.security.enabled=false"
-      - "xpack.security.http.ssl.enabled=false"
-      - "xpack.security.transport.ssl.enabled=false"
-      - "xpack.ml.enabled=false"
-      - "xpack.graph.enabled=false"
-      - "xpack.watcher.enabled=false"
-      - "path.repo=/shared_folder"
-      - http.max_content_length=2000MB
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9200"]
-      interval: 30s
-      timeout: 10s
-      retries: 30
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-  elasticsearch3:
-    image: semtech/mu-search-elastic-backend:1.1.0
-    volumes:
-      - ./data/elasticsearch3/:/usr/share/elasticsearch/data
-      - ./data/elastic_cluster_shared_folder:/shared_folder
-    environment:
-      - "node.name=elasticsearch3"
-      - "bootstrap.memory_lock=false" 
-      - "cluster.name=es-cluster"
-      - "discovery.seed_hosts=elasticsearch,elasticsearch2"
-      - "cluster.initial_master_nodes=elasticsearch,elasticsearch2,elasticsearch3"
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.index.number_of_replicas=0 -Des.enforce.bootstrap.checks=true"
-      - "xpack.security.enabled=false"
-      - "xpack.security.http.ssl.enabled=false"
-      - "xpack.security.transport.ssl.enabled=false"
-      - "xpack.ml.enabled=false"
-      - "xpack.graph.enabled=false"
-      - "xpack.watcher.enabled=false"
-      - "path.repo=/shared_folder"
-      - http.max_content_length=2000MB
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9200"]
-      interval: 30s
-      timeout: 10s
-      retries: 30
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-
   tika:
     image: apache/tika:1.24-full
     logging: *default-logging
