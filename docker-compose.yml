@@ -159,7 +159,7 @@ services:
       DCR_SYNC_LOGIN_ENDPOINT: 'https://loket.lblod.info/sync/worship-submissions/login' # don't forget DCR_SECRET_KEY in docker-compose.override.yml
       DCR_SERVICE_NAME: "submissions-consumer"
       DCR_SYNC_FILES_PATH: "/sync/worship-submissions/files"
-      DCR_SYNC_DATASET_SUBJECT: "http://data.lblod.info/datasets/delta-producer/dumps/SubmissionsCacheGraphDump"
+      DCR_SYNC_DATASET_SUBJECT: "http://data.lblod.info/datasets/delta-producer/dumps/WorshipSubmissionsCacheGraphDump"
       DCR_INITIAL_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/initialSync/submissions"
       DCR_JOB_CREATOR_URI: "http://data.lblod.info/services/id/submissions-consumer"
       DCR_DISABLE_INITIAL_SYNC: "true"
