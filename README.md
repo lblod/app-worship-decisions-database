@@ -130,6 +130,33 @@ curl -X PUT localhost:9200/_cluster/settings -H "Content-Type: application/json"
 exit
 drc up -d
 ```
+### [experimental] elasic search cluster mode
+There is an (experimental) configuration to set up elastic search as a cluster. It will add 3 elasticsearch nodes.
+
+To migrate from single node to cluster:
+1. First run reset elastic `/bin/bash ./config/scripts/reset-elastic.sh`
+2. Run (in production mode)
+```
+drc -f docker-compose.yml -f docker-compose.es-cluster.yml -f docker-compose.override.yml up -d
+```
+Note: We do strongly recommend to set the desired files in ann `.env` file. This makes all further container manipulations way easier.
+#### potential issues
+##### vm.max_map_count is too low
+
+```
+bootstrap check failure [2] of [2]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
+```
+
+On the host, run `sudo sysctl -w vm.max_map_count=262144`. This will not be persisted accross system reboots.
+If you want to set this permanently, you need to edit /etc/sysctl.conf and set vm.max_map_count to 262144. See this [SO-post](https://stackoverflow.com/a/51448773/1092608). Note the latter hasn't been tested.
+
+##### max_shards_per_node
+That increase the maximum of indexes to 3000 (1000 per node), but if it's still not enough for worship decisions database, the max_shards_per_node workaround should still work. You'll have to run it on every node.
+
+#### additional notes
+The environment variable `"bootstrap.memory_lock=false"` should be set to true for performance matters (but not really mandatory) in a cluster context.
+this requires some work in the server itself, see:
+https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-configuration-memory.html
 
 #### Performance
 - The default virtuoso settings might be too weak if you need to ingest the production data. Hence, there is better config, you can take over in your `docker-compose.override.yml`
