@@ -38,17 +38,6 @@ services:
     restart: "no"
   file:
     restart: "no"
-  search:
-    environment:
-      LOG_SCOPE_AUTHORIZATION: "debug"
-      LOG_SCOPE_SPARQL: "debug"
-      LOG_SCOPE_ELASTICSEARCH: "debug"
-      LOG_SCOPE_SEARCH: "debug"
-    restart: "no"
-  elasticsearch:
-    restart: "no"
-  tika:
-    restart: "no"
   search-query-management:
     restart: "no"
   enrich-submission:
@@ -57,7 +46,3 @@ services:
     restart: "no"
   submissions-dispatcher:
     restart: "no"
-  hq:
-    image: elastichq/elasticsearch-hq
-    ports:
-      - 5000:5000

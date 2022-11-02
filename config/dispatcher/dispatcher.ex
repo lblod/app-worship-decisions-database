@@ -63,33 +63,6 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://resource/files/"
   end
 
-
-  ###############################################################
-  # Searching
-  ###############################################################
-
-  get "/search/*path", @json do
-    Proxy.forward conn, path, "http://search/"
-  end
-  get "/search-queries/*path", @json do
-    Proxy.forward conn, path, "http://resource/search-queries/"
-  end
-  post "/search-queries/*path", @json do
-    Proxy.forward conn, path, "http://resource/search-queries/"
-  end
-  get "/search-queries/*path", @turtle do
-    Proxy.forward conn, path, "http://search-query-management/search-queries/"
-  end
-  put "/search-queries/*path", @turtle do
-    Proxy.forward conn, path, "http://search-query-management/search-queries/"
-  end
-  delete "/search-queries/*path", @turtle do
-    Proxy.forward conn, path, "http://search-query-management/search-queries/"
-  end
-  match "/search-query-forms/*path", @turtle do
-    Proxy.forward conn, path, "http://search-query-management/search-query-forms/"
-  end
-
   #################################################################
   # Submissions
   #################################################################

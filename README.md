@@ -121,6 +121,8 @@ To proceed:
 9. `drc restart resource cache search-query-management` is still needed after the intiial sync.
 
 ### Additional notes:
+#### mu-search is disabled
+For performance reasons, mu-search is currently disabled.
 #### elasticsearch max_shards_per_node
 By default elastic search has not enough shards for all org graph.
 This will crash search and a workaround should be applied
