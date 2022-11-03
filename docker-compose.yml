@@ -122,32 +122,6 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-  search:
-    image: semtech/mu-search:0.8.0-beta.3
-    volumes:
-      - ./config/search:/config
-      - ./data/files:/data
-      - ./data/tika/cache:/cache
-    environment:
-      NUMBER_OF_THREADS: 16 # overwrite for development
-      JRUBY_OPTIONS: "-J-Xmx16g" # overwrite for development
-    restart: always
-    logging: *default-logging
-  elasticsearch:
-    image: semtech/mu-search-elastic-backend:1.0.1
-    volumes:
-      - ./data/elasticsearch/:/usr/share/elasticsearch/data
-    environment:
-      - discovery.type=single-node
-      - http.max_content_length=2000MB
-    restart: always
-    logging: *default-logging
-  tika:
-    image: apache/tika:1.24-full
-    logging: *default-logging
-    restart: always
-    labels:
-      - "logging=true"
   search-query-management:
     image: lblod/toezicht-search-query-management-service:0.3.6
     volumes:
