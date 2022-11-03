@@ -19,7 +19,7 @@ export default [
     match: {
       graph: {
         type: 'uri',
-        value: 'http://mu.semte.ch/graphs/original-physical-files-data'
+        value: 'http://mu.semte.ch/graphs/temp/original-physical-files-data'
       }
     },
     callback: {
