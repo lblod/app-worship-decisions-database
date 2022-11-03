@@ -68,9 +68,6 @@ defmodule Dispatcher do
   # Searching
   ###############################################################
 
-  get "/search/*path", @json do
-    Proxy.forward conn, path, "http://search/"
-  end
   get "/search-queries/*path", @json do
     Proxy.forward conn, path, "http://resource/search-queries/"
   end
