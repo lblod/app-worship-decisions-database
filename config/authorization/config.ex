@@ -73,7 +73,7 @@ defmodule Acl.UserGroups.Config do
       %GroupSpec{
         name: "readers",
         useage: [:read],
-      access: access_by_role( "ABB_databankErediensten_LB_CompEnts_gebruiker" ),
+      access: access_by_role( "DatabankeredienstenGebruiker" ),
         graphs: [ %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/organizations/",
                     constraint: %ResourceConstraint{

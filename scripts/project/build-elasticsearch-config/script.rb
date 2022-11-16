@@ -5,7 +5,7 @@ gemfile do
   gem 'linkeddata'
 end
 
-ROLE = "ABB_databankErediensten_LB_CompEnts_gebruiker";
+ROLE = "DatabankeredienstenGebruiker";
 SPEC_NAME = "o-wdbd-r";
 SPARQL_CLIENT = "http://virtuoso:8890/sparql"
 
