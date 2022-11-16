@@ -61,9 +61,11 @@ To proceed:
 # (...)
   submissions-consumer:
     environment:
-      DCR_SYNC_BASE_URL: 'https://dev.loket.lblod.info/' # The endpoint of your choice (see later what to choose)
+      BATCH_SIZE: "100" # if virtuoso is in prod mode, you can safely beef this up to 500/1000
+      DCR_SYNC_LOGIN_ENDPOINT: 'https://loket.lblod.info/sync/worship-submissions/login' # The endpoint of your choice (see later what to choose)
+      DCR_SYNC_BASE_URL: 'https://loket.lblod.info/'
+      DCR_SECRET_KEY: "the-key-of-interest"
       DCR_DISABLE_INITIAL_SYNC: 'false'
-      BATCH_SIZE: 100 # if virtuoso is in prod mode, you can safely beef this up to 500/1000
 ```
 3. `docker-compose up -d submissions-consumer` should start the ingestion.
   This might take a while if yoh ingest production data.
@@ -90,9 +92,11 @@ To proceed:
 # (...)
   files-consumer:
     environment:
-      FILES_ENDPOINT_BASE_URL: 'https://dev.loket.lblod.info/' # The endpoint of your choice (see later what to choose)
-      DISABLE_INITIAL_SYNC: 'false'
-       SECRET_KEY: "the-secret-key-configured-in-the-source"
+      DISABLE_AUTOMATIC_SYNC: "true"
+      DISABLE_INITIAL_SYNC: "false"
+      FILES_ENDPOINT_BASE_URL: "https://loket.lblod.info/" # The endpoint of your choice (see later what to choose)
+      SYNC_LOGIN_ENDPOINT: "https://loket.lblod.info/sync/worship-submissions/login"
+      SECRET_KEY: "the-relevant-key"
 ```
 6. Check the logs and wait for the message: `Full sync finished`. Or query:
 ```
@@ -105,7 +109,7 @@ To proceed:
      ?s a <http://vocab.deri.ie/cogs#Job> ;
        adms:status ?status ;
        task:operation <http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/physicalFileSync> ;
-       dct:created <http://data.lblod.info/services/id/delta-consumer-file-sync-submissions> .
+       dct:created ?created.
     }
     ORDER BY DESC(?created)
 ```
