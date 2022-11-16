@@ -1,0 +1,19 @@
+PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+DELETE {
+  GRAPH ?g {
+    ?s ext:sessionRole ?role.
+  }
+}
+INSERT {
+  GRAPH ?g {
+    ?s ext:sessionRole "DatabankeredienstenGebruiker".
+  }
+}
+WHERE {
+  GRAPH ?g {
+   ?s a foaf:OnlineAccount;
+     ext:sessionRole ?role.
+  }
+}
