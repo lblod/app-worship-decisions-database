@@ -145,6 +145,8 @@ services:
     logging: *default-logging
   submissions-dispatcher:
     image: lblod/worship-submissions-graph-dispatcher-service:0.2.0
+    environment:
+      ORG_GRAPH_SUFFIX: "DatabankeredienstenGebruiker"
     labels:
       - "logging=true"
     restart: always
