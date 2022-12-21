@@ -7,6 +7,7 @@
 .DS_Store
 *~
 data/imports/*
+/data/files/*
 
 docker-compose.override.yml
 config/migrations/*-sensitive*
