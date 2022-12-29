@@ -14,7 +14,7 @@ services:
       - ./scripts/project:/app/scripts/
     restart: "no"
   frontend:
-    image: lblod/frontend-worship-decisions:0.4.0
+    image: lblod/frontend-worship-decisions:0.5.0
     volumes:
       - ./config/frontend:/config
     labels:
@@ -144,7 +144,7 @@ services:
     restart: always
     logging: *default-logging
   submissions-dispatcher:
-    image: lblod/worship-submissions-graph-dispatcher-service:0.4.1
+    image: lblod/worship-submissions-graph-dispatcher-service:0.5.0
     environment:
       ORG_GRAPH_SUFFIX: "DatabankeredienstenGebruiker"
     labels:
