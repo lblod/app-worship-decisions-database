@@ -146,7 +146,7 @@ services:
   submissions-dispatcher:
     image: lblod/worship-submissions-graph-dispatcher-service:0.5.1
     environment:
-      ORG_GRAPH_SUFFIX: "DatabankeredienstenGebruiker"
+      ORG_GRAPH_SUFFIX: "LoketLB-databankEredienstenGebruiker"
     labels:
       - "logging=true"
     restart: always
