@@ -1,4 +1,6 @@
 # Changelog
+## 0.2.1 (2023-01-25)
+- data corrections
 ## 0.2.0 (2023-01-24)
 - update submissions dispatcher (incl. dispatch rules)
 - update forms
