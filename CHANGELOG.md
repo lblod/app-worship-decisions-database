@@ -1,4 +1,6 @@
 # Changelog
+## 0.3.0 (2023-02-08)
+- update forms
 ## 0.2.1 (2023-01-25)
 - data corrections
 ## 0.2.0 (2023-01-24)
