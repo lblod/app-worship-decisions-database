@@ -155,7 +155,7 @@ services:
   # DELTAS
   ################################################################################
   submissions-consumer:
-    image: lblod/delta-consumer:0.0.12
+    image: lblod/delta-consumer:0.0.15
     environment:
       DCR_SYNC_BASE_URL: "https://loket.lblod.info/"
       DCR_SYNC_LOGIN_ENDPOINT: 'https://loket.lblod.info/sync/worship-submissions/login' # don't forget DCR_SECRET_KEY in docker-compose.override.yml
