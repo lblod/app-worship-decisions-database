@@ -1,4 +1,6 @@
 # Changelog
+## 0.4.1 (2023-02-23)
+- bump submissions-dispatcher with performance optimisation
 ## 0.4.0 (2023-02-10)
 - bump consumer
 ## 0.3.0 (2023-02-08)
