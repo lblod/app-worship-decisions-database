@@ -1,4 +1,6 @@
 # Changelog
+## 0.5.0 (2023-XY-ZA)
+- bump submissions-dispatcher: manual dispatcher and faster initial sync
 ## 0.4.1 (2023-02-23)
 - bump submissions-dispatcher with performance optimisation
 ## 0.4.0 (2023-02-10)
