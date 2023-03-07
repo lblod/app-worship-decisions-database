@@ -1,4 +1,7 @@
 # Changelog
+## 0.6.0 (2023-03-07)
+- added dashboard
+- added first report: inzendingen per bestuurseenheid
 ## 0.5.0 (2023-03-02)
 - bump submissions-dispatcher: manual dispatcher and faster initial sync
 ## 0.4.1 (2023-02-23)
