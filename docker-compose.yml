@@ -169,6 +169,19 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  report-generation:
+    image: lblod/loket-report-generation-service:0.5.0
+    environment:
+      DEFAULT_GRAPH: "http://mu.semte.ch/graphs/reports"
+    links:
+      - virtuoso:database # Because mu-auth is bottleneck in heavy reports
+    volumes:
+      - ./data/files:/share
+      - ./config/reports:/app/reports
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
   ################################################################################
   # DELTAS
   ################################################################################
