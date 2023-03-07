@@ -22,6 +22,19 @@ defmodule Acl.UserGroups.Config do
     }"
   end
 
+  defp can_access_dashboard() do
+    %AccessByQuery{
+      vars: [],
+      query: "PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
+        PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+        SELECT DISTINCT ?account WHERE {
+          <SESSION_ID> <http://mu.semte.ch/vocabularies/session/account> ?account.
+          ?account <http://mu.semte.ch/vocabularies/ext/sessionRole> ?session_role.
+          FILTER( ?session_role = \"DatabankErediensten-dashboard-user\" )
+        }"
+      }
+  end
+
   def user_groups do
     # These elements are walked from top to bottom.  Each of them may
     # alter the quads to which the current query applies.  Quads are
@@ -96,6 +109,36 @@ defmodule Acl.UserGroups.Config do
                         "http://www.w3.org/ns/prov#Location"
                       ]
                     } } ] },
+
+      # // dashboard users
+      %GroupSpec{
+        name: "dashboard-users",
+        useage: [:read],
+        access: can_access_dashboard(),
+        graphs: [ %GraphSpec{
+                    graph: "http://mu.semte.ch/graphs/reports",
+                    constraint: %ResourceConstraint{
+                      resource_types: [
+                        "http://lblod.data.gift/vocabularies/reporting/Report",
+                        "http://open-services.net/ns/core#Error",
+                          "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#DataContainer",
+                          "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject",
+                          "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#DataContainer"
+                      ]
+                    } },
+
+                   %GraphSpec{
+                    graph: "http://mu.semte.ch/graphs/system/jobs",
+                    constraint: %ResourceConstraint{
+                      resource_types: [
+                        "http://vocab.deri.ie/cogs#Job",
+                        "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#DataContainer",
+                        "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject",
+                        "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#DataContainer"
+                      ]
+                    } },
+                   ] },
+
       # // CLEANUP
       #
       %GraphCleanup{
