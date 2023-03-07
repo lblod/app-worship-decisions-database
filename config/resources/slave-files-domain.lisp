@@ -16,7 +16,11 @@
                    :inverse t
                    :as "download")
               (file-address :via ,(s-prefix "nie:dataSource")
-                   :as "data-source"))
+                            :as "data-source")
+              (data-container :via ,(s-prefix "task:hasFile")
+                :inverse t
+                :as "data-container")
+             )
   :resource-base (s-url "http://data.lblod.info/files/")
   :features `(no-pagination-defaults include-uri)
   :on-path "files")

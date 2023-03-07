@@ -32,10 +32,36 @@ defmodule Dispatcher do
   match "/sessions/*path", @json do
     Proxy.forward conn, path, "http://login/sessions/"
   end
+
   match "/mock/sessions/*path", @json do
     Proxy.forward conn, path, "http://mocklogin/sessions/"
   end
 
+  #################################################################
+  # jobs
+  #################################################################
+  match "/jobs/*path", @json do
+    forward conn, path, "http://cache/jobs/"
+  end
+
+  match "/tasks/*path", @json do
+    forward conn, path, "http://cache/tasks/"
+  end
+
+  match "/data-containers/*path", @json do
+    forward conn, path, "http://cache/data-containers/"
+  end
+
+  match "/job-errors/*path", @json  do
+    forward conn, path, "http://cache/job-errors/"
+  end
+
+  #################################################################
+  # Reports
+  #################################################################
+  match "/reports/*path", @json do
+    forward conn, path, "http://resource/reports/"
+  end
 
   ###############################################################
   # General/Shared
@@ -70,7 +96,7 @@ defmodule Dispatcher do
   end
 
 
-  ###############################################################
+ ###############################################################
   # Searching
   ###############################################################
 

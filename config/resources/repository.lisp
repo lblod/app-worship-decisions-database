@@ -41,3 +41,7 @@
 
 (add-prefix "searchToezicht" "http://lblod.data.gift/vocabularies/search-queries-toezicht/")
 (add-prefix "toezicht" "http://mu.semte.ch/vocabularies/ext/supervision/")
+
+(add-prefix "cogs" "http://vocab.deri.ie/cogs#")
+(add-prefix "task" "http://redpencil.data.gift/vocabularies/tasks/")
+(add-prefix "oslc" "http://open-services.net/ns/core#")
