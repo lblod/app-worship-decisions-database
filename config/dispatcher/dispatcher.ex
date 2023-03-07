@@ -23,13 +23,45 @@ defmodule Dispatcher do
   match "/gebruikers/*path", @json do
     Proxy.forward conn, path, "http://resource/gebruikers/"
   end
+
+  match "/sessions/*path", %{ reverse_host: ["dashboard" | _rest] } do
+    IO.inspect("dashboard says hello")
+    Proxy.forward conn, path, "http://dashboard-login/sessions/"
+  end
+
   match "/sessions/*path", @json do
     Proxy.forward conn, path, "http://login/sessions/"
   end
+
   match "/mock/sessions/*path", @json do
     Proxy.forward conn, path, "http://mocklogin/sessions/"
   end
 
+  #################################################################
+  # jobs
+  #################################################################
+  match "/jobs/*path", @json do
+    forward conn, path, "http://cache/jobs/"
+  end
+
+  match "/tasks/*path", @json do
+    forward conn, path, "http://cache/tasks/"
+  end
+
+  match "/data-containers/*path", @json do
+    forward conn, path, "http://cache/data-containers/"
+  end
+
+  match "/job-errors/*path", @json  do
+    forward conn, path, "http://cache/job-errors/"
+  end
+
+  #################################################################
+  # Reports
+  #################################################################
+  match "/reports/*path", @json do
+    forward conn, path, "http://resource/reports/"
+  end
 
   ###############################################################
   # General/Shared
@@ -64,7 +96,7 @@ defmodule Dispatcher do
   end
 
 
-  ###############################################################
+ ###############################################################
   # Searching
   ###############################################################
 
@@ -146,17 +178,31 @@ defmodule Dispatcher do
     send_resp( conn, 404, "" )
   end
 
+  get "/assets/*path",  %{ reverse_host: ["dashboard" | _rest] }  do
+    forward conn, path, "http://frontend-dashboard/assets/"
+  end
+
+  get "/@appuniversum/*path", %{ reverse_host: ["dashboard" | _rest]} do
+    forward conn, path, "http://frontend-dashboard/@appuniversum/"
+  end
+
+  match "/*_path", %{ reverse_host: ["dashboard" | _rest] } do
+    # *_path allows a path to be supplied, but will not yield
+    # an error that we don't use the path variable.
+    forward conn, [], "http://frontend-dashboard/index.html"
+  end
+
+  match "/authorization/callback" , @html do
+    # For ACM/IDM login and torii
+    forward conn, [], "http://frontend/torii/redirect.html"
+  end
+
   get "/assets/*path", @any do
     forward conn, path, "http://frontend/assets/"
   end
 
   get "/@appuniversum/*path", @any do
     forward conn, path, "http://frontend/@appuniversum/"
-  end
-
-  match "/authorization/callback" , @html do
-    # For ACM/IDM login and torii
-    forward conn, [], "http://frontend/torii/redirect.html"
   end
 
   match "/*_path", @html do
