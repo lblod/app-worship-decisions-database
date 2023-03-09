@@ -1,4 +1,6 @@
 # Changelog
+## 0.6.1 (2023-03-09)
+- peformance report
 ## 0.6.0 (2023-03-07)
 - added dashboard
 - added first report: inzendingen per bestuurseenheid
