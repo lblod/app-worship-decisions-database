@@ -1,8 +1,8 @@
 import { batchedQuery } from '../helpers.js';
-import { generateReportFromQueryResult } from './util/report-helpers';
+import { generateReportFromQueryResult, getSafeValue } from './util/report-helpers';
 import { querySudo as query } from '@lblod/mu-auth-sudo';
 
-const queryString = `
+const PREFIXES = `
   PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
   PREFIX dct: <http://purl.org/dc/terms/>
   PREFIX meb: <http://rdf.myexperiment.org/ontologies/base/>
@@ -21,24 +21,24 @@ const queryString = `
   PREFIX ma: <http://www.w3.org/ns/ma-ont#>
   PREFIX mandaat: <http://data.vlaanderen.be/ns/mandaat#>
   PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+`;
+
+const queryString = `
+  ${PREFIXES}
 
   SELECT DISTINCT
-    ?vanBestuurseenheidLabel
-    ?aanBestuurseenheidLabel
-    ?typeBesluitLabel
     ?modifiedInLoketShort
     ?createdInLoketShort
     ?documentUri
     ?inzending
-    ?vanBestuurseenheidClassLabel
-    ?aanBestuurseenheidClassLabel
-    ?vanBestuurseenheid
-    ?aanBestuurseenheid
     ?createdInLoket
     ?modifiedInLoket
+    ?orgUuid
+    ?typeBesluit
+    ?vanBestuurseenheid
   WHERE {
 
-    GRAPH ?g {
+    GRAPH ?graph {
       ?inzending a <http://rdf.myexperiment.org/ontologies/base/Submission>;
       <http://purl.org/dc/terms/created> ?createdInLoket;
       <http://purl.org/dc/terms/modified> ?modifiedInLoket;
@@ -48,24 +48,31 @@ const queryString = `
 
       ?generated a <http://lblod.data.gift/vocabularies/automatische-melding/FormData>;
         <http://mu.semte.ch/vocabularies/ext/decisionType> ?typeBesluit.
-       ?typeBesluit skos:prefLabel ?typeBesluitLabel.
     }
-    FILTER(REGEX(STR(?g), "^http://mu.semte.ch/graphs/organizations/", "i"))
+    FILTER(REGEX(STR(?graph), "^http://mu.semte.ch/graphs/organizations/", "i"))
 
     BIND(
         STRBEFORE(
-          STRAFTER(STR(?g), "http://mu.semte.ch/graphs/organizations/"),
-          "/LoketLB-databankEredienstenGebruiker") as ?targetUuid)
+          STRAFTER(STR(?graph), "http://mu.semte.ch/graphs/organizations/"),
+          "/LoketLB-databankEredienstenGebruiker") as ?orgUuid)
 
-     GRAPH <http://mu.semte.ch/graphs/public> {
-      ?vanBestuurseenheid a besluit:Bestuurseenheid;
-        besluit:classificatie ?vanClassificatie;
-        skos:prefLabel ?vanBestuurseenheidLabel.
+    BIND(CONCAT(STR(YEAR(?createdInLoket)), '-', STR(MONTH(?createdInLoket)), '-', STR(DAY(?createdInLoket))) as ?createdInLoketShort)
+    BIND(CONCAT(STR(YEAR(?modifiedInLoket)), '-', STR(MONTH(?modifiedInLoket)), '-', STR(DAY(?modifiedInLoket))) as ?modifiedInLoketShort)
+  }
+  ORDER BY ?inzending`;
 
-      ?vanClassificatie skos:prefLabel ?vanBestuurseenheidClassLabel.
+
+function generateAanBestuurseenheidMetaQuery(uuids) {
+  return `
+      ${PREFIXES}
+      SELECT DISTINCT ?orgUuid ?aanBestuurseenheidLabel ?aanBestuurseenheidClassLabel ?aanBestuurseenheid
+      WHERE {
+        VALUES ?orgUuid {
+         ${uuids.map(uuid => '"' + uuid + '"').join('\n')}
+        }
 
       ?aanBestuurseenheid a besluit:Bestuurseenheid;
-        mu:uuid ?targetUuid;
+        mu:uuid ?orgUuid;
         skos:prefLabel ?aanBestuurseenheidLabel.
 
       OPTIONAL {
@@ -73,11 +80,44 @@ const queryString = `
            ?aanClassificatie skos:prefLabel ?aanBestuurseenheidClassLabel.
         }
       }
+  `;
+}
 
-      BIND(CONCAT(STR(YEAR(?createdInLoket)), '-', STR(MONTH(?createdInLoket)), '-', STR(DAY(?createdInLoket))) as ?createdInLoketShort)
-      BIND(CONCAT(STR(YEAR(?modifiedInLoket)), '-', STR(MONTH(?modifiedInLoket)), '-', STR(DAY(?modifiedInLoket))) as ?modifiedInLoketShort)
-  }
-  ORDER BY ?inzending`;
+function generateTypeBesluitMetaFromUris(uris) {
+  return `
+   ${PREFIXES}
+   SELECT DISTINCT ?typeBesluit ?typeBesluitLabel
+   WHERE {
+     VALUES ?typeBesluit {
+       ${uris.map(uri => "<" + uri + ">").join('\n')}
+     }
+     ?typeBesluit skos:prefLabel ?typeBesluitLabel.
+   }
+  `;
+}
+
+function generateVanBestuurseenheidMetaQuery(uris) {
+  return `
+  ${PREFIXES}
+  SELECT DISTINCT ?vanBestuurseenheid
+    ?vanBestuurseenheidLabel
+    ?vanBestuurseenheidClassLabel
+    WHERE {
+     VALUES ?vanBestuurseenheid {
+       ${uris.map(uri => "<" + uri + ">").join('\n')}
+     }
+
+      ?vanBestuurseenheid a besluit:Bestuurseenheid;
+        skos:prefLabel ?vanBestuurseenheidLabel.
+
+      OPTIONAL {
+           ?vanBestuurseenheid  besluit:classificatie ?vanClassificatie.
+           ?vanClassificatie skos:prefLabel ?vanBestuurseenheidClassLabel.
+        }
+    }
+
+  `;
+}
 
 const metadata = {
   title: 'Overzicht van inzendingen per bestuurseenheid',
@@ -91,9 +131,68 @@ export default {
   execute: async () => {
     try {
       const queryResponse = await batchedQuery(queryString, 1000);
+
+      //We want to append with labels etc, but query this takes to long in one query
+      const distinctOrgUuid =
+            queryResponse.
+            results.
+            bindings.reduce((acc, curr)  => { acc[curr.orgUuid.value] = ''; return acc;}, {});
+
+      const distinctTypeBesluitUris =
+            queryResponse.
+            results.
+            bindings.reduce((acc, curr)  => { acc[curr.typeBesluit.value] = ''; return acc; }, {});
+
+      const distinctVanBestuurUris =
+            queryResponse.
+            results.
+            bindings.reduce((acc, curr)  => { acc[curr.vanBestuurseenheid.value] = ''; return acc; }, {});
+
+      const orgResults = await query(generateAanBestuurseenheidMetaQuery(Object.keys(distinctOrgUuid)));
+
+      const besluitResults = await query(generateTypeBesluitMetaFromUris(Object.keys(distinctTypeBesluitUris)));
+
+      const fromOrgResults = await query(generateVanBestuurseenheidMetaQuery(Object.keys(distinctVanBestuurUris)));
+
+      // append the current results
+      for(const binding of queryResponse.results.bindings) {
+
+        const mappedBestuur = orgResults.results.bindings.find(b => b.orgUuid.value == binding.orgUuid.value );
+
+        binding.aanBestuurseenheidLabel = { value: mappedBestuur.aanBestuurseenheidLabel.value };
+        binding.aanBestuurseenheidClassLabel = { value: (mappedBestuur.aanBestuurseenheidClassLabel
+                                                         && mappedBestuur.aanBestuurseenheidClassLabel.value)
+                                                 || '' };
+
+
+        binding.aanBestuurseenheid = { value: mappedBestuur.aanBestuurseenheid.value };
+
+
+        const mappedBesluit = besluitResults.results.bindings.find(b => b.typeBesluit.value == binding.typeBesluit.value );
+        binding.typeBesluitLabel = { value: mappedBesluit.typeBesluitLabel.value };
+
+        const mappedVanBestuur = fromOrgResults.results.bindings.find(b => b.vanBestuurseenheid.value == binding.vanBestuurseenheid.value );
+
+        binding.vanBestuurseenheidLabel = { value: mappedVanBestuur.vanBestuurseenheidLabel.value };
+
+        binding.vanBestuurseenheidClassLabel = { value:
+                                                 (mappedVanBestuur.vanBestuurseenheidClassLabel &&
+                                                  mappedVanBestuur.vanBestuurseenheidClassLabel.value)
+                                                 || '' };
+      }
+
+      queryResponse.head.vars = ['vanBestuurseenheidLabel',
+                                 'aanBestuurseenheidLabel',
+                                 'typeBesluitLabel',
+                                 ...queryResponse.head.vars,
+                                 'vanBestuurseenheidClassLabel',
+                                 'aanBestuurseenheidClassLabel',
+                                 'aanBestuurseenheid'
+                                ];
       await generateReportFromQueryResult(queryResponse, metadata);
     }
     catch (e) {
+      console.log(e);
       throw `Something unexpected went wrong when executing report for [${metadata.title}]`;
     }
   }
