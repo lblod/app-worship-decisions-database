@@ -1,0 +1,7 @@
+{
+  "rules": [
+    {
+      "sessionRole": "LoketLB-databankEredienstenGebruiker"
+    }
+  ]
+}

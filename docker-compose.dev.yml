@@ -46,3 +46,5 @@ services:
     restart: "no"
   submissions-dispatcher:
     restart: "no"
+  update-bestuurseenheid-mock-login:
+    restart: "no"
