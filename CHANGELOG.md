@@ -1,4 +1,9 @@
 # Changelog
+## 0.7.0 (2023-03-24)
+- Adding service that creates mock accounts automatically
+- Adding extra report for worship services
+- Fixing links between worship services
+- Bumping frontend-worship-decisions to v0.6.0
 ## 0.6.1 (2023-03-09)
 - peformance report
 ## 0.6.0 (2023-03-07)
