@@ -1,4 +1,8 @@
 # Changelog
+## 0.8.0 (2023-04-07)
+### General
+ - Added mock-login creator on new bestuurseenheid
+ - Consume data from Organisations portal: Erediensten
 ## 0.7.0 (2023-03-24)
 - Adding service that creates mock accounts automatically
 - Adding extra report for worship services
