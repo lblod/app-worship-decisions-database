@@ -45,7 +45,37 @@ Start the system:
 docker-compose up
 ```
 ## Ingesting data
-The app comes with no data, because it depends on external datasources.
+### administrative units
+Only the 'normal' (i.e. non-worship) administrative units are provided by default.
+If you need to ingest the data for worship administrative units, you will need to ingest the data through deltas from:
+
+  * [Organisations portal](https://organisaties.abb.vlaanderen.be)
+    * Note: this app also has a development and qa environment available.
+#### steps
+  - Ensure all migrations have run and the stack is running properly.
+  - In `docker-compose.override.yml` add
+    ```
+      op-public-consumer:
+        environment:
+          DCR_SYNC_BASE_URL: "https://organisaties.abb.vlaanderen.be"
+          DCR_DISABLE_INITIAL_SYNC: "false"
+      update-bestuurseenheid-mock-login:
+        entrypoint: ["echo", "Service-disabled to not confuse the service"]
+    ```
+    - `docker-compose up -d # assumes .env file has been set, cf. supra`
+    - This might take a while if `drc logs op-public-consumer |grep success`
+      Returns: `Initial sync http://redpencil.data.gift/id/job/URI has been successfully run`; you should be good.
+      (Your computer will also stop making noise)
+    - In `docker-compose.override.yml`, remove the disabled service
+       ```
+        update-bestuurseenheid-mock-login:
+          entrypoint: ["echo", "Service-disabled to not confuse the service"]
+       ```
+       The mock-logins will be created when a cron job kicks in. You can control the moment it triggers by playing with the `CRON_PATTERN` variable.
+       See the `README.md` of the related service for more options.
+
+### submissions
+The app comes with no submissions data, because it depends on external datasources.
 
   *  [Submissions (sourced by loket)](https://loket.lokaalbestuur.vlaanderen.be/)
 
