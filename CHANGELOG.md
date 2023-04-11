@@ -1,4 +1,7 @@
 # Changelog
+## 0.8.1 (2023-04-11)
+### General
+  - hotfix submission graph dispatcher
 ## 0.8.0 (2023-04-07)
 ### General
  - Added mock-login creator on new bestuurseenheid
