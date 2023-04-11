@@ -160,7 +160,7 @@ services:
     restart: always
     logging: *default-logging
   submissions-dispatcher:
-    image: lblod/worship-submissions-graph-dispatcher-service:0.8.0
+    image: lblod/worship-submissions-graph-dispatcher-service:0.8.1
     environment:
       ORG_GRAPH_SUFFIX: "LoketLB-databankEredienstenGebruiker"
       SUDO_QUERY_RETRY: "true"
