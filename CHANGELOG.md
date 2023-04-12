@@ -1,7 +1,10 @@
 # Changelog
+## 0.9.0 (2023-04-12)
+### General
+  - improved version of submissions dispatcher
 ## 0.8.1 (2023-04-11)
 ### General
-  - hotfix submission graph dispatcher
+  - hotfix submission submissions dispatcher
 ## 0.8.0 (2023-04-07)
 ### General
  - Added mock-login creator on new bestuurseenheid
