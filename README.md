@@ -73,6 +73,8 @@ If you need to ingest the data for worship administrative units, you will need t
        ```
        The mock-logins will be created when a cron job kicks in. You can control the moment it triggers by playing with the `CRON_PATTERN` variable.
        See the `README.md` of the related service for more options.
+   - It's possible that you first synced submissions, and then started ingesting data. 
+     If so, you'll have to trigger the healing process of [worship-submissions-graph-dispatcher-service](https://github.com/lblod/worship-submissions-graph-dispatcher-service). Check `README.md` on how to.
 
 ### submissions
 The app comes with no submissions data, because it depends on external datasources.
