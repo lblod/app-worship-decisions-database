@@ -1,4 +1,7 @@
 # Changelog
+## 0.9.1 (2023-04-14)
+### General
+  - bump consumer (more robust version)
 ## 0.9.0 (2023-04-12)
 ### General
   - improved version of submissions dispatcher
