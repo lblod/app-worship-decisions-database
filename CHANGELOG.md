@@ -1,4 +1,7 @@
 # Changelog
+## 0.10.0 (2023-04-24)
+### General
+  - new forms
 ## 0.9.1 (2023-04-14)
 ### General
   - bump consumer (more robust version)
