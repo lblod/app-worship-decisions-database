@@ -1,4 +1,9 @@
 # Changelog
+## Unreleased
+### Erediensten
+  - flush, rerun op sync migrations to fix typeBetrokkenheid
+### Deploy instructions
+  - re-sync erediensten from OP
 ## 0.10.0 (2023-04-24)
 ### General
   - new forms
