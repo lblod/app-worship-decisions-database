@@ -71,6 +71,10 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/bestuurseenheden/"
   end
 
+  patch "/bestuurseenheden/*path", @json do
+    Proxy.forward conn, path, "http://cache/bestuurseenheden/"
+  end
+
   get "/werkingsgebieden/*path", @json do
     Proxy.forward conn, path, "http://cache/werkingsgebieden/"
   end
