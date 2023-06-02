@@ -1,6 +1,9 @@
 # Changelog
+## 0.11.1 (2023-06-02)
+### General
+- bump graph dispatcher
 ## 0.11.0 (2023-06-02)
-### Erediensten
+### General data
   - flush, rerun op sync migrations to fix typeBetrokkenheid
 ### Deploy instructions
 ```
