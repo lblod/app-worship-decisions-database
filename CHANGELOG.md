@@ -1,5 +1,5 @@
 # Changelog
-## Unreleased
+## 0.11.0 (2023-06-02)
 ### Erediensten
   - flush, rerun op sync migrations to fix typeBetrokkenheid
 ### Deploy instructions
