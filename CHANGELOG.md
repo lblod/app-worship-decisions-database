@@ -3,7 +3,11 @@
 ### Erediensten
   - flush, rerun op sync migrations to fix typeBetrokkenheid
 ### Deploy instructions
-  - re-sync erediensten from OP
+```
+drc restart migrations resource cache; drc up -d;
+```
+- re-sync erediensten from OP according to instructions
+
 ## 0.10.0 (2023-04-24)
 ### General
   - new forms
