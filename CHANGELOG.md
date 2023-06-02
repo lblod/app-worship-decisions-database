@@ -8,6 +8,13 @@ drc restart migrations resource cache; drc up -d;
 ```
 - re-sync erediensten from OP according to instructions
 
+## 0.10.1 (2023-06-02)
+### General
+  - hotfix in frontend to fix 'empty screen' on login
+#### deploy instructions
+```
+drc up -d; drc restart resource cache
+```
 ## 0.10.0 (2023-04-24)
 ### General
   - new forms
