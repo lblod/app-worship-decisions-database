@@ -67,11 +67,7 @@ defmodule Dispatcher do
   # General/Shared
   ###############################################################
 
-  get "/bestuurseenheden/*path", @json do
-    Proxy.forward conn, path, "http://cache/bestuurseenheden/"
-  end
-
-  patch "/bestuurseenheden/*path", @json do
+  match "/bestuurseenheden/*path", @json do
     Proxy.forward conn, path, "http://cache/bestuurseenheden/"
   end
 
