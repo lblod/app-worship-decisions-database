@@ -1,5 +1,6 @@
 alias Acl.Accessibility.Always, as: AlwaysAccessible
 alias Acl.Accessibility.ByQuery, as: AccessByQuery
+alias Acl.GraphSpec.Constraint.Resource.NoPredicates, as: NoPredicates
 alias Acl.GraphSpec.Constraint.Resource, as: ResourceConstraint
 alias Acl.GraphSpec, as: GraphSpec
 alias Acl.GroupSpec, as: GroupSpec
@@ -61,7 +62,8 @@ defmodule Acl.UserGroups.Config do
                         "http://mu.semte.ch/vocabularies/ext/AuthenticityType",
                         "http://www.w3.org/2004/02/skos/core#ConceptScheme",
                         "http://www.w3.org/2004/02/skos/core#Concept",
-                        "http://www.w3.org/ns/prov#Location"
+                        "http://www.w3.org/ns/prov#Location",
+                        "http://mu.semte.ch/graphs/system/email"
                       ]
                     } } ] },
       %GroupSpec{
@@ -109,7 +111,21 @@ defmodule Acl.UserGroups.Config do
                         "http://www.w3.org/ns/prov#Location"
                       ]
                     } } ] },
-
+      # // subscribe for email notifications
+      %GroupSpec{
+        name: "subscribed-for-notifications",
+        useage: [:read, :write, :read_for_write],
+      access: access_by_role("LoketLB-databankEredienstenGebruiker"),
+        graphs: [ %GraphSpec{
+                    graph: "http://mu.semte.ch/graphs/organizations/",
+                    constraint: %ResourceConstraint{
+                      resource_types: [ "http://data.vlaanderen.be/ns/besluit#Bestuurseenheid" ],
+                      predicates: %NoPredicates{
+                        except: [
+                          "http://mu.semte.ch/vocabularies/ext/mailAdresVoorNotificaties",
+                          "http://mu.semte.ch/vocabularies/ext/wilMailOntvangen"
+                        ] }
+                    } } ] },
       # // dashboard users
       %GroupSpec{
         name: "dashboard-users",
