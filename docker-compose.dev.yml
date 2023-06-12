@@ -52,3 +52,7 @@ services:
     restart: "no"
   op-public-consumer:
     restart: "no"
+  worship-submissions-email-notification-service:
+    restart: "no"
+  deliver-email-service:
+    restart: "no"
