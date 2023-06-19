@@ -32,11 +32,14 @@ docker-compose logs -f --tail=100 migrations
 ```
 > docker-compose **logs** CLI [reference](https://docs.docker.com/compose/reference/logs/).
 
-You might find the above `docker-compose up` command tedious. To simplify it's usage we can define the `COMPOSE_FILE` variable in our environment.
-
-Create an `.env` file in the root of the project with the following contence:
-```shell
-COMPOSE_FILE=docker-compose.yml:docker-compose.dev.yml
+To ease all typing for `docker-compose` commands, start by creating the following files in the directory of the project.
+A `docker-compose.override.yml` file with following content:
+```
+version: '3.7'
+```
+And an `.env` file with following content:
+```
+COMPOSE_FILE=docker-compose.yml:docker-compose.dev.yml:docker-compose.override.yml
 ```
 > docker-compose CLI env. vars. [reference](https://docs.docker.com/compose/reference/envvars/)
 
@@ -52,30 +55,46 @@ If you need to ingest the data for worship administrative units, you will need t
   * [Organisations portal](https://organisaties.abb.vlaanderen.be)
     * Note: this app also has a development and qa environment available.
 #### steps
-  - Ensure all migrations have run and the stack is running properly.
-  - In `docker-compose.override.yml` add
+  - The next steps assume `.env` file has been set, cf. supra.
+  - Ensure the following configuration is defined in the `docker-compose.override.yml`
+    ```
+    op-public-consumer:
+        environment:
+          DCR_SYNC_BASE_URL: "https://organisaties.abb.vlaanderen.be"
+          DCR_DISABLE_INITIAL_SYNC: "true"
+          DCR_DISABLE_DELTA_INGEST: "true"
+    update-bestuurseenheid-mock-login:
+        entrypoint: ["echo", "Service-disabled to not confuse the service"]
+    ```
+  - `docker-compose up -d`
+  - Ensure all migrations have run and the stack is started and running properly.
+  - Extra step in case of a resync, run:
+    ```
+    docker-compose exec op-public-consumer curl -X POST http://localhost/flush
+    docker-compose logs -f --tail=200 op-public-consumer
+    ```
+      - This should end with `Flush successful`.
+  - Update `docker-compose.override.yml` with
     ```
       op-public-consumer:
         environment:
           DCR_SYNC_BASE_URL: "https://organisaties.abb.vlaanderen.be"
-          DCR_DISABLE_INITIAL_SYNC: "false"
+          DCR_DISABLE_INITIAL_SYNC: "false" # -> this changed
+          DCR_DISABLE_DELTA_INGEST: "false" # -> this changed
       update-bestuurseenheid-mock-login:
         entrypoint: ["echo", "Service-disabled to not confuse the service"]
     ```
-    - `docker-compose up -d # assumes .env file has been set, cf. supra`
-    - This might take a while if `drc logs op-public-consumer |grep success`
+ - `docker-compose up -d`
+ - This might take a while if `docker-compose logs op-public-consumer |grep success`
       Returns: `Initial sync http://redpencil.data.gift/id/job/URI has been successfully run`; you should be good.
       (Your computer will also stop making noise)
-    - In `docker-compose.override.yml`, remove the disabled service
+ - In `docker-compose.override.yml`, remove the disabled service
        ```
         update-bestuurseenheid-mock-login:
           entrypoint: ["echo", "Service-disabled to not confuse the service"]
        ```
        The mock-logins will be created when a cron job kicks in. You can control the moment it triggers by playing with the `CRON_PATTERN` variable.
        See the `README.md` of the related service for more options.
-   - It's possible that you first synced submissions, and then started ingesting data. 
-     If so, you'll have to trigger the healing process of [worship-submissions-graph-dispatcher-service](https://github.com/lblod/worship-submissions-graph-dispatcher-service). Check `README.md` on how to.
-
 ### submissions
 The app comes with no submissions data, because it depends on external datasources.
 
