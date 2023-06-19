@@ -14,7 +14,7 @@ services:
       - ./scripts/project:/app/scripts/
     restart: "no"
   frontend:
-    image: lblod/frontend-worship-decisions:0.6.0
+    image: lblod/frontend-worship-decisions:0.7.0
     volumes:
       - ./config/frontend:/config
     labels:
@@ -270,7 +270,7 @@ services:
     restart: always
     logging: *default-logging
   worship-submissions-email-notification-service:
-    image: lblod/worship-submissions-email-notification-service:latest
+    image: lblod/worship-submissions-email-notification-service:1.0.0
     environment:
       RUN_INTERVAL: 5
       OUTBOX_FOLDER_URI: "http://data.lblod.info/id/mail-folders/2"
