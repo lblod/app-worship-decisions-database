@@ -1,4 +1,6 @@
 # Changelog
+## 0.12.0 (2023-06-19)
+- Adding mailing feature
 ## 0.11.1 (2023-06-02)
 ### General
 - bump graph dispatcher
