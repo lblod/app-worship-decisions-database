@@ -1,0 +1,57 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX ere: <http://data.lblod.info/vocabularies/erediensten>
+PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#>
+
+INSERT {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+    ?representatiefOrgaan skos:topConceptOf <http://lblod.data.gift/concept-schemes/7e2b965e-c824-474f-b5d5-b1c115740083> ;
+        skos:inScheme <http://lblod.data.gift/concept-schemes/7e2b965e-c824-474f-b5d5-b1c115740083> .
+    }
+}
+WHERE {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+    ?representatiefOrgaan a ere:RepresentatiefOrgaan .
+    }
+}
+
+;
+
+INSERT {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+    ?bestuurVanDeEredienst skos:topConceptOf <http://lblod.data.gift/concept-schemes/7e2b965e-c824-474f-b5d5-b1c115740083> ;
+        skos:inScheme <http://lblod.data.gift/concept-schemes/7e2b965e-c824-474f-b5d5-b1c115740083> .
+    }
+}
+WHERE {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+    ?bestuurVanDeEredienst a ere:BestuurVanDeEredienst .
+    }
+}
+
+;
+
+INSERT {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+    ?centraalBestuurVanDeEredienst skos:topConceptOf <http://lblod.data.gift/concept-schemes/7e2b965e-c824-474f-b5d5-b1c115740083> ;
+        skos:inScheme <http://lblod.data.gift/concept-schemes/7e2b965e-c824-474f-b5d5-b1c115740083> .
+    }
+}
+WHERE {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+    ?centraalBestuurVanDeEredienst a ere:CentraalBestuurVanDeEredienst .
+    }
+}
+
+;
+
+INSERT {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+    ?bestuurseenheid skos:topConceptOf <http://lblod.data.gift/concept-schemes/7e2b965e-c824-474f-b5d5-b1c115740083> ;
+        skos:inScheme <http://lblod.data.gift/concept-schemes/7e2b965e-c824-474f-b5d5-b1c115740083> .
+    }
+}
+WHERE {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+    ?bestuurseenheid a besluit:Bestuurseenheid .
+    }
+}
