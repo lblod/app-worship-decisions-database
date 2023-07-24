@@ -22,23 +22,28 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 # Add missing datatypes
 {
-  ?s a ere:BestuurVanDeEredienst
+  ?s a ere:BestuurVanDeEredienst 
 } => {
-  ?s a besluit:Bestuurseenheid
+  ?s a besluit:Bestuurseenheid ;
+     skos:topConceptOf <http://lblod.data.gift/concept-schemes/7e2b965e-c824-474f-b5d5-b1c115740083> ;
+     skos:inScheme <http://lblod.data.gift/concept-schemes/7e2b965e-c824-474f-b5d5-b1c115740083> .
 }.
 
 {
-  ?s a ere:CentraalBestuurVanDeEredienst
+  ?s a ere:CentraalBestuurVanDeEredienst 
 } => {
-  ?s a besluit:Bestuurseenheid
+  ?s a besluit:Bestuurseenheid ;
+     skos:topConceptOf <http://lblod.data.gift/concept-schemes/7e2b965e-c824-474f-b5d5-b1c115740083> ;
+     skos:inScheme <http://lblod.data.gift/concept-schemes/7e2b965e-c824-474f-b5d5-b1c115740083> .
 }.
 
 {
-  ?s a ere:RepresentatiefOrgaan
-}=> {
-  ?s
-    a besluit:Bestuurseenheid;
-    besluit:classificatie <http://data.vlaanderen.be/id/concept/BestuurseenheidClassificatieCode/36372fad-0358-499c-a4e3-f412d2eae213>.
+  ?s a ere:RepresentatiefOrgaan 
+} => {
+  ?s a besluit:Bestuurseenheid ;
+     besluit:classificatie <http://data.vlaanderen.be/id/concept/BestuurseenheidClassificatieCode/36372fad-0358-499c-a4e3-f412d2eae213> ;
+     skos:topConceptOf <http://lblod.data.gift/concept-schemes/7e2b965e-c824-474f-b5d5-b1c115740083> ;
+     skos:inScheme <http://lblod.data.gift/concept-schemes/7e2b965e-c824-474f-b5d5-b1c115740083> .
 }.
 
 
