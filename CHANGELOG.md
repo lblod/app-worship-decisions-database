@@ -1,4 +1,12 @@
 # Changelog
+## 0.14.0 (2023-07-24)
+- Bump worship-submissions-email-notification-service (Adjust cron interval to set it every day at 10:00)
+- Fixing bestuurseenheid filter
+
+### Deploy notes
+1. drc up -d worship-submissions-email-notification-service once the value RUN_INTERVAL is changed in docker-compose.yml and docker-compose.override.yml
+
+2. drc restart migrations then search-query-management after migrations are done.
 ## 0.13.0 (2023-06-30)
 - Added extra forms
 ## 0.12.0 (2023-06-19)
