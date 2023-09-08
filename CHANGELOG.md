@@ -1,4 +1,12 @@
 # Changelog
+## 0.15.0 (2023-09-08)
+- Bump frontend from v0.8.0 to v0.9.0
+- Adding a new filter field (filter by specific date)
+
+### Deploy notes
+1. drc up -d frontend
+2. drc restart search-query-management
+
 ## 0.14.0 (2023-07-24)
 - Bump worship-submissions-email-notification-service (Adjust cron interval to set it every day at 10:00)
 - Fixing bestuurseenheid filter
