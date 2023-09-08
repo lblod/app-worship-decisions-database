@@ -14,7 +14,7 @@ services:
       - ./scripts/project:/app/scripts/
     restart: "no"
   frontend:
-    image: lblod/frontend-worship-decisions:0.8.0
+    image: lblod/frontend-worship-decisions:0.9.0
     volumes:
       - ./config/frontend:/config
     labels:
