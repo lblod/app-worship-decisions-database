@@ -1,4 +1,10 @@
 # Changelog
+## 0.16.0 (2023-10-13)
+- Adding a new generated report worshipServicesWithoutEmailNotifications
+
+### Deploy notes
+1. drc restart report-generation
+
 ## 0.15.0 (2023-09-08)
 - Bump frontend from v0.8.0 to v0.9.0
 - Adding a new filter field (filter by specific date)
