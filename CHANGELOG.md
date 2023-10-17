@@ -1,4 +1,10 @@
 # Changelog
+## 0.17.0 (2023-10-17)
+- Update forms (bundle)
+- Bump worship-submissions-graph-dispatcher-service v0.10.0
+### Deploy notes
+1. drc restart migrations search-query-management
+2. drc up -d worship-submissions-graph-dispatcher-service
 ## 0.16.0 (2023-10-13)
 - Adding a new generated report worshipServicesWithoutEmailNotifications
 
