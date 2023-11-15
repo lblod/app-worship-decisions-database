@@ -1,4 +1,9 @@
 # Changelog
+## 0.18.0 (2023-11-15)
+- Bump op-public-consumer and submissions-consumer
+- Update forms
+### Deploy notes
+- drc up -d enrich-submission op-public-consumer submissions-consumer; drc restart migrations resource cache
 ## 0.17.0 (2023-10-17)
 - Update forms (bundle)
 - Bump worship-submissions-graph-dispatcher-service v0.10.0
