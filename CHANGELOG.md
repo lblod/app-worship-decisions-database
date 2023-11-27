@@ -1,4 +1,8 @@
 # Changelog
+## 0.19.0 (2023-11-27)
+- Adjusting report (without email notifications) to include Gemeenten/Provincies
+### Deploy notes
+- drc restart report-generation
 ## 0.18.0 (2023-11-15)
 - Bump op-public-consumer and submissions-consumer
 - Update forms
