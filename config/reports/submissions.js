@@ -21,6 +21,7 @@ const PREFIXES = `
   PREFIX ma: <http://www.w3.org/ns/ma-ont#>
   PREFIX mandaat: <http://data.vlaanderen.be/ns/mandaat#>
   PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+  PREFIX ere: <http://data.lblod.info/vocabularies/erediensten/>
 `;
 
 const queryString = `
@@ -107,8 +108,11 @@ function generateVanBestuurseenheidMetaQuery(uris) {
        ${uris.map(uri => "<" + uri + ">").join('\n')}
      }
 
-      ?vanBestuurseenheid a besluit:Bestuurseenheid;
-        skos:prefLabel ?vanBestuurseenheidLabel.
+     { ?vanBestuurseenheid a besluit:Bestuurseenheid }
+     UNION
+     { ?vanBestuurseenheid a ere:BestuurVanDeEredienst }
+
+      ?vanBestuurseenheid skos:prefLabel ?vanBestuurseenheidLabel.
 
       OPTIONAL {
            ?vanBestuurseenheid  besluit:classificatie ?vanClassificatie.
@@ -126,27 +130,27 @@ const metadata = {
 };
 
 export default {
-  cronPattern: '0 15 23 * * *', // At 23:15.
+  cronPattern: '0 15 23 * * *', // At 23:15
   name: 'inzendingen-per-bestuurseenheid',
   execute: async () => {
     try {
       const queryResponse = await batchedQuery(queryString, 1000);
 
-      //We want to append with labels etc, but query this takes to long in one query
+      // We want to append with labels, but this takes too long in one query.
       const distinctOrgUuid =
-            queryResponse.
-            results.
-            bindings.reduce((acc, curr)  => { acc[curr.orgUuid.value] = ''; return acc;}, {});
+        queryResponse.
+          results.
+          bindings.reduce((acc, curr) => { acc[curr.orgUuid.value] = ''; return acc; }, {});
 
       const distinctTypeBesluitUris =
-            queryResponse.
-            results.
-            bindings.reduce((acc, curr)  => { acc[curr.typeBesluit.value] = ''; return acc; }, {});
+        queryResponse.
+          results.
+          bindings.reduce((acc, curr) => { acc[curr.typeBesluit.value] = ''; return acc; }, {});
 
       const distinctVanBestuurUris =
-            queryResponse.
-            results.
-            bindings.reduce((acc, curr)  => { acc[curr.vanBestuurseenheid.value] = ''; return acc; }, {});
+        queryResponse.
+          results.
+          bindings.reduce((acc, curr) => { acc[curr.vanBestuurseenheid.value] = ''; return acc; }, {});
 
       const orgResults = await query(generateAanBestuurseenheidMetaQuery(Object.keys(distinctOrgUuid)));
 
@@ -154,41 +158,60 @@ export default {
 
       const fromOrgResults = await query(generateVanBestuurseenheidMetaQuery(Object.keys(distinctVanBestuurUris)));
 
-      // append the current results
-      for(const binding of queryResponse.results.bindings) {
+      // Append the current results
+      for (const binding of queryResponse.results.bindings) {
+        const mappedBestuur = orgResults.results.bindings.find(b => b.orgUuid.value == binding.orgUuid.value);
+        // mappedBestuur can be null and has to be checked.
+        binding.aanBestuurseenheidLabel = {
+          value: (mappedBestuur &&
+            mappedBestuur.aanBestuurseenheidLabel.value &&
+            mappedBestuur.aanBestuurseenheidLabel.value)
+            || ''
+        };
+        binding.aanBestuurseenheidClassLabel = {
+          value: (mappedBestuur &&
+            mappedBestuur.aanBestuurseenheidClassLabel &&
+            mappedBestuur.aanBestuurseenheidClassLabel.value)
+            || ''
+        };
+        binding.aanBestuurseenheid = {
+          value: (mappedBestuur &&
+            mappedBestuur.aanBestuurseenheid &&
+            mappedBestuur.aanBestuurseenheid.value)
+            || ''
+        };
 
-        const mappedBestuur = orgResults.results.bindings.find(b => b.orgUuid.value == binding.orgUuid.value );
+        const mappedBesluit = besluitResults.results.bindings.find(b => b.typeBesluit.value == binding.typeBesluit.value);
+        binding.typeBesluitLabel = {
+          value: mappedBesluit.typeBesluitLabel.value
+        };
 
-        binding.aanBestuurseenheidLabel = { value: mappedBestuur.aanBestuurseenheidLabel.value };
-        binding.aanBestuurseenheidClassLabel = { value: (mappedBestuur.aanBestuurseenheidClassLabel
-                                                         && mappedBestuur.aanBestuurseenheidClassLabel.value)
-                                                 || '' };
-
-
-        binding.aanBestuurseenheid = { value: mappedBestuur.aanBestuurseenheid.value };
-
-
-        const mappedBesluit = besluitResults.results.bindings.find(b => b.typeBesluit.value == binding.typeBesluit.value );
-        binding.typeBesluitLabel = { value: mappedBesluit.typeBesluitLabel.value };
-
-        const mappedVanBestuur = fromOrgResults.results.bindings.find(b => b.vanBestuurseenheid.value == binding.vanBestuurseenheid.value );
-
-        binding.vanBestuurseenheidLabel = { value: mappedVanBestuur.vanBestuurseenheidLabel.value };
-
-        binding.vanBestuurseenheidClassLabel = { value:
-                                                 (mappedVanBestuur.vanBestuurseenheidClassLabel &&
-                                                  mappedVanBestuur.vanBestuurseenheidClassLabel.value)
-                                                 || '' };
+        const mappedVanBestuur = fromOrgResults.results.bindings.find(b => b.vanBestuurseenheid.value == binding.vanBestuurseenheid.value);
+        // mappedVanBestuur can be null and has to be checked.
+        binding.vanBestuurseenheidLabel = {
+          value: (mappedVanBestuur &&
+            mappedVanBestuur.vanBestuurseenheidLabel &&
+            mappedVanBestuur.vanBestuurseenheidLabel.value)
+            || ''
+        };
+        binding.vanBestuurseenheidClassLabel = {
+          value:
+            (mappedVanBestuur &&
+              mappedVanBestuur.vanBestuurseenheidClassLabel &&
+              mappedVanBestuur.vanBestuurseenheidClassLabel.value)
+            || ''
+        };
       }
 
       queryResponse.head.vars = ['vanBestuurseenheidLabel',
-                                 'aanBestuurseenheidLabel',
-                                 'typeBesluitLabel',
-                                 ...queryResponse.head.vars,
-                                 'vanBestuurseenheidClassLabel',
-                                 'aanBestuurseenheidClassLabel',
-                                 'aanBestuurseenheid'
-                                ];
+        'aanBestuurseenheidLabel',
+        'typeBesluitLabel',
+        ...queryResponse.head.vars,
+        'vanBestuurseenheidClassLabel',
+        'aanBestuurseenheidClassLabel',
+        'aanBestuurseenheid'
+      ];
+
       await generateReportFromQueryResult(queryResponse, metadata);
     }
     catch (e) {
