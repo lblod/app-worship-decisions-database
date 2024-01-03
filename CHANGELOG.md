@@ -1,4 +1,7 @@
 # Changelog
+## 0.20.0 (2023-12-14)
+ - Fixed a bug (which also broke the reporting) where submissions where ingested in <http://mu.semte.ch/graphs/organizations/undefined/LoketLB-databankEredienstenGebruiker>
+ - Resotred old budget submissions dispatching: [see](https://github.com/lblod/worship-submissions-graph-dispatcher-service/pull/16)
 ## 0.19.0 (2023-11-27)
 - Adjusting report (without email notifications) to include Gemeenten/Provincies
 ### Deploy notes
