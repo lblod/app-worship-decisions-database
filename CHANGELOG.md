@@ -1,4 +1,11 @@
 # Changelog
+## 0.21.0 (2024-01-12)
+- Update forms
+    - New forms LEKP Collectieve Energiebesparende Renovatie, Fietspaden, Sloopbeleidsplan
+    - New forms Niet-bindend advies op statuten and Niet-bindend advies op oprichting
+    - Change form LEKP Melding correctie authentieke bron, removed field "type correctie"
+### Deploy instructions
+- drc up -d enrich-submission; drc restart migrations resource cache
 ## 0.20.0 (2023-12-14)
  - Fixed a bug (which also broke the reporting) where submissions where ingested in <http://mu.semte.ch/graphs/organizations/undefined/LoketLB-databankEredienstenGebruiker>
  - Resotred old budget submissions dispatching: [see](https://github.com/lblod/worship-submissions-graph-dispatcher-service/pull/16)
