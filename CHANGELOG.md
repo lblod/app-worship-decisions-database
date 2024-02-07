@@ -1,4 +1,10 @@
 # Changelog
+## Unreleased
+Frontend [v0.10.0](https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#0100-2024-02-07):
+- [DL-5637] Sort submissions based on the sent date (descending) by default 
+### Deploy notes
+- Remove the v0.10.0 image override for the `frontend` service if it exists.
+- `drc up -d frontend`
 ## 0.21.0 (2024-01-12)
 - Update forms
     - New forms LEKP Collectieve Energiebesparende Renovatie, Fietspaden, Sloopbeleidsplan
