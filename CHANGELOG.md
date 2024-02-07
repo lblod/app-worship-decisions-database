@@ -1,5 +1,5 @@
 # Changelog
-## Unreleased
+## v0.22.0 (2024-02-07)
 Frontend [v0.10.0](https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#0100-2024-02-07):
 - [DL-5637] Sort submissions based on the sent date (descending) by default 
 ### Deploy notes
