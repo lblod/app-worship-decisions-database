@@ -1,4 +1,10 @@
 # Changelog
+## Unreleased (2024-02-07)
+Frontend [v0.10.1](https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#0100-2024-02-07):
+- [DL-5661] Fix the ACM/IDM login 
+### Deploy notes
+- Remove the image override for the `frontend` service if it exists.
+- `drc up -d frontend`
 ## v0.22.0 (2024-02-07)
 Frontend [v0.10.0](https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#0100-2024-02-07):
 - [DL-5637] Sort submissions based on the sent date (descending) by default 
