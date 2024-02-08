@@ -1,5 +1,5 @@
 # Changelog
-## Unreleased (2024-02-07)
+## v0.22.1 (2024-02-07)
 Frontend [v0.10.1](https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#0100-2024-02-07):
 - [DL-5661] Fix the ACM/IDM login 
 ### Deploy notes
