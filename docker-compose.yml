@@ -177,7 +177,7 @@ services:
       - virtuoso:database # Because mu-auth is bottleneck in heavy reports
     volumes:
       - ./data/files:/share
-      - ./config/reports:/app/reports
+      - ./config/reports:/config
     labels:
       - "logging=true"
     restart: always
