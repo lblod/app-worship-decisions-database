@@ -1,4 +1,8 @@
 # Changelog
+## v0.23.0 (2024-02-16)
+- Updated a number of services as part of regular maintenance [DL-5672].
+### Deploy notes
+- Virtuoso Upgrade! Please follow the procedure as described in [this excellent guide](https://github.com/Riadabd/upgrade-virtuoso) for upgrading the triplestore.
 ## v0.22.1 (2024-02-07)
 Frontend [v0.10.1](https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#0100-2024-02-07):
 - [DL-5661] Fix the ACM/IDM login 
