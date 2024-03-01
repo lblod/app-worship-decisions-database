@@ -230,7 +230,7 @@ services:
     environment:
       DCR_SYNC_BASE_URL: "https://loket.lblod.info/"
       DCR_SYNC_LOGIN_ENDPOINT: 'https://loket.lblod.info/sync/vendor-management/login' # Add DCR_SECRET_KEY in docker-compose.override.yml
-      DCR_SERVICE_NAME: "vendor-managements-consumer"
+      DCR_SERVICE_NAME: "vendor-management-consumer"
       DCR_SYNC_FILES_PATH: "/sync/vendor-management/files"
       DCR_SYNC_DATASET_SUBJECT: "http://data.lblod.info/datasets/delta-producer/dumps/VendorManagementCacheGraphDump"
       DCR_INITIAL_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/initialSync/vendor-management"
