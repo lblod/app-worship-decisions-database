@@ -56,3 +56,5 @@ services:
     restart: "no"
   deliver-email-service:
     restart: "no"
+  vendor-management-consumer:
+    restart: "no"
