@@ -1,4 +1,9 @@
 # Changelog
+## Unreleased (2024-MM-DD)
+- DL-5710: bump submissions-dispatcher to have more control and faster execution time.
+### Deploy Notes
+#### Prod
+`lblod/worship-submissions-graph-dispatcher-service:0.13.0` will be running in `docker-compose.override.yml`. Ensure whe deploying to remove this line in the file.
 ## v0.23.0 (2024-02-16)
 - Updated a number of services as part of regular maintenance [DL-5672].
 ### Deploy notes
