@@ -240,6 +240,8 @@ services:
       DCR_DELTA_FILE_FOLDER: "/consumer-files"
       DCR_DELTA_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/VendorManagementFileSyncing"
       INGEST_GRAPH: "http://mu.semte.ch/graphs/vendor-management-data"
+    restart: always
+    logging: *default-logging
   ################################################################################
   # OP PUBLIC CONSUMER
   ################################################################################
