@@ -1,9 +1,27 @@
 # Changelog
 ## Unreleased (2024-MM-DD)
-- DL-5710: bump submissions-dispatcher to have more control and faster execution time.
+- Bump submissions-dispatcher to have more control and faster execution time. (DL-5710)
+- Add `vendor-management-consumer` to fetch vendor data from `app-digitaal-loket` (DL-5667)
 ### Deploy Notes
-#### Prod
-`lblod/worship-submissions-graph-dispatcher-service:0.13.0` will be running in `docker-compose.override.yml`. Ensure whe deploying to remove this line in the file.
+#### On PROD
+`lblod/worship-submissions-graph-dispatcher-service:0.13.0` is running in `docker-compose.override.yml`; make sure to remove this override when deploying.
+#### `vendor-management-consumer` Setup
+Place the following inside `docker-compose.override.yml`:
+
+```yaml
+vendor-management-consumer:
+  environment:
+    BATCH_SIZE: "500"
+    DCR_SYNC_BASE_URL: [FILL-WITH-QA/PROD-URL]
+    DCR_DISABLE_INITIAL_SYNC: 'true' # Switch to false when system is ready to consume data
+    DCR_SYNC_LOGIN_ENDPOINT: '[DCR_SYNC_BASE_URL]/sync/vendor-management/login'
+    DCR_SECRET_KEY: "key" # Key must match the one from the `vendor-management` delta producer in `app-digitaal-loket`
+```
+#### Docker Commands
+- `drc up -d submissions-dispatcher vendor-management-consumer`
+- `drc logs -ft --tail=200 vendor-management-consumer` -> Make sure the logs contain no issues.
+- Switch `DCR_DISABLE_INITIAL_SYNC` inside `vendor-management-consumer` to `false`
+- `drc up -d vendor-management-consumer`
 ## v0.23.0 (2024-02-16)
 - Updated a number of services as part of regular maintenance [DL-5672].
 ### Deploy notes
