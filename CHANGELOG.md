@@ -1,6 +1,7 @@
 # Changelog
 ## Unreleased (2024-MM-DD)
 - DL-5710: bump submissions-dispatcher to have more control and faster execution time.
+- Frontend [v0.11.0](https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#0100-2024-02-07) (DL-5735)
 ### Deploy Notes
 #### Prod
 `lblod/worship-submissions-graph-dispatcher-service:0.13.0` will be running in `docker-compose.override.yml`. Ensure whe deploying to remove this line in the file.
