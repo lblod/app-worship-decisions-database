@@ -1,10 +1,7 @@
 # Changelog
 ## Unreleased (2024-MM-DD)
-- Bump submissions-dispatcher to have more control and faster execution time. (DL-5710)
 - Add `vendor-management-consumer` to fetch vendor data from `app-digitaal-loket` (DL-5667)
 ### Deploy Notes
-#### On PROD
-`lblod/worship-submissions-graph-dispatcher-service:0.13.0` is running in `docker-compose.override.yml`; make sure to remove this override when deploying.
 #### `vendor-management-consumer` Setup
 Place the following inside `docker-compose.override.yml`:
 
@@ -22,6 +19,21 @@ vendor-management-consumer:
 - `drc logs -ft --tail=200 vendor-management-consumer` -> Make sure the logs contain no issues.
 - Switch `DCR_DISABLE_INITIAL_SYNC` inside `vendor-management-consumer` to `false`
 - `drc up -d vendor-management-consumer`
+## v0.24.0 (2024-03-14)
+- Update forms
+  - Adding new form Aanduiding en eedaflegging van de aangewezen burgemeester (DL-5669)
+  - Adding new form Strandconcessies - reddingsdiensten kustgemeenten (DL-5625)
+  - Adding new form Melding onvolledigheid inzending eredienstbestuur (DL-5643)
+  - Adding new form Opstart beroepsprocedure naar aanleiding van een beslissing (DL-5646)
+  - Adding informational text to forms to minimize usage of the wrong forms (DL-5665)
+  - Adding new form Afschrift erkenningszoekende besturen (DL-5670)
+- Bump submissions-dispatcher to have more control and faster execution time (DL-5710)
+- Bump `submissions-dispatcher` to `v0.14.0` (DL-5670)
+- Frontend [v0.11.0](https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#0100-2024-02-07) (DL-5735)
+### Deploy notes
+- drc up -d enrich-submission frontend submissions-dispatcher; drc restart migrations resource cache
+#### Prod
+`lblod/worship-submissions-graph-dispatcher-service:0.13.0` will be running in `docker-compose.override.yml`. Ensure whe deploying to remove this line in the file.
 ## v0.23.0 (2024-02-16)
 - Updated a number of services as part of regular maintenance [DL-5672].
 ### Deploy notes
