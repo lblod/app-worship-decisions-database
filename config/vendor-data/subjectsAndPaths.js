@@ -7,16 +7,19 @@ const HOSTNAME = envvar
   .asUrlString();
 
 export const subjects = [
-  // For submissions arriving via the automatic submission flow
+  //For Submissions via Consumer from Loket
   {
     type: 'http://rdf.myexperiment.org/ontologies/base/Submission',
     trigger: `
       ?subject a <http://rdf.myexperiment.org/ontologies/base/Submission> .
     `,
     path: `
-      ?subject
-        pav:createdBy ?organisation ;
-        pav:providedBy ?vendor .
+      GRAPH ?g {
+        ?subject
+          pav:createdBy ?organisation ;
+          pav:providedBy ?vendor .
+      }
+      FILTER (REGEX(STR(?G), "^http://mu.semte.ch/graphs/organizations/"))
     `,
     remove: {
       delete: `
@@ -35,4 +38,5 @@ export const subjects = [
       `,
     },
   },
+  // Also for Form Data
 ];
