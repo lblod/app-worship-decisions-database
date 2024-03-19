@@ -58,3 +58,7 @@ services:
     restart: "no"
   vendor-management-consumer:
     restart: "no"
+  vendor-login:
+    restart: "no"
+  sparql-authorization-wrapper:
+    restart: "no"
