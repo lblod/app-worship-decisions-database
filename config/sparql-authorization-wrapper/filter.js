@@ -6,6 +6,7 @@ export async function isAuthorized(sessionUri) {
     PREFIX mu:        <http://mu.semte.ch/vocabularies/core/>
     PREFIX muAccount: <http://mu.semte.ch/vocabularies/account/>
     PREFIX dct:       <http://purl.org/dc/terms/>
+    PREFIX session:   <http://mu.semte.ch/vocabularies/session/>
 
     SELECT DISTINCT ?uuid ?created ?account {
       GRAPH ?g {
