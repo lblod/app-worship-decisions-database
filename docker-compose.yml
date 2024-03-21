@@ -191,6 +191,18 @@ services:
     restart: always
     logging: *default-logging
   ################################################################################
+  # VENDOR API
+  ################################################################################
+  vendor-data:
+    image: lblod/vendor-data-distribution-service:1.4.0
+    environment:
+      LOGLEVEL: "error"
+      WRITE_ERRORS: "true"
+    volumes:
+      - ./config/vendor-data:/config
+    restart: always
+    logging: *default-logging
+  ################################################################################
   # DELTAS
   ################################################################################
   submissions-consumer:
