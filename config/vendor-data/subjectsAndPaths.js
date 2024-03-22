@@ -57,7 +57,7 @@ export const subjects = [
       insert: `
         ?subject ?sp ?so .
         ?formdata ?fp ?fo .
-        ?remotefile ?ro ?rp ;
+        ?remotefile ?ro ?rp .
         ?remotefile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?remotefileDownloadLink .
       `,
       where: `
@@ -193,6 +193,7 @@ export const subjects = [
         ?submission ?sp ?so .
         ?formdata ?fp ?fo .
         ?subject ?ro ?rp .
+        ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?remotefileDownloadLink .
       `,
       where: `
         {
@@ -203,7 +204,7 @@ export const subjects = [
           ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
           ?formdata <http://purl.org/dc/terms/hasPart> ?subject .
           ?subject <http://mu.semte.ch/vocabularies/core/uuid> ?subjectUUID .
-          BIND (CONCAT("${HOSTNAME}files/", STR(?subjectUUID), "/download") AS ?subjectDownloadLink)
+          BIND (CONCAT("${HOSTNAME}files/", STR(?subjectUUID), "/download") AS ?remotefileDownloadLink)
           ?subject ?ro ?rp .
         }
       `,
