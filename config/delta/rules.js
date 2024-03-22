@@ -57,7 +57,7 @@ export default [
       // FormData well after the FormData itself has been processed?
     },
     callback: {
-      url: 'http://vendor-data/delta',
+      url: 'http://vendor-data-distribution/delta',
       method: 'POST',
     },
     options: {

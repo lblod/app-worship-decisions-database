@@ -62,5 +62,5 @@ services:
     restart: "no"
   sparql-authorization-wrapper:
     restart: "no"
-  vendor-data:
+  vendor-data-distribution:
     restart: "no"
