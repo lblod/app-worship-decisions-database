@@ -89,13 +89,37 @@ function partition(arr, fn) {
 
 /**
  * Send triples to reasoning service for conversion
- *
  */
 function transformTriples(fetch, triples) {
   return operationWithRetry(mainConversion(fetch, triples), 0,
     MAX_REASONING_RETRY_ATTEMPTS, SLEEP_TIME_AFTER_FAILED_REASONING_OPERATION);
 }
 
+
+/**
+ * Remove triples which were added to the context but not present in the original triples
+ * Triples which are result of the transformation will be kept.
+ * @param {*} transformedTriples
+ * @param {*} originalTriples
+ * @param {*} triplesWithContext
+ */
+function removeContextTriples(transformedTriples, originalTriples, triplesWithContext) {
+  // Create sets for faster lookup
+  const originalSet = new Set(originalTriples.map(serializeTriple));
+  const contextSet = new Set(triplesWithContext.map(serializeTriple));
+
+  // Filter transformedTriples based on condition
+  const result = transformedTriples.filter(item => {
+    const serializedItem = serializeTriple(item);
+    const isInContextNotInOriginal = contextSet.has(serializedItem) && !originalSet.has(serializedItem);
+    return !isInContextNotInOriginal; // Keep the item if it does not satisfy the removal condition
+  });
+}
+
+// Function to serialize object for comparison
+function serializeTriple({ graph, subject, predicate, object }) {
+  return `${subject}|${predicate}|${object}`;
+}
 
 function mainConversion(fetch, triples) {
   let formdata = new URLSearchParams();
@@ -169,6 +193,7 @@ module.exports = {
   batchedDbUpdate,
   partition,
   transformStatements,
+  removeContextTriples,
   transformLandingZoneGraph,
   deleteFromTargetGraph,
   insertIntoTargetGraph,

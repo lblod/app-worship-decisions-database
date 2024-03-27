@@ -1,5 +1,6 @@
 const {
   transformStatements,
+  removeContextTriples,
   deleteFromTargetGraph,
   insertIntoTargetGraph,
 } = require('./util');
@@ -64,30 +65,39 @@ async function dispatch(lib, data) {
     if (originalDeletes.length) {
       // Map deletes from OP to DL model
       const transformedDeletes = await transformStatements(fetch, deletesWithContext);
+      const filteredDeletes = removeContextTriples(transformedDeletes, originalDeletes, deletesWithContext);
 
-      if (!transformedDeletes.length) {
+      if (!filteredDeletes.length) {
         console.log(`Warn: Delete statements mapped to empty result.`);
         console.log(`Input: ${deletesWithContext}`);
-        console.log(`Output: ${transformedDeletes}`);
+        console.log(`Output: ${filteredDeletes}`);
       } else {
-        await deleteFromTargetGraph(lib, transformedDeletes);
+        await deleteFromTargetGraph(lib, filteredDeletes);
       }
     }
 
     if (originalInserts.length) {
       // Map inserts from OP to DL model
       const transformedInserts = await transformStatements(fetch, insertsWithContext);
+      const filteredInserts = removeContextTriples(transformedInserts, originalInserts, insertsWithContext);
 
-      if (!transformedInserts.length) {
+      if (!filteredInserts.length) {
         console.log(`Warn: Insert statements mapped to empty result.`);
         console.log(`Input: ${insertsWithContext}`);
-        console.log(`Output: ${transformedInserts}`);
+        console.log(`Output: ${filteredInserts}`);
       } else {
-        await insertIntoTargetGraph(lib, transformedInserts);
+        await insertIntoTargetGraph(lib, filteredInserts);
       }
     }
   }
 }
+
+// Function to serialize object for comparison
+function serializeTriple({ graph, subject, predicate, object }) {
+  return `${graph}|${subject}|${predicate}|${object}`;
+}
+
+
 
 module.exports = {
   dispatch
