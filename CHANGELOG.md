@@ -15,7 +15,7 @@ vendor-management-consumer:
     DCR_SECRET_KEY: "key" # Key must match the one from the `vendor-management` delta producer in `app-digitaal-loket`
 ```
 #### Docker Commands
-- `drc up -d submissions-dispatcher vendor-management-consumer`
+- `drc up -d vendor-login sparql-authorization-wrapper vendor-data-distribution submissions-dispatcher vendor-management-consumer`
 - `drc logs -ft --tail=200 vendor-management-consumer` -> Make sure the logs contain no issues.
 - Switch `DCR_DISABLE_INITIAL_SYNC` inside `vendor-management-consumer` to `false`
 - `drc up -d vendor-management-consumer`
