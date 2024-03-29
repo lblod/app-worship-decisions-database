@@ -293,3 +293,25 @@ services:
       OUTBOX_FOLDER_URI: "http://data.lblod.info/id/mail-folders/2"
       FROM_EMAIL_ADRESS: "Agentschap Binnenlands Bestuur Vlaanderen <noreply-binnenland@vlaanderen.be>"
       WORSHIP_DECISIONS_APP_BASEURL: "https://databankerediensten.lokaalbestuur.vlaanderen.be/"
+  ##############################################################################
+  # Vendor endpoint
+  ##############################################################################
+  vendor-login:
+    image: lblod/vendor-login-service:1.1.0
+    restart: always
+    logging: *default-logging
+  sparql-authorization-wrapper:
+    image: lblod/sparql-authorization-wrapper-service:1.1.0
+    volumes:
+      - ./config/sparql-authorization-wrapper:/config
+    restart: always
+    logging: *default-logging
+  vendor-data-distribution:
+    image: lblod/vendor-data-distribution-service:1.4.0
+    environment:
+      LOGLEVEL: "error"
+      WRITE_ERRORS: "true"
+    volumes:
+      - ./config/vendor-data:/config
+    restart: always
+    logging: *default-logging
