@@ -100,7 +100,6 @@ export const subjects = [
         OPTIONAL {
           ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
           ?remotefile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?originalDownloadLink .
-          FILTER (!REGEX(STR(?originalDownloadLink), "${HOSTNAME}files/"))
           ?remotefile <http://mu.semte.ch/vocabularies/core/uuid> ?remotefileUUID .
           BIND (CONCAT("${HOSTNAME}files/", STR(?remotefileUUID), "/download") AS ?newDownloadLink)
         }
@@ -196,7 +195,6 @@ export const subjects = [
         OPTIONAL {
           ?subject <http://purl.org/dc/terms/hasPart> ?remotefile .
           ?remotefile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?originalDownloadLink .
-          FILTER (!REGEX(STR(?originalDownloadLink), "${HOSTNAME}files/"))
           ?remotefile <http://mu.semte.ch/vocabularies/core/uuid> ?remotefileUUID .
           BIND (CONCAT("${HOSTNAME}files/", STR(?remotefileUUID), "/download") AS ?newDownloadLink)
         }
@@ -298,7 +296,6 @@ export const subjects = [
         OPTIONAL { ?formdata <http://mu.semte.ch/vocabularies/ext/taxRateAmount> ?taxRateAmount . }
         OPTIONAL { ?formdata <http://mu.semte.ch/vocabularies/ext/regulationType> ?regulationType . }
         ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?originalDownloadLink .
-        FILTER (!REGEX(STR(?originalDownloadLink), "${HOSTNAME}files/"))
         ?subject <http://mu.semte.ch/vocabularies/core/uuid> ?remotefileUUID .
         BIND (CONCAT("${HOSTNAME}files/", STR(?remotefileUUID), "/download") AS ?newDownloadLink)
       `,
