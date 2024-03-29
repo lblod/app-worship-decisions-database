@@ -48,5 +48,22 @@ export default [
       gracePeriod: 10000,
       ignoreFromSelf: true
     }
+  },
+  {
+    match: {
+      // Everything. We hoped to be more selective, but that is not possible.
+      // Looking at the VDDS config, we only need Submission, FormData and
+      // RemoteDataObject but what if a new attachment was added to the
+      // FormData well after the FormData itself has been processed?
+    },
+    callback: {
+      url: 'http://vendor-data-distribution/delta',
+      method: 'POST',
+    },
+    options: {
+      resourceFormat: "v0.0.1",
+      gracePeriod: 10000,
+      ignoreFromSelf: true,
+    },
   }
 ];

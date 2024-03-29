@@ -294,7 +294,7 @@ services:
       FROM_EMAIL_ADRESS: "Agentschap Binnenlands Bestuur Vlaanderen <noreply-binnenland@vlaanderen.be>"
       WORSHIP_DECISIONS_APP_BASEURL: "https://databankerediensten.lokaalbestuur.vlaanderen.be/"
   ##############################################################################
-  # Vendor endpoint
+  # Vendor API
   ##############################################################################
   vendor-login:
     image: lblod/vendor-login-service:1.1.0
@@ -307,7 +307,7 @@ services:
     restart: always
     logging: *default-logging
   vendor-data-distribution:
-    image: lblod/vendor-data-distribution-service:1.4.0
+    image: lblod/vendor-data-distribution-service:1.4.2
     environment:
       LOGLEVEL: "error"
       WRITE_ERRORS: "true"

@@ -1,6 +1,7 @@
 # Changelog
 ## Unreleased (2024-MM-DD)
 - Add `vendor-management-consumer` to fetch vendor data from `app-digitaal-loket` (DL-5667)
+- Add `vendor-data-distribution` and config to copy data to vendor graphs based on config
 ### Deploy Notes
 #### `vendor-management-consumer` Setup
 Place the following inside `docker-compose.override.yml`:
@@ -14,6 +15,18 @@ vendor-management-consumer:
     DCR_SYNC_LOGIN_ENDPOINT: '[DCR_SYNC_BASE_URL]/sync/vendor-management/login'
     DCR_SECRET_KEY: "key" # Key must match the one from the `vendor-management` delta producer in `app-digitaal-loket`
 ```
+#### `vendor-data-distribution-service` historical data
+You must run healing to create historical data in the vendor graphs. Use a POST call with the newly added features to speed up the healing. The following should suffice:
+```
+[your machine]> docker compose exec data-distribution-service bash
+[container]> curl -X POST -H "Content-Type: application/json" -d `
+{
+  "skipDeletes": true,
+  "onlyTheseTypes": [ "http://rdf.myexperiment.org/ontologies/base/Submission" ]
+}
+` http://localhost/healing
+```
+**This can take up multiple hours of high triplestore usage! Perform outside of peak hours.**
 #### Docker Commands
 - `drc up -d vendor-login sparql-authorization-wrapper vendor-data-distribution submissions-dispatcher vendor-management-consumer`
 - `drc logs -ft --tail=200 vendor-management-consumer` -> Make sure the logs contain no issues.
