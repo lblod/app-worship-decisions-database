@@ -29,12 +29,12 @@ export const subjects = [
     `,
     path: `
       GRAPH ?g {
-        ?subject a <http://rdf.myexperiment.org/ontologies/base/Submission>.
+        ?subject a <http://rdf.myexperiment.org/ontologies/base/Submission> .
       }
       FILTER (REGEX(STR(?g), "^http://mu.semte.ch/graphs/organizations/"))
       BIND(STRAFTER(STR(?g), "http://mu.semte.ch/graphs/organizations/") AS ?afterPrefix)
       BIND(STRBEFORE(?afterPrefix, "/LoketLB-databankEredienstenGebruiker") AS ?uuid)
-      ?organisation <http://mu.semte.ch/vocabularies/core/uuid> ?uuid.
+      ?organisation <http://mu.semte.ch/vocabularies/core/uuid> ?uuid .
     `,
     remove: {
       delete: `
@@ -94,12 +94,12 @@ export const subjects = [
       GRAPH ?g {
         ?submission
           a <http://rdf.myexperiment.org/ontologies/base/Submission> ;
-          <http://www.w3.org/ns/prov#generated> ?subject.
+          <http://www.w3.org/ns/prov#generated> ?subject .
       }
       FILTER (REGEX(STR(?g), "^http://mu.semte.ch/graphs/organizations/"))
       BIND(STRAFTER(STR(?g), "http://mu.semte.ch/graphs/organizations/") AS ?afterPrefix)
       BIND(STRBEFORE(?afterPrefix, "/LoketLB-databankEredienstenGebruiker") AS ?uuid)
-      ?organisation <http://mu.semte.ch/vocabularies/core/uuid> ?uuid.
+      ?organisation <http://mu.semte.ch/vocabularies/core/uuid> ?uuid .
     `,
     remove: {
       delete: `
@@ -163,7 +163,7 @@ export const subjects = [
       GRAPH ?g {
         ?submission
           a <http://rdf.myexperiment.org/ontologies/base/Submission> ;
-          <http://www.w3.org/ns/prov#generated> ?formdata.
+          <http://www.w3.org/ns/prov#generated> ?formdata .
         ?formdata
           a <http://lblod.data.gift/vocabularies/automatische-melding/FormData> ;
           <http://purl.org/dc/terms/hasPart> ?subject .
@@ -171,7 +171,7 @@ export const subjects = [
       FILTER (REGEX(STR(?g), "^http://mu.semte.ch/graphs/organizations/"))
       BIND(STRAFTER(STR(?g), "http://mu.semte.ch/graphs/organizations/") AS ?afterPrefix)
       BIND(STRBEFORE(?afterPrefix, "/LoketLB-databankEredienstenGebruiker") AS ?uuid)
-      ?organisation <http://mu.semte.ch/vocabularies/core/uuid> ?uuid.
+      ?organisation <http://mu.semte.ch/vocabularies/core/uuid> ?uuid .
     `,
     remove: {
       delete: `
