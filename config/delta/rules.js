@@ -14,6 +14,7 @@ export default [
       optOutMuScopeIds: [
         "http://redpencil.data.gift/id/concept/muScope/deltas/consumer/initialSync",
         "http://redpencil.data.gift/id/concept/muScope/deltas/write-for-dispatch",
+        "http://redpencil.data.gift/id/concept/muScope/deltas/vendor-data",
       ],
     }
   },
