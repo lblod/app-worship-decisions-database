@@ -59,7 +59,6 @@ export const subjects = [
         ?subject ?sp ?so .
         ?formdata ?fp ?fo .
         ?remotefile ?ro ?rp .
-        ?remotefile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?remotefileDownloadLink .
       `,
       where: `
         {
@@ -69,9 +68,40 @@ export const subjects = [
         } UNION {
           ?subject <http://www.w3.org/ns/prov#generated> ?formdata .
           ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
-          ?remotefile <http://mu.semte.ch/vocabularies/core/uuid> ?remotefileUUID .
-          BIND (CONCAT("${HOSTNAME}files/", STR(?remotefileUUID), "/download") AS ?remotefileDownloadLink)
           ?remotefile ?ro ?rp .
+        }
+      `,
+    },
+    post: {
+      delete: `
+        ?formdata <http://mu.semte.ch/vocabularies/ext/sessionStartedAtTime> ?sessionStartedAtTime .
+        ?formdata <http://mu.semte.ch/vocabularies/ext/decisionType> ?decisionType .
+        ?formdata <http://mu.semte.ch/vocabularies/ext/taxType> ?taxType .
+        ?formdata <http://mu.semte.ch/vocabularies/ext/taxRateAmount> ?taxRateAmount .
+        ?formdata <http://mu.semte.ch/vocabularies/ext/regulationType> ?regulationType .
+        ?remotefile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?originalDownloadLink .
+      `,
+      insert: `
+        ?formdata <http://lblod.data.gift/vocabularies/besluit/submission/form-data/sessionStartedAtTime> ?sessionStartedAtTime .
+        ?formdata <http://lblod.data.gift/vocabularies/besluit/submission/form-data/submissionType> ?decisionType .
+        ?formdata <http://lblod.data.gift/vocabularies/besluit/submission/form-data/taxType> ?taxType .
+        ?formdata <http://lblod.data.gift/vocabularies/besluit/submission/form-data/taxRateAmount> ?taxRateAmount .
+        ?formdata <http://lblod.data.gift/vocabularies/besluit/submission/form-data/regulationType> ?regulationType .
+        ?remotefile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?newDownloadLink .
+        ?remotefile <http://www.w3.org/ns/prov#hadPrimarySource> ?originalDownloadLink .
+      `,
+      where: `
+        ?subject <http://www.w3.org/ns/prov#generated> ?formdata .
+        OPTIONAL { ?formdata <http://mu.semte.ch/vocabularies/ext/sessionStartedAtTime> ?sessionStartedAtTime . }
+        OPTIONAL { ?formdata <http://mu.semte.ch/vocabularies/ext/decisionType> ?decisionType . }
+        OPTIONAL { ?formdata <http://mu.semte.ch/vocabularies/ext/taxType> ?taxType . }
+        OPTIONAL { ?formdata <http://mu.semte.ch/vocabularies/ext/taxRateAmount> ?taxRateAmount . }
+        OPTIONAL { ?formdata <http://mu.semte.ch/vocabularies/ext/regulationType> ?regulationType . }
+        OPTIONAL {
+          ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
+          ?remotefile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?originalDownloadLink .
+          ?remotefile <http://mu.semte.ch/vocabularies/core/uuid> ?remotefileUUID .
+          BIND (CONCAT("${HOSTNAME}files/", STR(?remotefileUUID), "/download") AS ?newDownloadLink)
         }
       `,
     },
@@ -124,7 +154,6 @@ export const subjects = [
         ?submission ?sp ?so .
         ?subject ?fp ?fo .
         ?remotefile ?ro ?rp .
-        ?remotefile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?remotefileDownloadLink .
       `,
       where: `
         {
@@ -134,9 +163,40 @@ export const subjects = [
         } UNION {
           ?submission <http://www.w3.org/ns/prov#generated> ?subject .
           ?subject <http://purl.org/dc/terms/hasPart> ?remotefile .
-          ?remotefile <http://mu.semte.ch/vocabularies/core/uuid> ?remotefileUUID .
-          BIND (CONCAT("${HOSTNAME}files/", STR(?remotefileUUID), "/download") AS ?remotefileDownloadLink)
           ?remotefile ?ro ?rp .
+        }
+      `,
+    },
+    post: {
+      delete: `
+        ?subject <http://mu.semte.ch/vocabularies/ext/sessionStartedAtTime> ?sessionStartedAtTime .
+        ?subject <http://mu.semte.ch/vocabularies/ext/decisionType> ?decisionType .
+        ?subject <http://mu.semte.ch/vocabularies/ext/taxType> ?taxType .
+        ?subject <http://mu.semte.ch/vocabularies/ext/taxRateAmount> ?taxRateAmount .
+        ?subject <http://mu.semte.ch/vocabularies/ext/regulationType> ?regulationType .
+        ?remotefile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?originalDownloadLink .
+      `,
+      insert: `
+        ?subject <http://lblod.data.gift/vocabularies/besluit/submission/form-data/sessionStartedAtTime> ?sessionStartedAtTime .
+        ?subject <http://lblod.data.gift/vocabularies/besluit/submission/form-data/submissionType> ?decisionType .
+        ?subject <http://lblod.data.gift/vocabularies/besluit/submission/form-data/taxType> ?taxType .
+        ?subject <http://lblod.data.gift/vocabularies/besluit/submission/form-data/taxRateAmount> ?taxRateAmount .
+        ?subject <http://lblod.data.gift/vocabularies/besluit/submission/form-data/regulationType> ?regulationType .
+        ?remotefile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?newDownloadLink .
+        ?remotefile <http://www.w3.org/ns/prov#hadPrimarySource> ?originalDownloadLink .
+      `,
+      where: `
+        ?submission <http://www.w3.org/ns/prov#generated> ?subject .
+        OPTIONAL { ?subject <http://mu.semte.ch/vocabularies/ext/sessionStartedAtTime> ?sessionStartedAtTime . }
+        OPTIONAL { ?subject <http://mu.semte.ch/vocabularies/ext/decisionType> ?decisionType . }
+        OPTIONAL { ?subject <http://mu.semte.ch/vocabularies/ext/taxType> ?taxType . }
+        OPTIONAL { ?subject <http://mu.semte.ch/vocabularies/ext/taxRateAmount> ?taxRateAmount . }
+        OPTIONAL { ?subject <http://mu.semte.ch/vocabularies/ext/regulationType> ?regulationType . }
+        OPTIONAL {
+          ?subject <http://purl.org/dc/terms/hasPart> ?remotefile .
+          ?remotefile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?originalDownloadLink .
+          ?remotefile <http://mu.semte.ch/vocabularies/core/uuid> ?remotefileUUID .
+          BIND (CONCAT("${HOSTNAME}files/", STR(?remotefileUUID), "/download") AS ?newDownloadLink)
         }
       `,
     },
@@ -196,7 +256,6 @@ export const subjects = [
         ?submission ?sp ?so .
         ?formdata ?fp ?fo .
         ?subject ?ro ?rp .
-        ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?remotefileDownloadLink .
       `,
       where: `
         {
@@ -206,10 +265,39 @@ export const subjects = [
         } UNION {
           ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
           ?formdata <http://purl.org/dc/terms/hasPart> ?subject .
-          ?subject <http://mu.semte.ch/vocabularies/core/uuid> ?subjectUUID .
-          BIND (CONCAT("${HOSTNAME}files/", STR(?subjectUUID), "/download") AS ?remotefileDownloadLink)
           ?subject ?ro ?rp .
         }
+      `,
+    },
+    post: {
+      delete: `
+        ?formdata <http://mu.semte.ch/vocabularies/ext/sessionStartedAtTime> ?sessionStartedAtTime .
+        ?formdata <http://mu.semte.ch/vocabularies/ext/decisionType> ?decisionType .
+        ?formdata <http://mu.semte.ch/vocabularies/ext/taxType> ?taxType .
+        ?formdata <http://mu.semte.ch/vocabularies/ext/taxRateAmount> ?taxRateAmount .
+        ?formdata <http://mu.semte.ch/vocabularies/ext/regulationType> ?regulationType .
+        ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?originalDownloadLink .
+      `,
+      insert: `
+        ?formdata <http://lblod.data.gift/vocabularies/besluit/submission/form-data/sessionStartedAtTime> ?sessionStartedAtTime .
+        ?formdata <http://lblod.data.gift/vocabularies/besluit/submission/form-data/submissionType> ?decisionType .
+        ?formdata <http://lblod.data.gift/vocabularies/besluit/submission/form-data/taxType> ?taxType .
+        ?formdata <http://lblod.data.gift/vocabularies/besluit/submission/form-data/taxRateAmount> ?taxRateAmount .
+        ?formdata <http://lblod.data.gift/vocabularies/besluit/submission/form-data/regulationType> ?regulationType .
+        ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?newDownloadLink .
+        ?subject <http://www.w3.org/ns/prov#hadPrimarySource> ?originalDownloadLink .
+      `,
+      where: `
+        ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
+        ?formdata <http://purl.org/dc/terms/hasPart> ?subject .
+        OPTIONAL { ?formdata <http://mu.semte.ch/vocabularies/ext/sessionStartedAtTime> ?sessionStartedAtTime . }
+        OPTIONAL { ?formdata <http://mu.semte.ch/vocabularies/ext/decisionType> ?decisionType . }
+        OPTIONAL { ?formdata <http://mu.semte.ch/vocabularies/ext/taxType> ?taxType . }
+        OPTIONAL { ?formdata <http://mu.semte.ch/vocabularies/ext/taxRateAmount> ?taxRateAmount . }
+        OPTIONAL { ?formdata <http://mu.semte.ch/vocabularies/ext/regulationType> ?regulationType . }
+        ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?originalDownloadLink .
+        ?subject <http://mu.semte.ch/vocabularies/core/uuid> ?remotefileUUID .
+        BIND (CONCAT("${HOSTNAME}files/", STR(?remotefileUUID), "/download") AS ?newDownloadLink)
       `,
     },
   },
