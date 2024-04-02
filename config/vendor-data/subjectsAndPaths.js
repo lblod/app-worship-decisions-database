@@ -88,7 +88,7 @@ export const subjects = [
         ?formdata <http://lblod.data.gift/vocabularies/besluit/submission/form-data/taxRateAmount> ?taxRateAmount .
         ?formdata <http://lblod.data.gift/vocabularies/besluit/submission/form-data/regulationType> ?regulationType .
         ?remotefile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?newDownloadLink .
-        ?remotefile <https://www.w3.org/TR/prov-o/#hadPrimarySource> ?originalDownloadLink .
+        ?remotefile <http://www.w3.org/ns/prov#hadPrimarySource> ?originalDownloadLink .
       `,
       where: `
         ?subject <http://www.w3.org/ns/prov#generated> ?formdata .
@@ -183,7 +183,7 @@ export const subjects = [
         ?subject <http://lblod.data.gift/vocabularies/besluit/submission/form-data/taxRateAmount> ?taxRateAmount .
         ?subject <http://lblod.data.gift/vocabularies/besluit/submission/form-data/regulationType> ?regulationType .
         ?remotefile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?newDownloadLink .
-        ?remotefile <https://www.w3.org/TR/prov-o/#hadPrimarySource> ?originalDownloadLink .
+        ?remotefile <http://www.w3.org/ns/prov#hadPrimarySource> ?originalDownloadLink .
       `,
       where: `
         ?submission <http://www.w3.org/ns/prov#generated> ?subject .
@@ -285,7 +285,7 @@ export const subjects = [
         ?formdata <http://lblod.data.gift/vocabularies/besluit/submission/form-data/taxRateAmount> ?taxRateAmount .
         ?formdata <http://lblod.data.gift/vocabularies/besluit/submission/form-data/regulationType> ?regulationType .
         ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?newDownloadLink .
-        ?subject <https://www.w3.org/TR/prov-o/#hadPrimarySource> ?originalDownloadLink .
+        ?subject <http://www.w3.org/ns/prov#hadPrimarySource> ?originalDownloadLink .
       `,
       where: `
         ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
