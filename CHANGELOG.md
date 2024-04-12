@@ -51,7 +51,7 @@ Observe the logs and make sure the process completes. Once vendors have been con
 - `drc restart dispatcher database deltanotifier`
 - Run the healing process mentioned in the **`vendor-data-distribution-service` historical data** section above.
 - `drc logs -ft --tail=200 vendor-data-distribution`
-  - > The progress bar may not be visible clearly due to the terminal buffer flushing quickly, but a `100% completed` log should be visible once the healing process completes.
+  - > The progress bar may not be visible clearly due to the terminal buffer flushing quickly, but a `Processed x/x (100%) ...` log entry should be visible once the healing process completes.
 
 ## v0.24.0 (2024-03-14)
 - Update forms
