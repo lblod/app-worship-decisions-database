@@ -15,16 +15,24 @@ vendor-management-consumer:
     DCR_SYNC_LOGIN_ENDPOINT: '[DCR_SYNC_BASE_URL]/sync/vendor-management/login'
     DCR_SECRET_KEY: "key" # Key must match the one from the `vendor-management` delta producer in `app-digitaal-loket`
 ```
+#### `vendor-data-distribution-service` Setup
+Add the following to `docker-compose.override.yml`:
+
+```yml
+vendor-data-distribution:
+  environment:
+    HOSTNAME: "APP_HOSTNAME"
+```
+where `APP_HOSTNAME` is `VIRTUAL_HOST` found under the `environment` section of the `identifier` tag inside `docker-compose.override.yml`.
 #### `vendor-data-distribution-service` historical data
 You must run healing to create historical data in the vendor graphs. Use a POST call with the newly added features to speed up the healing. The following should suffice:
-```
-[your machine]> docker compose exec data-distribution-service bash
-[container]> curl -X POST -H "Content-Type: application/json" -d `
-{
-  "skipDeletes": true,
-  "onlyTheseTypes": [ "http://rdf.myexperiment.org/ontologies/base/Submission" ]
-}
-` http://localhost/healing
+```bash
+drc exec vendor-data-distribution curl -X POST -H "Content-Type: application/json" -d '
+  {
+    "skipDeletes": true,
+    "onlyTheseTypes": [ "http://rdf.myexperiment.org/ontologies/base/Submission" ]
+  }
+  ' http://localhost/healing
 ```
 **This can take up multiple hours of high triplestore usage! Perform outside of peak hours.**
 
@@ -38,10 +46,12 @@ You must run healing to create historical data in the vendor graphs. Use a POST 
 Observe the logs and make sure the process completes. Once vendors have been consumed, run the following commands:
 
 - `drc up -d vendor-login sparql-authorization-wrapper vendor-data-distribution`
+- `drc logs -ft --tail=200 vendor-data-distribution`
+  - > Make sure the service is running.
 - `drc restart dispatcher database deltanotifier`
 - Run the healing process mentioned in the **`vendor-data-distribution-service` historical data** section above.
 - `drc logs -ft --tail=200 vendor-data-distribution`
-  - > Make sure the progress bar is incrementing.
+  - > The progress bar may not be visible clearly due to the terminal buffer flushing quickly, but a `100% completed` log should be visible once the healing process completes.
 
 ## v0.24.0 (2024-03-14)
 - Update forms
