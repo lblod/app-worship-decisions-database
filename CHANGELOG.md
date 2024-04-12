@@ -27,11 +27,22 @@ You must run healing to create historical data in the vendor graphs. Use a POST 
 ` http://localhost/healing
 ```
 **This can take up multiple hours of high triplestore usage! Perform outside of peak hours.**
+
 #### Docker Commands
-- `drc up -d vendor-login sparql-authorization-wrapper vendor-data-distribution submissions-dispatcher vendor-management-consumer`
-- `drc logs -ft --tail=200 vendor-management-consumer` -> Make sure the logs contain no issues.
+- `drc up -d vendor-management-consumer submissions-dispatcher`
+- `drc logs -ft --tail=200 vendor-management-consumer`
+  - > Make sure the logs contain no issues.
 - Switch `DCR_DISABLE_INITIAL_SYNC` inside `vendor-management-consumer` to `false`
 - `drc up -d vendor-management-consumer`
+
+Observe the logs and make sure the process completes. Once vendors have been consumed, run the following commands:
+
+- `drc up -d vendor-login sparql-authorization-wrapper vendor-data-distribution`
+- `drc restart dispatcher database deltanotifier`
+- Run the healing process mentioned in the **`vendor-data-distribution-service` historical data** section above.
+- `drc logs -ft --tail=200 vendor-data-distribution`
+  - > Make sure the progress bar is incrementing.
+
 ## v0.24.0 (2024-03-14)
 - Update forms
   - Adding new form Aanduiding en eedaflegging van de aangewezen burgemeester (DL-5669)
