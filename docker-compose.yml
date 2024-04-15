@@ -287,7 +287,7 @@ services:
     restart: always
     logging: *default-logging
   worship-submissions-email-notification-service:
-    image: lblod/worship-submissions-email-notification-service:1.1.0
+    image: lblod/worship-submissions-email-notification-service:1.2.0
     environment:
       RUN_INTERVAL: "0 10 * * *"
       OUTBOX_FOLDER_URI: "http://data.lblod.info/id/mail-folders/2"
