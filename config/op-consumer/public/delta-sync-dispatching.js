@@ -92,12 +92,6 @@ async function dispatch(lib, data) {
   }
 }
 
-// Function to serialize object for comparison
-function serializeTriple({ graph, subject, predicate, object }) {
-  return `${graph}|${subject}|${predicate}|${object}`;
-}
-
-
 
 module.exports = {
   dispatch

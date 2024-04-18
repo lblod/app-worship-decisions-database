@@ -27,6 +27,8 @@ async function batchedDbUpdate(muUpdate,
   for (let i = 0; i < triples.length; i += batchSize) {
     console.log(`Inserting triples in batch: ${i}-${i + batchSize}`);
 
+    console.log(`Sending ${operation} query to ${endpoint} with ${batchSize} triples`);
+
     const batch = triples.slice(i, i + batchSize).join('\n');
 
     const insertCall = async () => {
@@ -105,21 +107,26 @@ function transformTriples(fetch, triples) {
  */
 function removeContextTriples(transformedTriples, originalTriples, triplesWithContext) {
   // Create sets for faster lookup
-  const originalSet = new Set(originalTriples.map(serializeTriple));
-  const contextSet = new Set(triplesWithContext.map(serializeTriple));
+  const originalSet = new Set(originalTriples);
+  const contextSet = new Set(triplesWithContext);
+
+  // console.log(`*****************************************************`)
+  // console.log(`**             removeContextTriples                **`)
+  // console.log(`*****************************************************`)
+  // console.log(`Original set: ${originalSet.size}, Context set: ${contextSet.size}`);
+  // console.log(`Original triples: ${originalTriples.length}, Context triples: ${triplesWithContext.length}, Transformed triples: ${transformedTriples.length}`);
+  // console.log(`Original triples: ${JSON.stringify(originalTriples)}`);
+  // console.log(`Context triples: ${JSON.stringify(triplesWithContext)}`);
+  // console.log(`Transformed triples: ${JSON.stringify(transformedTriples)}`);
 
   // Filter transformedTriples based on condition
-  const result = transformedTriples.filter(item => {
-    const serializedItem = serializeTriple(item);
-    const isInContextNotInOriginal = contextSet.has(serializedItem) && !originalSet.has(serializedItem);
+  return transformedTriples.filter(item => {
+    const isInContextNotInOriginal = contextSet.has(item) && !originalSet.has(item);
+    // console.log(`Item: ${item}, isInContextNotInOriginal: ${isInContextNotInOriginal}`);
     return !isInContextNotInOriginal; // Keep the item if it does not satisfy the removal condition
   });
 }
 
-// Function to serialize object for comparison
-function serializeTriple({ graph, subject, predicate, object }) {
-  return `${subject}|${predicate}|${object}`;
-}
 
 function mainConversion(fetch, triples) {
   let formdata = new URLSearchParams();
