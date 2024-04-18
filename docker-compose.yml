@@ -293,8 +293,8 @@ services:
       OUTBOX_FOLDER_URI: "http://data.lblod.info/id/mail-folders/2"
       FROM_EMAIL_ADDRESS: "Agentschap Binnenlands Bestuur Vlaanderen <noreply-binnenland@vlaanderen.be>"
       WORSHIP_DECISIONS_APP_BASEURL: "https://databankerediensten.lokaalbestuur.vlaanderen.be/"
-      restart: always
-      logging: *default-logging
+    restart: always
+    logging: *default-logging
   ##############################################################################
   # Vendor API
   ##############################################################################
