@@ -2,6 +2,8 @@
 ## Unreleased (2024-MM-DD)
 - Add `vendor-management-consumer` to fetch vendor data from `app-digitaal-loket` (DL-5667)
 - Add `vendor-data-distribution` and config to copy data to vendor graphs based on config
+- Bump `worship-submissions-email-notification-service` to `v1.2.0` (DL-5742)
+  - See full change [here](https://github.com/lblod/worship-submissions-email-notification-service/pull/3)
 ### Deploy Notes
 #### `vendor-management-consumer` Setup
 Place the following inside `docker-compose.override.yml`:
@@ -37,7 +39,7 @@ drc exec vendor-data-distribution curl -X POST -H "Content-Type: application/jso
 **This can take up multiple hours of high triplestore usage! Perform outside of peak hours.**
 
 #### Docker Commands
-- `drc up -d vendor-management-consumer submissions-dispatcher`
+- `drc up -d vendor-management-consumer submissions-dispatcher worship-submissions-email-notification-service`
 - `drc logs -ft --tail=200 vendor-management-consumer`
   - > Make sure the logs contain no issues.
 - Switch `DCR_DISABLE_INITIAL_SYNC` inside `vendor-management-consumer` to `false`
