@@ -1,5 +1,5 @@
 # Changelog
-## Unreleased (2024-MM-DD)
+## v0.25.0 (2024-04-19)
 - Add `vendor-management-consumer` to fetch vendor data from `app-digitaal-loket` (DL-5667)
 - Add `vendor-data-distribution` and config to copy data to vendor graphs based on config
 - Bump `worship-submissions-email-notification-service` to `v1.2.0` (DL-5742)
