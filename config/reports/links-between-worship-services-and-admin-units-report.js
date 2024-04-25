@@ -19,48 +19,53 @@ export default {
      * - The link between municipalities or provinces and worship services via local involvments
      **/
     const queryString = `
-      PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
-      PREFIX org: <http://www.w3.org/ns/org#>
-      PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#>
-      PREFIX ere: <http://data.lblod.info/vocabularies/erediensten/>
-      
-      SELECT DISTINCT ?worshipAdministrativeUnit ?worshipLabel ?worshipClassification ?adminUnit ?adminUnitLabel ?adminUnitClassification ?typeLocalInvolvment
-      WHERE {
-        VALUES ?type {
-          ere:BestuurVanDeEredienst
-          ere:CentraalBestuurVanDeEredienst
-        }
-      
-        ?worshipAdministrativeUnit a ?type ;
-          skos:prefLabel ?worshipLabel ;
-          besluit:classificatie/skos:prefLabel ?worshipClassification .
-      
-        {
-          ?adminUnit org:linkedTo ?worshipAdministrativeUnit ;
-            besluit:classificatie/skos:prefLabel ?adminUnitClassification ;
-            skos:prefLabel ?adminUnitLabel .
-        }
-        UNION
-        {
-          VALUES ?classification {
-            <http://data.vlaanderen.be/id/concept/BestuurseenheidClassificatieCode/5ab0e9b8a3b2ca7c5e000000>
-            <http://data.vlaanderen.be/id/concept/BestuurseenheidClassificatieCode/5ab0e9b8a3b2ca7c5e000001>
-          }
-      
-          ?betrokke org:organization ?worshipAdministrativeUnit ;
-            ere:typebetrokkenheid/skos:prefLabel ?tmpTypeLocalInvolvment .
-      
-          ?adminUnit a besluit:Bestuurseenheid ;
-            skos:prefLabel ?adminUnitLabel ;
-            besluit:classificatie ?classification ;
-            ere:betrokkenBestuur ?betrokke .
-      
-          ?classification skos:prefLabel ?adminUnitClassification .
-        }
-      
-        BIND(IF(BOUND(?tmpTypeLocalInvolvment), ?tmpTypeLocalInvolvment, "N/A") AS ?typeLocalInvolvment)
+    PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+    PREFIX org: <http://www.w3.org/ns/org#>
+    PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#>
+    PREFIX ere: <http://data.lblod.info/vocabularies/erediensten/>
+    
+    SELECT DISTINCT ?worshipAdministrativeUnit ?worshipLabel ?worshipClassification ?worshipAdministrativeUnitRelationship ?worshipAdministrativeUnitRelationshipLabel ?adminUnit ?adminUnitLabel ?adminUnitClassification ?typeLocalInvolvment
+    WHERE {
+      VALUES ?type {
+        ere:BestuurVanDeEredienst
+        ere:CentraalBestuurVanDeEredienst
       }
-      ORDER BY ?worshipAdministrativeUnit
+    
+      ?worshipAdministrativeUnit a ?type ;
+        skos:prefLabel ?worshipLabel ;
+        besluit:classificatie/skos:prefLabel ?worshipClassification .
+
+      OPTIONAL {
+        ?worshipAdministrativeUnit (org:hasSubOrganization|^org:hasSubOrganization) ?worshipAdministrativeUnitRelationship .
+        ?worshipAdministrativeUnitRelationship skos:prefLabel ?worshipAdministrativeUnitRelationshipLabel .
+      }
+    
+      {
+        ?adminUnit org:linkedTo ?worshipAdministrativeUnit ;
+          besluit:classificatie/skos:prefLabel ?adminUnitClassification ;
+          skos:prefLabel ?adminUnitLabel .
+      }
+      UNION
+      {
+        VALUES ?classification {
+          <http://data.vlaanderen.be/id/concept/BestuurseenheidClassificatieCode/5ab0e9b8a3b2ca7c5e000000>
+          <http://data.vlaanderen.be/id/concept/BestuurseenheidClassificatieCode/5ab0e9b8a3b2ca7c5e000001>
+        }
+    
+        ?betrokke org:organization ?worshipAdministrativeUnit ;
+          ere:typebetrokkenheid/skos:prefLabel ?tmpTypeLocalInvolvment .
+    
+        ?adminUnit a besluit:Bestuurseenheid ;
+          skos:prefLabel ?adminUnitLabel ;
+          besluit:classificatie ?classification ;
+          ere:betrokkenBestuur ?betrokke .
+    
+        ?classification skos:prefLabel ?adminUnitClassification .
+      }
+    
+      BIND(IF(BOUND(?tmpTypeLocalInvolvment), ?tmpTypeLocalInvolvment, "N/A") AS ?typeLocalInvolvment)
+    }
+    ORDER BY ?worshipAdministrativeUnit
     `;
     const queryResponse = await batchedQuery(queryString);
     const data = queryResponse.results.bindings.map((unit) => {
