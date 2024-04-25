@@ -6,7 +6,7 @@ export default {
   execute: async () => {
     const reportData = {
       title: `Links between worship services and non-religious administrative units`,
-      description: `All the links that this application has between worship services and administrative units (ROs, municipalities and provinces), used to dispatch submissions.`,
+      description: `All the links that this application has between worship services and administrative units (central worship services, ROs, municipalities and provinces), used to dispatch submissions.`,
       filePrefix: `link-between-worship-service-and-admin-units-report`,
     };
     console.log('Links between worship services and admin units report');
