@@ -69,8 +69,9 @@ export const subjects = [
       `,
       where: `
         {
-          ?subject <http://www.w3.org/ns/prov#generated> ?formdata .
           ?subject ?sp ?so .
+        } UNION {
+          ?subject <http://www.w3.org/ns/prov#generated> ?formdata .
           ?formdata ?fp ?fo .
         } UNION {
           ?subject <http://www.w3.org/ns/prov#generated> ?formdata .
@@ -154,13 +155,12 @@ export const subjects = [
         {
           ?submission <http://www.w3.org/ns/prov#generated> ?subject .
           ?submission ?sp ?so .
+        } UNION {
           ?subject ?fp ?fo .
         } UNION {
-          ?submission <http://www.w3.org/ns/prov#generated> ?subject .
           ?subject <http://purl.org/dc/terms/hasPart> ?remotefile .
           ?remotefile ?ro ?rp .
         } UNION {
-          ?submission <http://www.w3.org/ns/prov#generated> ?subject .
           ?subject <http://purl.org/dc/terms/hasPart> ?remotefile .
           ?localfile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
           ?localfile ?lp ?lo .
@@ -178,13 +178,12 @@ export const subjects = [
         {
           ?submission <http://www.w3.org/ns/prov#generated> ?subject .
           ?submission ?sp ?so .
+        } UNION {
           ?subject ?fp ?fo .
         } UNION {
-          ?submission <http://www.w3.org/ns/prov#generated> ?subject .
           ?subject <http://purl.org/dc/terms/hasPart> ?remotefile .
           ?remotefile ?ro ?rp .
         } UNION {
-          ?submission <http://www.w3.org/ns/prov#generated> ?subject .
           ?subject <http://purl.org/dc/terms/hasPart> ?remotefile .
           ?localfile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
           ?localfile ?lp ?lo .
@@ -267,15 +266,14 @@ export const subjects = [
       where: `
         {
           ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
+          ?formdata <http://purl.org/dc/terms/hasPart> ?subject .
           ?submission ?sp ?so .
+        } UNION {
+          ?formdata <http://purl.org/dc/terms/hasPart> ?subject .
           ?formdata ?fp ?fo .
         } UNION {
-          ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
-          ?formdata <http://purl.org/dc/terms/hasPart> ?subject .
           ?subject ?ro ?rp .
         } UNION {
-          ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
-          ?formdata <http://purl.org/dc/terms/hasPart> ?subject .
           ?localfile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?subject .
           ?localfile ?lp ?lo .
         }
@@ -291,15 +289,14 @@ export const subjects = [
       where: `
         {
           ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
+          ?formdata <http://purl.org/dc/terms/hasPart> ?subject .
           ?submission ?sp ?so .
+        } UNION {
+          ?formdata <http://purl.org/dc/terms/hasPart> ?subject .
           ?formdata ?fp ?fo .
         } UNION {
-          ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
-          ?formdata <http://purl.org/dc/terms/hasPart> ?subject .
           ?subject ?ro ?rp .
         } UNION {
-          ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
-          ?formdata <http://purl.org/dc/terms/hasPart> ?subject .
           ?localfile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?subject .
           ?localfile ?lp ?lo .
         }
@@ -381,16 +378,17 @@ export const subjects = [
       where: `
         {
           ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
-          ?submission ?sp ?so .
-          ?formdata ?fp ?fo .
-        } UNION {
-          ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
-          ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
-          ?remotefile ?ro ?rp .
-        } UNION {
-          ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
           ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
           ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
+          ?submission ?sp ?so .
+        } UNION {
+          ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
+          ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
+          ?formdata ?fp ?fo .
+        } UNION {
+          ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
+          ?remotefile ?ro ?rp .
+        } UNION {
           ?subject ?lp ?lo .
         }
       `,
@@ -405,16 +403,17 @@ export const subjects = [
       where: `
         {
           ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
-          ?submission ?sp ?so .
-          ?formdata ?fp ?fo .
-        } UNION {
-          ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
-          ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
-          ?remotefile ?ro ?rp .
-        } UNION {
-          ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
           ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
           ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
+          ?submission ?sp ?so .
+        } UNION {
+          ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
+          ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
+          ?formdata ?fp ?fo .
+        } UNION {
+          ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
+          ?remotefile ?ro ?rp .
+        } UNION {
           ?subject ?lp ?lo .
         }
       `,
