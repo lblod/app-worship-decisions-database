@@ -24,7 +24,7 @@ export default {
     PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#>
     PREFIX ere: <http://data.lblod.info/vocabularies/erediensten/>
     
-    SELECT DISTINCT ?worshipAdministrativeUnit ?worshipLabel ?worshipClassification ?worshipAdministrativeUnitRelationship ?worshipAdministrativeUnitRelationshipLabel ?adminUnit ?adminUnitLabel ?adminUnitClassification ?typeLocalInvolvment
+    SELECT DISTINCT ?worshipAdministrativeUnit ?worshipLabel ?worshipClassification ?worshipAdministrativeUnitRelationship ?worshipAdministrativeUnitRelationshipLabel ?adminUnit ?adminUnitLabel ?adminUnitClassification ?typeLocalInvolvement
     WHERE {
       VALUES ?type {
         ere:BestuurVanDeEredienst
@@ -53,7 +53,7 @@ export default {
         }
     
         ?betrokke org:organization ?worshipAdministrativeUnit ;
-          ere:typebetrokkenheid/skos:prefLabel ?tmpTypeLocalInvolvment .
+          ere:typebetrokkenheid/skos:prefLabel ?tmpTypeLocalInvolvement .
     
         ?adminUnit a besluit:Bestuurseenheid ;
           skos:prefLabel ?adminUnitLabel ;
@@ -63,7 +63,7 @@ export default {
         ?classification skos:prefLabel ?adminUnitClassification .
       }
     
-      BIND(IF(BOUND(?tmpTypeLocalInvolvment), ?tmpTypeLocalInvolvment, "N/A") AS ?typeLocalInvolvment)
+      BIND(IF(BOUND(?tmpTypeLocalInvolvement), ?tmpTypeLocalInvolvement, "N/A") AS ?typeLocalInvolvement)
     }
     ORDER BY ?worshipAdministrativeUnit
     `;
@@ -76,7 +76,7 @@ export default {
         adminUnit: unit.adminUnit.value,
         adminUnitLabel: unit.adminUnitLabel.value,
         adminUnitClassification: unit.adminUnitClassification.value,
-        typeLocalInvolvment: unit.typeLocalInvolvment.value,
+        typeLocalInvolvement: unit.typeLocalInvolvement.value,
       };
     });
 
@@ -87,7 +87,7 @@ export default {
       'adminUnit',
       'adminUnitLabel',
       'adminUnitClassification',
-      'typeLocalInvolvment'
+      'typeLocalInvolvement'
     ], reportData);
   }
 };
