@@ -63,4 +63,6 @@ services:
   sparql-authorization-wrapper:
     restart: "no"
   vendor-data-distribution:
+    environment:
+      HOSTNAME: "http://localhost"
     restart: "no"
