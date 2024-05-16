@@ -6,9 +6,26 @@
 - Update forms
   - Adjust LEKP rapport Klimaattafels (DL-5832)
   - Add new LEKP rapport Wijkverbeteringscontract (DL-5829)
+- Added physical files to the VDDS config to allow for file downloads via the file service
 
 ### Deploy Notes
 - `drc up -d enrich-submission; drc restart migrations resource cache report-generation`
+
+#### `vendor-data-distribution-service` historical data
+
+You must run healing to create historical data in the vendor graphs for the physical files. Use the following command:
+
+```bash
+drc exec vendor-data-distribution curl -X POST -H "Content-Type: application/json" -d '
+  {
+    "skipDeletes": true,
+    "onlyTheseTypes": [ "http://rdf.myexperiment.org/ontologies/base/Submission" ]
+  }
+  ' http://localhost/healing
+```
+
+**This can take up multiple hours of high triplestore usage! Perform outside of peak hours.**
+
 ## v0.25.0 (2024-04-19)
 - Add `vendor-management-consumer` to fetch vendor data from `app-digitaal-loket` (DL-5667)
 - Add `vendor-data-distribution` and config to copy data to vendor graphs based on config
