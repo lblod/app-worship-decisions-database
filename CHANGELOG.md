@@ -3,6 +3,12 @@
 
 ### General 
 - Add two new optional columns `?worshipAdministrativeUnitRelationship` and `?worshipAdministrativeUnitRelationshipLabel` that will show missing relations between EBs and CBs for `links-between-worship-services-and-admin-units` report (DL-5013)
+- Update forms
+  - Adjust LEKP rapport Klimaattafels (DL-5832)
+  - Add new LEKP rapport Wijkverbeteringscontract (DL-5829)
+
+### Deploy Notes
+- `drc up -d enrich-submission; drc restart migrations resource cache report-generation`
 ## v0.25.0 (2024-04-19)
 - Add `vendor-management-consumer` to fetch vendor data from `app-digitaal-loket` (DL-5667)
 - Add `vendor-data-distribution` and config to copy data to vendor graphs based on config
