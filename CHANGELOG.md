@@ -1,5 +1,5 @@
 # Changelog
-## Unreleased
+## 0.26.0 (2024-05-16)
 
 ### General 
 - Add two new optional columns `?worshipAdministrativeUnitRelationship` and `?worshipAdministrativeUnitRelationshipLabel` that will show missing relations between EBs and CBs for `links-between-worship-services-and-admin-units` report (DL-5013)
