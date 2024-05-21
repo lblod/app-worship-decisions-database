@@ -1,4 +1,11 @@
 # Changelog
+
+## Unreleased
+
+### General
+
+- Bump VDDS to a version that respects the SPARQL_ENDPOINT* environment variables better. This is a bugfix.
+
 ## 0.26.0 (2024-05-16)
 
 ### General 
