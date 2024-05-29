@@ -1,11 +1,11 @@
 # Changelog
-
 ## Unreleased
-
 ### General
-
 - Bump VDDS to a version that respects the SPARQL_ENDPOINT* environment variables better. This is a bugfix.
-
+## 0.26.1 (2024-05-29)
+  - Fix custom info label field in forms LEKP-rapport - Melding correctie authentieke bron and LEKP-rapport - Toelichting Lokaal Bestuur (DL-5934)
+### Deploy Notes
+  - `drc up -d enrich-submission; drc restart migrations resource cache`
 ## 0.26.0 (2024-05-16)
 
 ### General 
