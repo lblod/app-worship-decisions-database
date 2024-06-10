@@ -144,7 +144,7 @@ fields:35465e1a-531a-4bab-8b19-bbd59f19cd4a a form:Field ;
     form:displayType displayTypes:conceptSchemeMultiSelector ;
     form:help "vb. Kerkfabriek of gemeente" ;
     sh:group fields:cb08e556-459d-4378-a79b-51f35c9a965e ;
-    form:hasConditionalFieldGroup fields:0fe2e436-673e-4cc8-9e29-f227f18dabb2. ## Governing Body Classification
+    form:hasConditionalFieldGroup fields:0fe2e436-673e-4cc8-9e29-f227f18dabb2. ## Type Eredienst
 
 fields:0fe2e436-673e-4cc8-9e29-f227f18dabb2 a form:ConditionalFieldGroup ;
     mu:uuid "0fe2e436-673e-4cc8-9e29-f227f18dabb2";
@@ -158,27 +158,27 @@ fields:0fe2e436-673e-4cc8-9e29-f227f18dabb2 a form:ConditionalFieldGroup ;
 fieldGroups:e982310c-1c90-43a6-bdd2-a1d15ad740aa a form:FieldGroup;
     mu:uuid "e982310c-1c90-43a6-bdd2-a1d15ad740aa" ;
     form:hasField
-                ### Governing Body Classification
+                ### Type Eredienst
                 fields:d18e810d-1ec8-4cdc-ac17-ee6b9d8958b6 .
 ##########################################################
 # END administrative unit classification
 ##########################################################
 
 ##########################################################
-# START governing body classification
+# START Type Eredienst
 ##########################################################
 fields:d18e810d-1ec8-4cdc-ac17-ee6b9d8958b6 a form:Field ;
     mu:uuid "d18e810d-1ec8-4cdc-ac17-ee6b9d8958b6" ;
-    sh:name "Type bestuursorgaan" ;
+    sh:name "Type eredienst" ;
     sh:order 80 ;
-    search:emberQueryParameterKey "governingBodyClassifications" ;
-    sh:path searchToezicht:governingBodyClassification ;
-    form:options  """{"conceptScheme":"http://data.vlaanderen.be/id/conceptscheme/BestuursorgaanClassificatieCode"}""" ;
+    search:emberQueryParameterKey "typeEredienst" ;
+    sh:path searchToezicht:typeEredienst ;
+    form:options  """{"conceptScheme":"http://lblod.data.gift/concept-schemes/5be1fce008d73105d9bc6de9e488b0b9"}""" ;
     form:displayType displayTypes:conceptSchemeMultiSelector ;
-    form:help "vb. kerkraad of gemeenteraad" ;
+    form:help "vb. Anglicaanse, Islamitische, Israëlitische, Orthodox, Protestantse of Rooms-Katholiek" ;
     sh:group fields:cb08e556-459d-4378-a79b-51f35c9a965e .
 ##########################################################
-# END governing body classification
+# END Type Eredienst
 ##########################################################
 
 ##########################################################

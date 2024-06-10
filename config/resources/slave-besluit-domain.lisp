@@ -92,7 +92,9 @@
              (werkingsgebied :via ,(s-prefix "ext:inProvincie")
                              :as "provincie")
              (bestuurseenheid-classificatie-code :via ,(s-prefix "besluit:classificatie")
-                                                 :as "classificatie"))
+                                                 :as "classificatie")
+             (recognized-worship-type :via ,(s-prefix "ere:typeEredienst")
+                                      :as "recognized-worship-type"))
   :has-many `((contact-punt :via ,(s-prefix "schema:contactPoint")
                             :as "contactinfo")
               (bestuursorgaan :via ,(s-prefix "besluit:bestuurt")
@@ -101,6 +103,15 @@
   :resource-base (s-url "http://data.lblod.info/id/bestuurseenheden/")
   :features '(include-uri)
   :on-path "bestuurseenheden"
+)
+
+;; Defining the following resouce here for now as worship units have the type bestuurseenheid
+(define-resource recognized-worship-type ()
+  :class (s-prefix "code:TypeEredienst")
+  :properties `((:label :string ,(s-prefix "skos:prefLabel")))
+  :resource-base (s-url "http://lblod.data.gift/concepts/")
+  :features '(include-uri)
+  :on-path "recognized-worship-types"
 )
 
 (define-resource werkingsgebied ()
