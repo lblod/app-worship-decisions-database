@@ -27,6 +27,8 @@ async function batchedDbUpdate(muUpdate,
   for (let i = 0; i < triples.length; i += batchSize) {
     console.log(`Inserting triples in batch: ${i}-${i + batchSize}`);
 
+    console.log(`Sending ${operation} query to ${endpoint} with ${batchSize} triples`);
+
     const batch = triples.slice(i, i + batchSize).join('\n');
 
     const insertCall = async () => {
@@ -89,11 +91,40 @@ function partition(arr, fn) {
 
 /**
  * Send triples to reasoning service for conversion
- *
  */
 function transformTriples(fetch, triples) {
   return operationWithRetry(mainConversion(fetch, triples), 0,
     MAX_REASONING_RETRY_ATTEMPTS, SLEEP_TIME_AFTER_FAILED_REASONING_OPERATION);
+}
+
+
+/**
+ * Remove triples which were added to the context but not present in the original triples
+ * Triples which are result of the transformation will be kept.
+ * @param {*} transformedTriples
+ * @param {*} originalTriples
+ * @param {*} triplesWithContext
+ */
+function removeContextTriples(transformedTriples, originalTriples, triplesWithContext) {
+  // Create sets for faster lookup
+  const originalSet = new Set(originalTriples);
+  const contextSet = new Set(triplesWithContext);
+
+  // console.log(`*****************************************************`)
+  // console.log(`**             removeContextTriples                **`)
+  // console.log(`*****************************************************`)
+  // console.log(`Original set: ${originalSet.size}, Context set: ${contextSet.size}`);
+  // console.log(`Original triples: ${originalTriples.length}, Context triples: ${triplesWithContext.length}, Transformed triples: ${transformedTriples.length}`);
+  // console.log(`Original triples: ${JSON.stringify(originalTriples)}`);
+  // console.log(`Context triples: ${JSON.stringify(triplesWithContext)}`);
+  // console.log(`Transformed triples: ${JSON.stringify(transformedTriples)}`);
+
+  // Filter transformedTriples based on condition
+  return transformedTriples.filter(item => {
+    const isInContextNotInOriginal = contextSet.has(item) && !originalSet.has(item);
+    // console.log(`Item: ${item}, isInContextNotInOriginal: ${isInContextNotInOriginal}`);
+    return !isInContextNotInOriginal; // Keep the item if it does not satisfy the removal condition
+  });
 }
 
 
@@ -169,6 +200,7 @@ module.exports = {
   batchedDbUpdate,
   partition,
   transformStatements,
+  removeContextTriples,
   transformLandingZoneGraph,
   deleteFromTargetGraph,
   insertIntoTargetGraph,
