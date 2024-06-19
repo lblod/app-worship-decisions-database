@@ -1,4 +1,11 @@
 # Changelog
+## Unreleased
+- frontend v0.12.0: https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#0120-2024-06-19
+
+### Deploy notes
+- `drc up -d frontend search-query-management`
+- `drc restart resource cache`
+
 ## 0.26.1 (2024-05-29)
   - Fix custom info label field in forms LEKP-rapport - Melding correctie authentieke bron and LEKP-rapport - Toelichting Lokaal Bestuur (DL-5934)
 ### Deploy Notes
