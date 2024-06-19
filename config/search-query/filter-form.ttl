@@ -141,7 +141,7 @@ fields:35465e1a-531a-4bab-8b19-bbd59f19cd4a a form:Field ;
     search:emberQueryParameterKey "administrativeUnitClassifications" ;
     sh:path searchToezicht:administrativeUnitClassification ;
     form:options  """{"conceptScheme":"http://data.vlaanderen.be/id/conceptscheme/BestuurseenheidClassificatieCode"}""" ;
-    form:displayType displayTypes:conceptSchemeMultiSelector ;
+    form:displayType displayTypes:conceptSchemeSelector ;
     form:help "vb. Kerkfabriek of gemeente" ;
     sh:group fields:cb08e556-459d-4378-a79b-51f35c9a965e ;
     form:hasConditionalFieldGroup fields:0fe2e436-673e-4cc8-9e29-f227f18dabb2. ## Type Eredienst
@@ -174,7 +174,7 @@ fields:d18e810d-1ec8-4cdc-ac17-ee6b9d8958b6 a form:Field ;
     search:emberQueryParameterKey "typeEredienst" ;
     sh:path searchToezicht:typeEredienst ;
     form:options  """{"conceptScheme":"http://lblod.data.gift/concept-schemes/5be1fce008d73105d9bc6de9e488b0b9"}""" ;
-    form:displayType displayTypes:conceptSchemeMultiSelector ;
+    form:displayType displayTypes:conceptSchemeSelector ;
     form:help "vb. Anglicaanse, Islamitische, Israëlitische, Orthodox, Protestantse of Rooms-Katholiek" ;
     sh:group fields:cb08e556-459d-4378-a79b-51f35c9a965e .
 ##########################################################
