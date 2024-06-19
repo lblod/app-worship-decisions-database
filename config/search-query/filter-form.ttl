@@ -149,9 +149,14 @@ fields:35465e1a-531a-4bab-8b19-bbd59f19cd4a a form:Field ;
 fields:0fe2e436-673e-4cc8-9e29-f227f18dabb2 a form:ConditionalFieldGroup ;
     mu:uuid "0fe2e436-673e-4cc8-9e29-f227f18dabb2";
     form:conditions
-      [ a form:RequiredConstraint ;
+      [ a form:MatchValues ;
         form:grouping form:Bag ;
-        sh:path searchToezicht:administrativeUnitClassification
+        sh:path searchToezicht:administrativeUnitClassification ;
+        form:valuesIn (
+          <http://data.vlaanderen.be/id/concept/BestuurseenheidClassificatieCode/66ec74fd-8cfc-4e16-99c6-350b35012e86> # Bestuur van de eredienst
+          <http://data.vlaanderen.be/id/concept/BestuurseenheidClassificatieCode/f9cac08a-13c1-49da-9bcb-f650b0604054> # Centraal bestuur van de eredienst
+          <http://data.vlaanderen.be/id/concept/BestuurseenheidClassificatieCode/36372fad-0358-499c-a4e3-f412d2eae213> # Representatief orgaan
+        ) ;
       ] ;
     form:hasFieldGroup fieldGroups:e982310c-1c90-43a6-bdd2-a1d15ad740aa .
 
