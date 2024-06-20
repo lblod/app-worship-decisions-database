@@ -30,6 +30,8 @@
 (add-prefix "toezichtReport" "http://mu.semte.ch/vocabularies/ext/supervision/reporting/")
 (add-prefix "nmo" "http://www.semanticdesktop.org/ontologies/2007/03/22/nmo#")
 (add-prefix "lblodlg" "http://data.lblod.info/vocabularies/leidinggevenden/")
+(add-prefix "ere" "http://data.lblod.info/vocabularies/erediensten/")
+(add-prefix "code" "http://lblod.data.gift/vocabularies/organisatie/")
 
 (add-prefix "meb" "http://rdf.myexperiment.org/ontologies/base/")
 (add-prefix "melding" "http://lblod.data.gift/vocabularies/automatische-melding/")
