@@ -45,8 +45,9 @@ export const subjects = [
       `,
       where: `
         {
-          ?subject <http://www.w3.org/ns/prov#generated> ?formdata .
           ?subject ?sp ?so .
+        } UNION {
+          ?subject <http://www.w3.org/ns/prov#generated> ?formdata .
           ?formdata ?fp ?fo .
         } UNION {
           ?subject <http://www.w3.org/ns/prov#generated> ?formdata .
