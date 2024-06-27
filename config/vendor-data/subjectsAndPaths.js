@@ -39,6 +39,8 @@ export const subjects = [
     remove: {
       delete: `
         ?subject ?sp ?so .
+        ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
+        ?article ?ap ?ao .
         ?formdata ?fp ?fo .
         ?remotefile ?ro ?rp .
         ?localfile ?lp ?lo .
@@ -49,6 +51,10 @@ export const subjects = [
         } UNION {
           ?subject <http://www.w3.org/ns/prov#generated> ?formdata .
           ?formdata ?fp ?fo .
+        } UNION {
+          ?subject <http://purl.org/dc/terms/subject> ?submissionDocument .
+          ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
+          ?article ?ap ?ao .
         } UNION {
           ?subject <http://www.w3.org/ns/prov#generated> ?formdata .
           ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
@@ -64,6 +70,8 @@ export const subjects = [
     copy: {
       insert: `
         ?subject ?sp ?so .
+        ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
+        ?article ?ap ?ao .
         ?formdata ?fp ?fo .
         ?remotefile ?ro ?rp .
         ?localfile ?lp ?lo .
@@ -74,6 +82,10 @@ export const subjects = [
         } UNION {
           ?subject <http://www.w3.org/ns/prov#generated> ?formdata .
           ?formdata ?fp ?fo .
+        } UNION {
+          ?subject <http://purl.org/dc/terms/subject> ?submissionDocument .
+          ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
+          ?article ?ap ?ao .
         } UNION {
           ?subject <http://www.w3.org/ns/prov#generated> ?formdata .
           ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
@@ -148,6 +160,8 @@ export const subjects = [
     remove: {
       delete: `
         ?submission ?sp ?so .
+        ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
+        ?article ?ap ?ao .
         ?subject ?fp ?fo .
         ?remotefile ?ro ?rp .
         ?localfile ?lp ?lo .
@@ -158,6 +172,11 @@ export const subjects = [
           ?submission ?sp ?so .
         } UNION {
           ?subject ?fp ?fo .
+        } UNION {
+          ?submission <http://www.w3.org/ns/prov#generated> ?subject .
+          ?submission <http://purl.org/dc/terms/subject> ?submissionDocument .
+          ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
+          ?article ?ap ?ao .
         } UNION {
           ?subject <http://purl.org/dc/terms/hasPart> ?remotefile .
           ?remotefile ?ro ?rp .
@@ -171,6 +190,8 @@ export const subjects = [
     copy: {
       insert: `
         ?submission ?sp ?so .
+        ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
+        ?article ?ap ?ao .
         ?subject ?fp ?fo .
         ?remotefile ?ro ?rp .
         ?localfile ?lp ?lo .
@@ -181,6 +202,11 @@ export const subjects = [
           ?submission ?sp ?so .
         } UNION {
           ?subject ?fp ?fo .
+        } UNION {
+          ?submission <http://www.w3.org/ns/prov#generated> ?subject .
+          ?submission <http://purl.org/dc/terms/subject> ?submissionDocument .
+          ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
+          ?article ?ap ?ao .
         } UNION {
           ?subject <http://purl.org/dc/terms/hasPart> ?remotefile .
           ?remotefile ?ro ?rp .
@@ -260,6 +286,8 @@ export const subjects = [
     remove: {
       delete: `
         ?submission ?sp ?so .
+        ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
+        ?article ?ap ?ao .
         ?formdata ?fp ?fo .
         ?subject ?ro ?rp .
         ?localfile ?lp ?lo .
@@ -272,6 +300,12 @@ export const subjects = [
         } UNION {
           ?formdata <http://purl.org/dc/terms/hasPart> ?subject .
           ?formdata ?fp ?fo .
+        } UNION {
+          ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
+          ?formdata <http://purl.org/dc/terms/hasPart> ?subject .
+          ?submission <http://purl.org/dc/terms/subject> ?submissionDocument .
+          ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
+          ?article ?ap ?ao .
         } UNION {
           ?subject ?ro ?rp .
         } UNION {
@@ -283,6 +317,8 @@ export const subjects = [
     copy: {
       insert: `
         ?submission ?sp ?so .
+        ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
+        ?article ?ap ?ao .
         ?formdata ?fp ?fo .
         ?subject ?ro ?rp .
         ?localfile ?lp ?lo .
@@ -295,6 +331,12 @@ export const subjects = [
         } UNION {
           ?formdata <http://purl.org/dc/terms/hasPart> ?subject .
           ?formdata ?fp ?fo .
+        } UNION {
+          ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
+          ?formdata <http://purl.org/dc/terms/hasPart> ?subject .
+          ?submission <http://purl.org/dc/terms/subject> ?submissionDocument .
+          ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
+          ?article ?ap ?ao .
         } UNION {
           ?subject ?ro ?rp .
         } UNION {
@@ -372,6 +414,8 @@ export const subjects = [
     remove: {
       delete: `
         ?submission ?sp ?so .
+        ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
+        ?article ?ap ?ao .
         ?formdata ?fp ?fo .
         ?remotefile ?ro ?rp .
         ?subject ?lp ?lo .
@@ -386,6 +430,13 @@ export const subjects = [
           ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
           ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
           ?formdata ?fp ?fo .
+        } UNION {
+          ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
+          ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
+          ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
+          ?submission <http://purl.org/dc/terms/subject> ?submissionDocument .
+          ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
+          ?article ?ap ?ao .
         } UNION {
           ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
           ?remotefile ?ro ?rp .
@@ -397,6 +448,8 @@ export const subjects = [
     copy: {
       insert: `
         ?submission ?sp ?so .
+        ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
+        ?article ?ap ?ao .
         ?formdata ?fp ?fo .
         ?remotefile ?ro ?rp .
         ?subject ?lp ?lo .
@@ -411,6 +464,13 @@ export const subjects = [
           ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
           ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
           ?formdata ?fp ?fo .
+        } UNION {
+          ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
+          ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
+          ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
+          ?submission <http://purl.org/dc/terms/subject> ?submissionDocument .
+          ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
+          ?article ?ap ?ao .
         } UNION {
           ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
           ?remotefile ?ro ?rp .
