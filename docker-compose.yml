@@ -147,14 +147,20 @@ services:
     restart: always
     logging: *default-logging
   enrich-submission:
-    image: lblod/enrich-submission-service:1.9.0
+    image: lblod/enrich-submission-service:1.12.0
     volumes:
       - ./config/semantic-forms:/share/semantic-forms
       - ./data/files/submissions:/share/submissions
     environment:
-      ACTIVE_FORM_FILE: "share://semantic-forms/20240527111832-forms.ttl"
+      ACTIVE_FORM_FILE: "share://semantic-forms/20240610100800-forms.ttl"
       PUBLIC_GRAPH: "http://mu.semte.ch/graphs/access-for-role/PubliekeBesluitendatabank-BesluitendatabankLezer"
       FILE_GRAPH: "http://mu.semte.ch/graphs/access-for-role/PubliekeBesluitendatabank-BesluitendatabankLezer"
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
+  worship-decisions-cross-reference:
+    image: lblod/worship-decisions-cross-reference-service:0.3.0
     labels:
       - "logging=true"
     restart: always
