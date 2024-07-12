@@ -171,6 +171,10 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/concepts/"
   end
 
+  get "/related-document-information/*path" do
+    forward conn, path, "http://worship-decisions-cross-reference/related-document-information/"
+  end
+
   #################################################################
   # Vendor Login for SPARQL endpoint
   #################################################################

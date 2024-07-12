@@ -14,7 +14,7 @@ services:
       - ./scripts/project:/app/scripts/
     restart: "no"
   frontend:
-    image: lblod/frontend-worship-decisions:0.11.0
+    image: lblod/frontend-worship-decisions:0.12.0
     volumes:
       - ./config/frontend:/config
     labels:
@@ -139,7 +139,7 @@ services:
     restart: always
     logging: *default-logging
   search-query-management:
-    image: lblod/toezicht-search-query-management-service:0.3.6
+    image: lblod/toezicht-search-query-management-service:0.3.7
     volumes:
       - ./config/search-query:/share/search-query
     labels:
@@ -147,14 +147,20 @@ services:
     restart: always
     logging: *default-logging
   enrich-submission:
-    image: lblod/enrich-submission-service:1.9.0
+    image: lblod/enrich-submission-service:1.12.0
     volumes:
       - ./config/semantic-forms:/share/semantic-forms
       - ./data/files/submissions:/share/submissions
     environment:
-      ACTIVE_FORM_FILE: "share://semantic-forms/20240527111832-forms.ttl"
+      ACTIVE_FORM_FILE: "share://semantic-forms/20240610100800-forms.ttl"
       PUBLIC_GRAPH: "http://mu.semte.ch/graphs/access-for-role/PubliekeBesluitendatabank-BesluitendatabankLezer"
       FILE_GRAPH: "http://mu.semte.ch/graphs/access-for-role/PubliekeBesluitendatabank-BesluitendatabankLezer"
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
+  worship-decisions-cross-reference:
+    image: lblod/worship-decisions-cross-reference-service:0.3.0
     labels:
       - "logging=true"
     restart: always
@@ -309,7 +315,7 @@ services:
     restart: always
     logging: *default-logging
   vendor-data-distribution:
-    image: lblod/vendor-data-distribution-service:1.6.0
+    image: lblod/vendor-data-distribution-service:1.6.1
     environment:
       LOGLEVEL: "error"
       WRITE_ERRORS: "true"

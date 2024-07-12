@@ -1,11 +1,35 @@
 # Changelog
+## Unreleased
+### General
+- Bump VDDS to a version that respects the SPARQL_ENDPOINT* environment variables better. This is a bugfix.
+- frontend v0.12.0: https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#0120-2024-06-19
+- update forms (adding submission cross referencing)
+
+### Deploy notes
+##### worship-decisions-cross-reference
+Ensure the environment variables are correctly set for `worship-decisions-cross-reference`, e.g. :
+```
+worship-decisions-cross-reference:
+  environment;
+    WORSHIP_DECISIONS_BASE_URL: "https://databankerediensten.lokaalbestuur.vlaanderen.be/search/submissions/"
+```
+The following links;
+- DEV: "https://dev.databankerediensten.lokaalbestuur.lblod.info/search/submissions/"
+- QA: "https://databankerediensten.lokaalbestuur.lblod.info/search/submissions/"
+- PROD: "https://databankerediensten.lokaalbestuur.vlaanderen.be/search/submissions/"
+
+#### Docker Commands
+ - `drc restart migrations && drc logs -ft --tail=200 migrations`
+ - `drc restart dispatcher resource cache`
+ - `drc up -d`
+
 ## 0.26.1 (2024-05-29)
   - Fix custom info label field in forms LEKP-rapport - Melding correctie authentieke bron and LEKP-rapport - Toelichting Lokaal Bestuur (DL-5934)
 ### Deploy Notes
   - `drc up -d enrich-submission; drc restart migrations resource cache`
 ## 0.26.0 (2024-05-16)
 
-### General 
+### General
 - Add two new optional columns `?worshipAdministrativeUnitRelationship` and `?worshipAdministrativeUnitRelationshipLabel` that will show missing relations between EBs and CBs for `links-between-worship-services-and-admin-units` report (DL-5013)
 - Update forms
   - Adjust LEKP rapport Klimaattafels (DL-5832)
@@ -107,13 +131,13 @@ Observe the logs and make sure the process completes. Once vendors have been con
 - Virtuoso Upgrade! Please follow the procedure as described in [this excellent guide](https://github.com/Riadabd/upgrade-virtuoso) for upgrading the triplestore.
 ## v0.22.1 (2024-02-07)
 Frontend [v0.10.1](https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#0100-2024-02-07):
-- [DL-5661] Fix the ACM/IDM login 
+- [DL-5661] Fix the ACM/IDM login
 ### Deploy notes
 - Remove the image override for the `frontend` service if it exists.
 - `drc up -d frontend`
 ## v0.22.0 (2024-02-07)
 Frontend [v0.10.0](https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#0100-2024-02-07):
-- [DL-5637] Sort submissions based on the sent date (descending) by default 
+- [DL-5637] Sort submissions based on the sent date (descending) by default
 ### Deploy notes
 - Remove the v0.10.0 image override for the `frontend` service if it exists.
 - `drc up -d frontend`
