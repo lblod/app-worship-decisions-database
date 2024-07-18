@@ -4,6 +4,8 @@
 ### General
 - Bump VDDS to a version that respects the SPARQL_ENDPOINT* environment variables better. This is a bugfix.
 - frontend v0.12.0: https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#0120-2024-06-19
+- Bump `submissions-dispatcher` to v0.15.1 to improve healing. (DL-5895)
+  * This healing is faster and does not remove and re-insert all the data for every submission. It is much more selective.
 
 ### Deploy notes
 - `drc up -d frontend search-query-management`
