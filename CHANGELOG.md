@@ -7,6 +7,7 @@
 - Bump `submissions-dispatcher` to v0.15.1 to improve healing. (DL-5895)
   * This healing is faster and does not remove and re-insert all the data for every submission. It is much more selective.
 - Bump `submissions-dispatcher` to v0.15.2 to fix dispatching "Budget(wijziging)" Submission types. (DL-5997)
+- Link Toezichthoudende Provincie Antwerpen to "Orthodoxe Parochie Heilige Sophrony de Athoniet" (DL-6014)
 
 ### Deploy notes
 - `drc up -d frontend search-query-management`
@@ -15,6 +16,10 @@
   * `drc exec submissions-dispatcher bash`
   * `apk add curl`
   * `curl -X GET http://localhost/heal-submission`
+- Not needed because healing will take core of this, but on a time budget you could do:
+  * `drc exec submissions-dispatcher bash`
+  * `apk add curl`
+  * `curl -X GET http://localhost/heal-submission?subject=http://data.lblod.info/submissions/66311321F0F686D7CD7EFB29`
 
 ## 0.26.1 (2024-05-29)
   - Fix custom info label field in forms LEKP-rapport - Melding correctie authentieke bron and LEKP-rapport - Toelichting Lokaal Bestuur (DL-5934)
