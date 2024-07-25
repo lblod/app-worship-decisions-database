@@ -1,5 +1,6 @@
 # Changelog
-## Unreleased
+
+## 0.27.0 (2024-07-25)
 
 ### General
 - Bump VDDS to a version that respects the SPARQL_ENDPOINT* environment variables better. This is a bugfix.
@@ -16,7 +17,7 @@
   * `drc exec submissions-dispatcher bash`
   * `apk add curl`
   * `curl -X GET http://localhost/heal-submission`
-- Not needed because healing will take core of this, but on a time budget you could do:
+- Not needed because healing will take care of this, but on a time budget you could do:
   * `drc exec submissions-dispatcher bash`
   * `apk add curl`
   * `curl -X GET http://localhost/heal-submission?subject=http://data.lblod.info/submissions/66311321F0F686D7CD7EFB29`
