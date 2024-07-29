@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.27.1 (2024-07-29)
+
+### General
+
+- Bump `submissions-dispatcher` to v0.15.3 to add another improvement on the healing.
+
 ## 0.27.0 (2024-07-25)
 
 ### General
