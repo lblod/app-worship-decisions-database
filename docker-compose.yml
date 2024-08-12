@@ -261,7 +261,7 @@ services:
       DCR_LANDING_ZONE_DATABASE: "virtuoso"
       DCR_REMAPPING_DATABASE: "virtuoso"
       DCR_LANDING_ZONE_GRAPH: "http://mu.semte.ch/graphs/landing-zone/op-public"
-      DCR_REMAPPING_GRAPH: "http://mu.semte.ch/graphs/remapping-graph/op-public"
+      DCR_REMAPPING_GRAPH: "http://mu.semte.ch/graphs/public"
       BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES: "true"
       BATCH_SIZE: 1000
       DCR_BATCH_SIZE: 1000
