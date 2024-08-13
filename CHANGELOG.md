@@ -31,6 +31,8 @@
       DCR_SYNC_BASE_URL: "https://organisaties.abb.vlaanderen.be"
       DCR_DISABLE_INITIAL_SYNC: "false"
       DCR_DISABLE_DELTA_INGEST: "false"
+      SUDO_QUERY_RETRY_FOR_HTTP_STATUS_CODES: "404,500,503"
+      SUDO_QUERY_RETRY: "true"
   ```
 - `drc up -d migrations frontend`
   - That might take a while.
