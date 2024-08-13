@@ -36,7 +36,7 @@
   ```
 - `drc up -d migrations frontend`
   - That might take a while.
-- `drc up -d`
+- `drc up -d --remove-orphans `
 - Wait until the consumer is finished.
 - Enable the frontend, submissions-consumer and update-bestuurseenheid-mock-login
 
