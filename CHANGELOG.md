@@ -1,8 +1,45 @@
 # Changelog
+### unreleased
+ - updated consumer [DL-5911]
+#### deploy notes
+##### For the new consumer into account
+- Note: the application will be down for a while.
+- Ensure application goes down: `drc down`
+- Ensure in `docker-compose.override.yml` (on prod)
+  ```
+  frontend:
+    image: lblod/frontend-generic-maintenance
+    environment:
+      EMBER_MAINTENANCE_MESSAGE: "Databank Erediensten is momenteel niet beschikbaar wegens technisch onderhoud. Bedankt voor het begrip!"
+      EMBER_MAINTENANCE_APP_TITLE: "Databank Erediensten"
+      EMBER_MAINTENANCE_APP_URL: "databankerediensten.lokaalbestuur.vlaanderen.be"
+    networks:
+      - proxy
+      - default
+  # frontend:
+  #   environment:
+  #     EMBER_OAUTH_API_KEY: "key"
+  #     EMBER_OAUTH_BASE_URL: "url"
+  #     EMBER_OAUTH_LOGOUT_URL: "url"
+  #     EMBER_OAUTH_REDIRECT_URL: "url"
+   submissions-consumer:
+     entrypoint: ["echo", "Service disabled to ensure re-sync OP  works propery"]
+   update-bestuurseenheid-mock-login:
+     entrypoint: ["echo", "Service disabled to ensure re-sync OP works propery"]
+   op-public-consumer:
+    environment:
+      DCR_SYNC_BASE_URL: "https://organisaties.abb.vlaanderen.be"
+      DCR_DISABLE_INITIAL_SYNC: "false"
+      DCR_DISABLE_DELTA_INGEST: "false"
+  ```
+- `drc up -d migrations frontend`
+  - That might take a while.
+- `drc up -d`
+- Wait until the consumer is finished.
+- Enable the frontend, submissions-consumer and update-bestuurseenheid-mock-login
 
-## 0.27.1 (2024-07-29)
-
-### General
+### 0.27.1 (2024-07-29)
+#### General
 
 - Bump `submissions-dispatcher` to v0.15.3 to add another improvement on the healing.
 
@@ -34,7 +71,7 @@
   - `drc up -d enrich-submission; drc restart migrations resource cache`
 ## 0.26.0 (2024-05-16)
 
-### General 
+### General
 - Add two new optional columns `?worshipAdministrativeUnitRelationship` and `?worshipAdministrativeUnitRelationshipLabel` that will show missing relations between EBs and CBs for `links-between-worship-services-and-admin-units` report (DL-5013)
 - Update forms
   - Adjust LEKP rapport Klimaattafels (DL-5832)
@@ -136,13 +173,13 @@ Observe the logs and make sure the process completes. Once vendors have been con
 - Virtuoso Upgrade! Please follow the procedure as described in [this excellent guide](https://github.com/Riadabd/upgrade-virtuoso) for upgrading the triplestore.
 ## v0.22.1 (2024-02-07)
 Frontend [v0.10.1](https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#0100-2024-02-07):
-- [DL-5661] Fix the ACM/IDM login 
+- [DL-5661] Fix the ACM/IDM login
 ### Deploy notes
 - Remove the image override for the `frontend` service if it exists.
 - `drc up -d frontend`
 ## v0.22.0 (2024-02-07)
 Frontend [v0.10.0](https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#0100-2024-02-07):
-- [DL-5637] Sort submissions based on the sent date (descending) by default 
+- [DL-5637] Sort submissions based on the sent date (descending) by default
 ### Deploy notes
 - Remove the v0.10.0 image override for the `frontend` service if it exists.
 - `drc up -d frontend`
