@@ -31,14 +31,38 @@
       DCR_SYNC_BASE_URL: "https://organisaties.abb.vlaanderen.be"
       DCR_DISABLE_INITIAL_SYNC: "false"
       DCR_DISABLE_DELTA_INGEST: "false"
-      SUDO_QUERY_RETRY_FOR_HTTP_STATUS_CODES: "404,500,503"
-      SUDO_QUERY_RETRY: "true"
+      DCR_LANDING_ZONE_DATABASE: "virtuoso" # for the initial sync, we go directly to virtuoso
+      DCR_REMAPPING_DATABASE: "virtuoso" # for the initial sync, we go directly to virtuoso
   ```
 - `drc up -d migrations frontend`
   - That might take a while.
 - `drc up -d --remove-orphans `
 - Wait until the consumer is finished.
 - Enable the frontend, submissions-consumer and update-bestuurseenheid-mock-login
+- Ensure op-public-consumer in `docker-compose.override.yml` is syncing with database again
+- So the final `docker-compose.override.yml` will look like
+  ```
+  # frontend:
+  #  image: lblod/frontend-generic-maintenance
+  #  environment:
+  #    EMBER_MAINTENANCE_MESSAGE: "Databank Erediensten is momenteel niet beschikbaar wegens technisch onderhoud. Bedankt voor het begrip!"
+  #    EMBER_MAINTENANCE_APP_TITLE: "Databank Erediensten"
+  #    EMBER_MAINTENANCE_APP_URL: "databankerediensten.lokaalbestuur.vlaanderen.be"
+  #  networks:
+  #    - proxy
+  #    - default
+   frontend:
+     environment:
+       EMBER_OAUTH_API_KEY: "key"
+       EMBER_OAUTH_BASE_URL: "url"
+       EMBER_OAUTH_LOGOUT_URL: "url"
+       EMBER_OAUTH_REDIRECT_URL: "url"
+   op-public-consumer:
+    environment:
+      DCR_SYNC_BASE_URL: "https://organisaties.abb.vlaanderen.be"
+      DCR_DISABLE_INITIAL_SYNC: "false"
+      DCR_DISABLE_DELTA_INGEST: "false"
+  ```
 
 ### 0.27.1 (2024-07-29)
 #### General
