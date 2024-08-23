@@ -63,7 +63,11 @@ If you need to ingest the data for worship administrative units, you will need t
           DCR_SYNC_BASE_URL: "https://organisaties.abb.vlaanderen.be"
           DCR_DISABLE_INITIAL_SYNC: "true"
           DCR_DISABLE_DELTA_INGEST: "true"
+          DCR_LANDING_ZONE_DATABASE: "virtuoso" # for the initial sync, we go directly to virtuoso
+          DCR_REMAPPING_DATABASE: "virtuoso" # for the initial sync, we go directly to virtuoso
     update-bestuurseenheid-mock-login:
+        entrypoint: ["echo", "Service-disabled to not confuse the service"]
+    submissions-consumer:
         entrypoint: ["echo", "Service-disabled to not confuse the service"]
     ```
   - `docker-compose up -d`
@@ -81,8 +85,8 @@ If you need to ingest the data for worship administrative units, you will need t
           DCR_SYNC_BASE_URL: "https://organisaties.abb.vlaanderen.be"
           DCR_DISABLE_INITIAL_SYNC: "false" # -> this changed
           DCR_DISABLE_DELTA_INGEST: "false" # -> this changed
-      update-bestuurseenheid-mock-login:
-        entrypoint: ["echo", "Service-disabled to not confuse the service"]
+          # DCR_LANDING_ZONE_DATABASE: "virtuoso" # -> this changed
+          # DCR_REMAPPING_DATABASE: "virtuoso" # -> this changed
     ```
  - `docker-compose up -d`
  - This might take a while if `docker-compose logs op-public-consumer |grep success`
@@ -91,7 +95,9 @@ If you need to ingest the data for worship administrative units, you will need t
  - In `docker-compose.override.yml`, remove the disabled service
        ```
         update-bestuurseenheid-mock-login:
-          entrypoint: ["echo", "Service-disabled to not confuse the service"]
+            entrypoint: ["echo", "Service-disabled to not confuse the service"]
+        submissions-consumer:
+            entrypoint: ["echo", "Service-disabled to not confuse the service"]
        ```
        The mock-logins will be created when a cron job kicks in. You can control the moment it triggers by playing with the `CRON_PATTERN` variable.
        See the `README.md` of the related service for more options.
