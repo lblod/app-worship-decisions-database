@@ -1,6 +1,8 @@
 # Changelog
+## 0.28.0 (2024-08-23)
 ### unreleased
  - updated consumer [DL-5911]
+ - update submissions-dispatcher [DL-6143]
 #### deploy notes
 ##### For the new consumer into account
 - Note: the application will be down for a while.
