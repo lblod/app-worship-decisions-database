@@ -1,4 +1,6 @@
 # Changelog
+## 0.28.1 (2024-08-27)
+  - Fix consumer mapping issue [DL-6152]
 ## 0.28.0 (2024-08-23)
 ### unreleased
  - updated consumer [DL-5911]
