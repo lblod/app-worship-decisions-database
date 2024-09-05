@@ -1,8 +1,12 @@
 # Changelog
+## 0.29.0 (2024-09-05)
+  - Bump frontend to `v0.13.0`.
+### Deploy Notes
+#### Docker Commands
+ - `drc up -d frontend`
 ## 0.28.1 (2024-08-27)
   - Fix consumer mapping issue [DL-6152]
 ## 0.28.0 (2024-08-23)
-### unreleased
  - updated consumer [DL-5911]
  - update submissions-dispatcher [DL-6143]
 #### deploy notes
