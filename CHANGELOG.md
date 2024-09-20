@@ -1,4 +1,11 @@
 # Changelog
+## 0.29.1 (2024-09-20)
+  - Fix dispatcher when multiple decision or creator types
+### Deploy Notes
+#### Docker Commands
+  - `drc up -d submissions-dispatcher`
+#### Manually re-dispatching the submissions
+  - `curl '<ip-submissions-dispatcher-container>/manual-dispatch'`
 ## 0.29.0 (2024-09-05)
   - Bump frontend to `v0.13.0`.
 ### Deploy Notes
