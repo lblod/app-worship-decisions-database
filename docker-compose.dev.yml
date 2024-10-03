@@ -50,8 +50,6 @@ services:
     restart: "no"
   update-bestuurseenheid-mock-login:
     restart: "no"
-  reasoner:
-    restart: "no"
   op-public-consumer:
     restart: "no"
   worship-submissions-email-notification-service:

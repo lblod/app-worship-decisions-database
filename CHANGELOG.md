@@ -1,4 +1,5 @@
 # Changelog
+
 ## Unreleased
 ### General
 - Bump VDDS to a version that respects the SPARQL_ENDPOINT* environment variables better. This is a bugfix.
@@ -22,6 +23,113 @@ The following links;
  - `drc restart migrations && drc logs -ft --tail=200 migrations`
  - `drc restart dispatcher resource cache`
  - `drc up -d`
+
+## 0.29.1 (2024-09-20)
+  - Fix dispatcher when multiple decision or creator types
+### Deploy Notes
+#### Docker Commands
+  - `drc up -d submissions-dispatcher`
+#### Manually re-dispatching the submissions
+  - `curl '<ip-submissions-dispatcher-container>/manual-dispatch'`
+## 0.29.0 (2024-09-05)
+  - Bump frontend to `v0.13.0`.
+### Deploy Notes
+#### Docker Commands
+ - `drc up -d frontend`
+## 0.28.1 (2024-08-27)
+  - Fix consumer mapping issue [DL-6152]
+## 0.28.0 (2024-08-23)
+ - updated consumer [DL-5911]
+ - update submissions-dispatcher [DL-6143]
+#### deploy notes
+##### For the new consumer into account
+- Note: the application will be down for a while.
+- Ensure application goes down: `drc down`
+- Ensure in `docker-compose.override.yml` (on prod)
+  ```
+  frontend:
+    image: lblod/frontend-generic-maintenance
+    environment:
+      EMBER_MAINTENANCE_MESSAGE: "Databank Erediensten is momenteel niet beschikbaar wegens technisch onderhoud. Bedankt voor het begrip!"
+      EMBER_MAINTENANCE_APP_TITLE: "Databank Erediensten"
+      EMBER_MAINTENANCE_APP_URL: "databankerediensten.lokaalbestuur.vlaanderen.be"
+    networks:
+      - proxy
+      - default
+  # frontend:
+  #   environment:
+  #     EMBER_OAUTH_API_KEY: "key"
+  #     EMBER_OAUTH_BASE_URL: "url"
+  #     EMBER_OAUTH_LOGOUT_URL: "url"
+  #     EMBER_OAUTH_REDIRECT_URL: "url"
+   submissions-consumer:
+     entrypoint: ["echo", "Service disabled to ensure re-sync OP  works propery"]
+   update-bestuurseenheid-mock-login:
+     entrypoint: ["echo", "Service disabled to ensure re-sync OP works propery"]
+   op-public-consumer:
+    environment:
+      DCR_SYNC_BASE_URL: "https://organisaties.abb.vlaanderen.be"
+      DCR_DISABLE_INITIAL_SYNC: "false"
+      DCR_DISABLE_DELTA_INGEST: "false"
+      DCR_LANDING_ZONE_DATABASE: "virtuoso" # for the initial sync, we go directly to virtuoso
+      DCR_REMAPPING_DATABASE: "virtuoso" # for the initial sync, we go directly to virtuoso
+  ```
+- `drc up -d migrations frontend`
+  - That might take a while.
+- `drc up -d --remove-orphans `
+- Wait until the consumer is finished.
+- Enable the frontend, submissions-consumer and update-bestuurseenheid-mock-login
+- Ensure op-public-consumer in `docker-compose.override.yml` is syncing with database again
+- So the final `docker-compose.override.yml` will look like
+  ```
+  # frontend:
+  #  image: lblod/frontend-generic-maintenance
+  #  environment:
+  #    EMBER_MAINTENANCE_MESSAGE: "Databank Erediensten is momenteel niet beschikbaar wegens technisch onderhoud. Bedankt voor het begrip!"
+  #    EMBER_MAINTENANCE_APP_TITLE: "Databank Erediensten"
+  #    EMBER_MAINTENANCE_APP_URL: "databankerediensten.lokaalbestuur.vlaanderen.be"
+  #  networks:
+  #    - proxy
+  #    - default
+   frontend:
+     environment:
+       EMBER_OAUTH_API_KEY: "key"
+       EMBER_OAUTH_BASE_URL: "url"
+       EMBER_OAUTH_LOGOUT_URL: "url"
+       EMBER_OAUTH_REDIRECT_URL: "url"
+   op-public-consumer:
+    environment:
+      DCR_SYNC_BASE_URL: "https://organisaties.abb.vlaanderen.be"
+      DCR_DISABLE_INITIAL_SYNC: "false"
+      DCR_DISABLE_DELTA_INGEST: "false"
+  ```
+
+### 0.27.1 (2024-07-29)
+#### General
+
+- Bump `submissions-dispatcher` to v0.15.3 to add another improvement on the healing.
+
+## 0.27.0 (2024-07-25)
+
+### General
+- Bump VDDS to a version that respects the SPARQL_ENDPOINT* environment variables better. This is a bugfix.
+- frontend v0.12.0: https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#0120-2024-06-19
+- Bump `submissions-dispatcher` to v0.15.1 to improve healing. (DL-5895)
+  * This healing is faster and does not remove and re-insert all the data for every submission. It is much more selective.
+- Bump `submissions-dispatcher` to v0.15.2 to fix dispatching "Budget(wijziging)" Submission types. (DL-5997)
+- Link Toezichthoudende Provincie Antwerpen to "Orthodoxe Parochie Heilige Sophrony de Athoniet" (DL-6014)
+
+### Deploy notes
+- `drc up -d frontend search-query-management`
+- `drc restart resource cache`
+- Run (new and improved) healing on the `submissions-dispatcher`.
+  * `drc exec submissions-dispatcher bash`
+  * `apk add curl`
+  * `curl -X GET http://localhost/heal-submission`
+- Not needed because healing will take care of this, but on a time budget you could do:
+  * `drc exec submissions-dispatcher bash`
+  * `apk add curl`
+  * `curl -X GET http://localhost/heal-submission?subject=http://data.lblod.info/submissions/66311321F0F686D7CD7EFB29`
 
 ## 0.26.1 (2024-05-29)
   - Fix custom info label field in forms LEKP-rapport - Melding correctie authentieke bron and LEKP-rapport - Toelichting Lokaal Bestuur (DL-5934)
