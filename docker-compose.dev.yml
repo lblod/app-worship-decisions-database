@@ -42,6 +42,8 @@ services:
     restart: "no"
   enrich-submission:
     restart: "no"
+  worship-decisions-cross-reference:
+    restart: "no"
   submissions-consumer:
     restart: "no"
   submissions-dispatcher:
