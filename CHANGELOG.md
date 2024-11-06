@@ -1,4 +1,19 @@
 # Changelog
+## 0.29.2 (2024-11-06)
+
+- Bump lblod/worship-submissions-graph-dispatcher-service to include "Advies Budget(wijziging)" submissions for ABB.
+
+### Deploy notes
+
+- Run the new version of the service
+
+    drc up -d submissions-dispatcher
+
+- Run healing (also called manual dispatching). Inspect the logs to see progress.
+
+    drc exec submissions-dispatcher bash
+    curl -X GET http://localhost/heal-submission
+
 ## 0.29.1 (2024-09-20)
   - Fix dispatcher when multiple decision or creator types
 ### Deploy Notes
