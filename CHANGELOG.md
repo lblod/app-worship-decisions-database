@@ -1,4 +1,20 @@
 # Changelog
+
+## 0.29.3 (2024-11-08)
+
+- Bump lblod/worship-submissions-graph-dispatcher-service to dispatch "Besluit over budget(wijziging) eredienstbestuur", and "Besluit over meerjarenplan(aanpassing) eredienstbestuur" also to betrokken besturen.
+
+### Deploy notes
+
+- Run the new version of the service
+
+    drc up -d submissions-dispatcher
+
+- Run healing (also called manual dispatching). Inspect the logs to see progress.
+
+    drc exec submissions-dispatcher bash
+    curl -X GET http://localhost/heal-submission
+
 ## 0.29.2 (2024-11-06)
 
 - Bump lblod/worship-submissions-graph-dispatcher-service to include "Advies Budget(wijziging)" submissions for ABB.
