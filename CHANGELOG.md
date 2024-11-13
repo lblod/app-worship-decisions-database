@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.29.4 (2024-11-13)
+### Toezicht
+ - Update URI form "Aangewezen Burgemeester" [DL-6298]
+
 ## 0.29.3 (2024-11-08)
 
 - Bump lblod/worship-submissions-graph-dispatcher-service to dispatch "Besluit over budget(wijziging) eredienstbestuur", and "Besluit over meerjarenplan(aanpassing) eredienstbestuur" also to betrokken besturen.
