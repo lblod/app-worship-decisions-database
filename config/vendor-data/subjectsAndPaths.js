@@ -42,7 +42,7 @@ export const subjects = [
         ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
         ?article ?ap ?ao .
         ?formdata ?fp ?fo .
-        ?remotefile ?ro ?rp .
+        ?logicalFile ?ro ?rp .
         ?localfile ?lp ?lo .
       `,
       where: `
@@ -57,12 +57,12 @@ export const subjects = [
           ?article ?ap ?ao .
         } UNION {
           ?subject <http://www.w3.org/ns/prov#generated> ?formdata .
-          ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
-          ?remotefile ?ro ?rp .
+          ?formdata <http://purl.org/dc/terms/hasPart> ?logicalFile .
+          ?logicalFile ?ro ?rp .
         } UNION {
           ?subject <http://www.w3.org/ns/prov#generated> ?formdata .
-          ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
-          ?localfile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
+          ?formdata <http://purl.org/dc/terms/hasPart> ?logicalFile .
+          ?localfile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?logicalFile .
           ?localfile ?lp ?lo .
         }
       `,
@@ -73,7 +73,7 @@ export const subjects = [
         ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
         ?article ?ap ?ao .
         ?formdata ?fp ?fo .
-        ?remotefile ?ro ?rp .
+        ?logicalFile ?ro ?rp .
         ?localfile ?lp ?lo .
       `,
       where: `
@@ -88,12 +88,12 @@ export const subjects = [
           ?article ?ap ?ao .
         } UNION {
           ?subject <http://www.w3.org/ns/prov#generated> ?formdata .
-          ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
-          ?remotefile ?ro ?rp .
+          ?formdata <http://purl.org/dc/terms/hasPart> ?logicalFile .
+          ?logicalFile ?ro ?rp .
         } UNION {
           ?subject <http://www.w3.org/ns/prov#generated> ?formdata .
-          ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
-          ?localfile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
+          ?formdata <http://purl.org/dc/terms/hasPart> ?logicalFile .
+          ?localfile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?logicalFile .
           ?localfile ?lp ?lo .
         }
       `,
@@ -105,7 +105,7 @@ export const subjects = [
         ?formdata <http://mu.semte.ch/vocabularies/ext/taxType> ?taxType .
         ?formdata <http://mu.semte.ch/vocabularies/ext/taxRateAmount> ?taxRateAmount .
         ?formdata <http://mu.semte.ch/vocabularies/ext/regulationType> ?regulationType .
-        ?remotefile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?originalDownloadLink .
+        ?logicalFile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?originalDownloadLink .
       `,
       insert: `
         ?formdata <http://lblod.data.gift/vocabularies/besluit/submission/form-data/sessionStartedAtTime> ?sessionStartedAtTime .
@@ -113,8 +113,8 @@ export const subjects = [
         ?formdata <http://lblod.data.gift/vocabularies/besluit/submission/form-data/taxType> ?taxType .
         ?formdata <http://lblod.data.gift/vocabularies/besluit/submission/form-data/taxRateAmount> ?taxRateAmount .
         ?formdata <http://lblod.data.gift/vocabularies/besluit/submission/form-data/regulationType> ?regulationType .
-        ?remotefile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?newDownloadLink .
-        ?remotefile <http://www.w3.org/ns/prov#hadPrimarySource> ?originalDownloadLink .
+        ?logicalFile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?newDownloadLink .
+        ?logicalFile <http://www.w3.org/ns/prov#hadPrimarySource> ?originalDownloadLink .
       `,
       where: `
         ?subject <http://www.w3.org/ns/prov#generated> ?formdata .
@@ -124,10 +124,13 @@ export const subjects = [
         OPTIONAL { ?formdata <http://mu.semte.ch/vocabularies/ext/taxRateAmount> ?taxRateAmount . }
         OPTIONAL { ?formdata <http://mu.semte.ch/vocabularies/ext/regulationType> ?regulationType . }
         OPTIONAL {
-          ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
-          ?remotefile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?originalDownloadLink .
-          ?remotefile <http://mu.semte.ch/vocabularies/core/uuid> ?remotefileUUID .
-          BIND (CONCAT("${HOSTNAME}files/", STR(?remotefileUUID), "/download") AS ?newDownloadLink)
+          ?formdata <http://purl.org/dc/terms/hasPart> ?logicalFile .
+          ?logicalFile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?originalDownloadLink .
+        }
+        OPTIONAL {
+          ?formdata <http://purl.org/dc/terms/hasPart> ?logicalFile .
+          ?logicalFile <http://mu.semte.ch/vocabularies/core/uuid> ?logicalFileUUID .
+          BIND (CONCAT("${HOSTNAME}files/", STR(?logicalFileUUID), "/download") AS ?newDownloadLink)
         }
       `,
     },
@@ -163,7 +166,7 @@ export const subjects = [
         ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
         ?article ?ap ?ao .
         ?subject ?fp ?fo .
-        ?remotefile ?ro ?rp .
+        ?logicalFile ?ro ?rp .
         ?localfile ?lp ?lo .
       `,
       where: `
@@ -178,11 +181,11 @@ export const subjects = [
           ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
           ?article ?ap ?ao .
         } UNION {
-          ?subject <http://purl.org/dc/terms/hasPart> ?remotefile .
-          ?remotefile ?ro ?rp .
+          ?subject <http://purl.org/dc/terms/hasPart> ?logicalFile .
+          ?logicalFile ?ro ?rp .
         } UNION {
-          ?subject <http://purl.org/dc/terms/hasPart> ?remotefile .
-          ?localfile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
+          ?subject <http://purl.org/dc/terms/hasPart> ?logicalFile .
+          ?localfile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?logicalFile .
           ?localfile ?lp ?lo .
         }
       `,
@@ -193,7 +196,7 @@ export const subjects = [
         ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
         ?article ?ap ?ao .
         ?subject ?fp ?fo .
-        ?remotefile ?ro ?rp .
+        ?logicalFile ?ro ?rp .
         ?localfile ?lp ?lo .
       `,
       where: `
@@ -208,11 +211,11 @@ export const subjects = [
           ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
           ?article ?ap ?ao .
         } UNION {
-          ?subject <http://purl.org/dc/terms/hasPart> ?remotefile .
-          ?remotefile ?ro ?rp .
+          ?subject <http://purl.org/dc/terms/hasPart> ?logicalFile .
+          ?logicalFile ?ro ?rp .
         } UNION {
-          ?subject <http://purl.org/dc/terms/hasPart> ?remotefile .
-          ?localfile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
+          ?subject <http://purl.org/dc/terms/hasPart> ?logicalFile .
+          ?localfile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?logicalFile .
           ?localfile ?lp ?lo .
         }
       `,
@@ -224,7 +227,7 @@ export const subjects = [
         ?subject <http://mu.semte.ch/vocabularies/ext/taxType> ?taxType .
         ?subject <http://mu.semte.ch/vocabularies/ext/taxRateAmount> ?taxRateAmount .
         ?subject <http://mu.semte.ch/vocabularies/ext/regulationType> ?regulationType .
-        ?remotefile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?originalDownloadLink .
+        ?logicalFile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?originalDownloadLink .
       `,
       insert: `
         ?subject <http://lblod.data.gift/vocabularies/besluit/submission/form-data/sessionStartedAtTime> ?sessionStartedAtTime .
@@ -232,8 +235,8 @@ export const subjects = [
         ?subject <http://lblod.data.gift/vocabularies/besluit/submission/form-data/taxType> ?taxType .
         ?subject <http://lblod.data.gift/vocabularies/besluit/submission/form-data/taxRateAmount> ?taxRateAmount .
         ?subject <http://lblod.data.gift/vocabularies/besluit/submission/form-data/regulationType> ?regulationType .
-        ?remotefile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?newDownloadLink .
-        ?remotefile <http://www.w3.org/ns/prov#hadPrimarySource> ?originalDownloadLink .
+        ?logicalFile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?newDownloadLink .
+        ?logicalFile <http://www.w3.org/ns/prov#hadPrimarySource> ?originalDownloadLink .
       `,
       where: `
         ?submission <http://www.w3.org/ns/prov#generated> ?subject .
@@ -243,23 +246,26 @@ export const subjects = [
         OPTIONAL { ?subject <http://mu.semte.ch/vocabularies/ext/taxRateAmount> ?taxRateAmount . }
         OPTIONAL { ?subject <http://mu.semte.ch/vocabularies/ext/regulationType> ?regulationType . }
         OPTIONAL {
-          ?subject <http://purl.org/dc/terms/hasPart> ?remotefile .
-          ?remotefile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?originalDownloadLink .
-          ?remotefile <http://mu.semte.ch/vocabularies/core/uuid> ?remotefileUUID .
-          BIND (CONCAT("${HOSTNAME}files/", STR(?remotefileUUID), "/download") AS ?newDownloadLink)
+          ?subject <http://purl.org/dc/terms/hasPart> ?logicalFile .
+          ?logicalFile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?originalDownloadLink .
+        }
+        OPTIONAL {
+          ?subject <http://purl.org/dc/terms/hasPart> ?logicalFile .
+          ?logicalFile <http://mu.semte.ch/vocabularies/core/uuid> ?logicalFileUUID .
+          BIND (CONCAT("${HOSTNAME}files/", STR(?logicalFileUUID), "/download") AS ?newDownloadLink)
         }
       `,
     },
   },
   /**
-   * FileDataObjects ←→ RemoteDataObjects
+   * FileDataObjects (and RemoteDataObjects): the logical ones
    *
    * Attachments to the FormData of the Submission. Links to the Submission and
    * FormData need to exist because a path to the Bestuurseenheid needs to be
    * made.
    */
   {
-    type: 'http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject',
+    type: 'http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject',
     trigger: `
       ?subject a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject> .
       ?submission
@@ -371,21 +377,25 @@ export const subjects = [
         OPTIONAL { ?formdata <http://mu.semte.ch/vocabularies/ext/taxType> ?taxType . }
         OPTIONAL { ?formdata <http://mu.semte.ch/vocabularies/ext/taxRateAmount> ?taxRateAmount . }
         OPTIONAL { ?formdata <http://mu.semte.ch/vocabularies/ext/regulationType> ?regulationType . }
-        ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?originalDownloadLink .
-        ?subject <http://mu.semte.ch/vocabularies/core/uuid> ?remotefileUUID .
-        BIND (CONCAT("${HOSTNAME}files/", STR(?remotefileUUID), "/download") AS ?newDownloadLink)
+        OPTIONAL {
+          ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?originalDownloadLink .
+        }
+        OPTIONAL {
+          ?subject <http://mu.semte.ch/vocabularies/core/uuid> ?logicalFileUUID .
+          BIND (CONCAT("${HOSTNAME}files/", STR(?logicalFileUUID), "/download") AS ?newDownloadLink)
+        }
       `,
     },
   },
   /**
-   * LocalFileDataObjects
+   * FileDataObjects (and RemoteDataObjects): the physical ones
    *
    * Physical file for the attachments to the FormData of the Submission. Links
    * to the Submission and FormData need to exist because a path to the
    * Bestuurseenheid needs to be made.
    */
   {
-    type: 'http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#LocalFileDataObject',
+    type: 'http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject',
     trigger: `
       ?subject a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#LocalFileDataObject> .
       ?submission
@@ -393,8 +403,8 @@ export const subjects = [
         <http://www.w3.org/ns/prov#generated> ?formdata .
       ?formdata
         a <http://lblod.data.gift/vocabularies/automatische-melding/FormData> ;
-        <http://purl.org/dc/terms/hasPart> ?remotefile .
-      ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
+        <http://purl.org/dc/terms/hasPart> ?logicalFile .
+      ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?logicalFile .
     `,
     path: `
       GRAPH ?g {
@@ -403,8 +413,8 @@ export const subjects = [
           <http://www.w3.org/ns/prov#generated> ?formdata .
         ?formdata
           a <http://lblod.data.gift/vocabularies/automatische-melding/FormData> ;
-          <http://purl.org/dc/terms/hasPart> ?remotefile .
-        ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
+          <http://purl.org/dc/terms/hasPart> ?logicalFile .
+        ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?logicalFile .
       }
       FILTER (REGEX(STR(?g), "^http://mu.semte.ch/graphs/organizations/"))
       BIND(STRAFTER(STR(?g), "http://mu.semte.ch/graphs/organizations/") AS ?afterPrefix)
@@ -417,29 +427,29 @@ export const subjects = [
         ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
         ?article ?ap ?ao .
         ?formdata ?fp ?fo .
-        ?remotefile ?ro ?rp .
+        ?logicalFile ?ro ?rp .
         ?subject ?lp ?lo .
       `,
       where: `
         {
           ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
-          ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
-          ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
+          ?formdata <http://purl.org/dc/terms/hasPart> ?logicalFile .
+          ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?logicalFile .
           ?submission ?sp ?so .
         } UNION {
-          ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
-          ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
+          ?formdata <http://purl.org/dc/terms/hasPart> ?logicalFile .
+          ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?logicalFile .
           ?formdata ?fp ?fo .
         } UNION {
           ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
-          ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
-          ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
+          ?formdata <http://purl.org/dc/terms/hasPart> ?logicalFile .
+          ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?logicalFile .
           ?submission <http://purl.org/dc/terms/subject> ?submissionDocument .
           ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
           ?article ?ap ?ao .
         } UNION {
-          ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
-          ?remotefile ?ro ?rp .
+          ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?logicalFile .
+          ?logicalFile ?ro ?rp .
         } UNION {
           ?subject ?lp ?lo .
         }
@@ -451,29 +461,29 @@ export const subjects = [
         ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
         ?article ?ap ?ao .
         ?formdata ?fp ?fo .
-        ?remotefile ?ro ?rp .
+        ?logicalFile ?ro ?rp .
         ?subject ?lp ?lo .
       `,
       where: `
         {
           ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
-          ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
-          ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
+          ?formdata <http://purl.org/dc/terms/hasPart> ?logicalFile .
+          ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?logicalFile .
           ?submission ?sp ?so .
         } UNION {
-          ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
-          ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
+          ?formdata <http://purl.org/dc/terms/hasPart> ?logicalFile .
+          ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?logicalFile .
           ?formdata ?fp ?fo .
         } UNION {
           ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
-          ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
-          ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
+          ?formdata <http://purl.org/dc/terms/hasPart> ?logicalFile .
+          ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?logicalFile .
           ?submission <http://purl.org/dc/terms/subject> ?submissionDocument .
           ?submissionDocument <http://data.europa.eu/eli/ontology#has_part> ?article .
           ?article ?ap ?ao .
         } UNION {
-          ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
-          ?remotefile ?ro ?rp .
+          ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?logicalFile .
+          ?logicalFile ?ro ?rp .
         } UNION {
           ?subject ?lp ?lo .
         }
@@ -486,7 +496,7 @@ export const subjects = [
         ?formdata <http://mu.semte.ch/vocabularies/ext/taxType> ?taxType .
         ?formdata <http://mu.semte.ch/vocabularies/ext/taxRateAmount> ?taxRateAmount .
         ?formdata <http://mu.semte.ch/vocabularies/ext/regulationType> ?regulationType .
-        ?remotefile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?originalDownloadLink .
+        ?logicalFile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?originalDownloadLink .
       `,
       insert: `
         ?formdata <http://lblod.data.gift/vocabularies/besluit/submission/form-data/sessionStartedAtTime> ?sessionStartedAtTime .
@@ -494,21 +504,25 @@ export const subjects = [
         ?formdata <http://lblod.data.gift/vocabularies/besluit/submission/form-data/taxType> ?taxType .
         ?formdata <http://lblod.data.gift/vocabularies/besluit/submission/form-data/taxRateAmount> ?taxRateAmount .
         ?formdata <http://lblod.data.gift/vocabularies/besluit/submission/form-data/regulationType> ?regulationType .
-        ?remotefile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?newDownloadLink .
-        ?remotefile <http://www.w3.org/ns/prov#hadPrimarySource> ?originalDownloadLink .
+        ?logicalFile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?newDownloadLink .
+        ?logicalFile <http://www.w3.org/ns/prov#hadPrimarySource> ?originalDownloadLink .
       `,
       where: `
         ?submission <http://www.w3.org/ns/prov#generated> ?formdata .
-        ?formdata <http://purl.org/dc/terms/hasPart> ?remotefile .
-        ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?remotefile .
+        ?formdata <http://purl.org/dc/terms/hasPart> ?logicalFile .
+        ?subject <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource> ?logicalFile .
         OPTIONAL { ?formdata <http://mu.semte.ch/vocabularies/ext/sessionStartedAtTime> ?sessionStartedAtTime . }
         OPTIONAL { ?formdata <http://mu.semte.ch/vocabularies/ext/decisionType> ?decisionType . }
         OPTIONAL { ?formdata <http://mu.semte.ch/vocabularies/ext/taxType> ?taxType . }
         OPTIONAL { ?formdata <http://mu.semte.ch/vocabularies/ext/taxRateAmount> ?taxRateAmount . }
         OPTIONAL { ?formdata <http://mu.semte.ch/vocabularies/ext/regulationType> ?regulationType . }
-        ?remotefile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?originalDownloadLink .
-        ?remotefile <http://mu.semte.ch/vocabularies/core/uuid> ?remotefileUUID .
-        BIND (CONCAT("${HOSTNAME}files/", STR(?remotefileUUID), "/download") AS ?newDownloadLink)
+        OPTIONAL {
+          ?logicalFile <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> ?originalDownloadLink .
+        }
+        OPTIONAL {
+          ?logicalFile <http://mu.semte.ch/vocabularies/core/uuid> ?logicalFileUUID .
+          BIND (CONCAT("${HOSTNAME}files/", STR(?logicalFileUUID), "/download") AS ?newDownloadLink)
+        }
       `,
     },
   },
