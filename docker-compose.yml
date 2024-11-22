@@ -152,7 +152,7 @@ services:
       - ./config/semantic-forms:/share/semantic-forms
       - ./data/files/submissions:/share/submissions
     environment:
-      ACTIVE_FORM_FILE: "share://semantic-forms/20241113172134-forms.ttl"
+      ACTIVE_FORM_FILE: "share://semantic-forms/20241122103645-forms.ttl"
       PUBLIC_GRAPH: "http://mu.semte.ch/graphs/access-for-role/PubliekeBesluitendatabank-BesluitendatabankLezer"
       FILE_GRAPH: "http://mu.semte.ch/graphs/access-for-role/PubliekeBesluitendatabank-BesluitendatabankLezer"
     labels:
