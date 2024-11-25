@@ -1,5 +1,29 @@
 # Changelog
 
+## Unreleased
+### General
+- Bump VDDS to a version that respects the SPARQL_ENDPOINT* environment variables better. This is a bugfix.
+- frontend v0.12.0: https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#0120-2024-06-19
+- update forms (adding submission cross referencing)
+
+### Deploy notes
+##### worship-decisions-cross-reference
+Ensure the environment variables are correctly set for `worship-decisions-cross-reference`, e.g. :
+```
+worship-decisions-cross-reference:
+  environment;
+    WORSHIP_DECISIONS_BASE_URL: "https://databankerediensten.lokaalbestuur.vlaanderen.be/search/submissions/"
+```
+The following links;
+- DEV: "https://dev.databankerediensten.lokaalbestuur.lblod.info/search/submissions/"
+- QA: "https://databankerediensten.lokaalbestuur.lblod.info/search/submissions/"
+- PROD: "https://databankerediensten.lokaalbestuur.vlaanderen.be/search/submissions/"
+
+#### Docker Commands
+ - `drc restart migrations && drc logs -ft --tail=200 migrations`
+ - `drc restart dispatcher resource cache`
+ - `drc up -d`
+
 ## 0.29.4 (2024-11-13)
 ### Toezicht
  - Update URI form "Aangewezen Burgemeester" [DL-6298]
@@ -37,7 +61,6 @@ drc restart migrations; drc up -d enrich-submission
 
     drc exec submissions-dispatcher bash
     curl -X GET http://localhost/heal-submission
-
 ## 0.29.1 (2024-09-20)
   - Fix dispatcher when multiple decision or creator types
 ### Deploy Notes

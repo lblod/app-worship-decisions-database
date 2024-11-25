@@ -147,14 +147,22 @@ services:
     restart: always
     logging: *default-logging
   enrich-submission:
-    image: lblod/enrich-submission-service:1.9.0
+    image: lblod/enrich-submission-service:1.12.1
     volumes:
       - ./config/semantic-forms:/share/semantic-forms
       - ./data/files/submissions:/share/submissions
     environment:
-      ACTIVE_FORM_FILE: "share://semantic-forms/20241113122345-forms.ttl"
+      ACTIVE_FORM_FILE: "share://semantic-forms/20241118155816-forms.ttl"
       PUBLIC_GRAPH: "http://mu.semte.ch/graphs/access-for-role/PubliekeBesluitendatabank-BesluitendatabankLezer"
       FILE_GRAPH: "http://mu.semte.ch/graphs/access-for-role/PubliekeBesluitendatabank-BesluitendatabankLezer"
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
+  worship-decisions-cross-reference:
+    image: lblod/worship-decisions-cross-reference-service:0.4.2
+    environment:
+      SCOPE_SUBMISSIONS_TO_ONE_GRAPH: "true"
     labels:
       - "logging=true"
     restart: always
@@ -246,7 +254,7 @@ services:
   # OP PUBLIC CONSUMER
   ################################################################################
   op-public-consumer:
-    image: lblod/delta-consumer:0.0.25-rc.3
+    image: lblod/delta-consumer:0.0.25
     environment:
       DCR_SERVICE_NAME: "op-public-consumer"
       DCR_SYNC_BASE_URL: "https://organisaties.abb.lblod.info" # replace with link to OP API
