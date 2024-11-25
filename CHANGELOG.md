@@ -4,7 +4,7 @@
 ### General
 - Bump VDDS to a version that respects the SPARQL_ENDPOINT* environment variables better. This is a bugfix.
 - frontend v0.12.0: https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#0120-2024-06-19
-- update forms (adding submission cross referencing)
+- update forms (adding submission cross referencing and kerkenbeleidsplan)
 
 ### Deploy notes
 ##### worship-decisions-cross-reference
@@ -21,7 +21,7 @@ The following links;
 
 #### Docker Commands
  - `drc restart migrations && drc logs -ft --tail=200 migrations`
- - `drc restart dispatcher resource cache`
+ - `drc restart dispatcher resource cache vendor-data-distribution`
  - `drc up -d`
 
 ## 0.29.4 (2024-11-13)
