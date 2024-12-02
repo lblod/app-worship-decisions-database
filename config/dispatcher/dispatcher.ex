@@ -37,6 +37,10 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://mocklogin/sessions/"
   end
 
+  match "/impersonations/*path", @json do
+    Proxy.forward conn, path, "http://impersonation/impersonations/"
+  end
+
   #################################################################
   # jobs
   #################################################################
