@@ -160,7 +160,7 @@ services:
     restart: always
     logging: *default-logging
   worship-decisions-cross-reference:
-    image: lblod/worship-decisions-cross-reference-service:0.4.3
+    image: lblod/worship-decisions-cross-reference-service:0.4.4
     environment:
       SCOPE_SUBMISSIONS_TO_ONE_GRAPH: "true"
     labels:
