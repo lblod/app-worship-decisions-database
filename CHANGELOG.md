@@ -3,8 +3,9 @@
 ## Unreleased
 ### General
 - Bump VDDS to a version that respects the SPARQL_ENDPOINT* environment variables better. This is a bugfix.
-- frontend v0.12.0: https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#0120-2024-06-19
+- frontend v0.14.0: https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#0120-2024-06-19
 - update forms (adding submission cross referencing and kerkenbeleidsplan)
+- add cross referencing components and service
 
 ### Deploy notes
 ##### worship-decisions-cross-reference
