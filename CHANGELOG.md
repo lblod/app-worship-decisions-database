@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v0.30.0 (2024-12-13)
 ### General
 - Bump VDDS to a version that respects the SPARQL_ENDPOINT* environment variables better. This is a bugfix.
 - frontend v0.14.0: https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#0120-2024-06-19
