@@ -1,5 +1,10 @@
 # Changelog
-
+## v0.30.1 (2025-01-09)
+- bump-op-public-consumer to better handle language tags. [DL-6347]
+### deploy notes
+```
+drc up -d op-public-consumer
+```
 ## v0.30.0 (2024-12-13)
 ### General
 - Bump VDDS to a version that respects the SPARQL_ENDPOINT* environment variables better. This is a bugfix.
