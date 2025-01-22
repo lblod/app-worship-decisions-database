@@ -1,4 +1,6 @@
 # Changelog
+## v0.30.2 (2025-01-22)
+- Add Jaarrekening PEVA form [DL-6284]
 ## v0.30.1 (2025-01-09)
 - bump-op-public-consumer to better handle language tags. [DL-6347]
 ### deploy notes
