@@ -310,9 +310,9 @@ services:
     restart: always
     logging: *default-logging
   vendor-data-distribution:
-    image: lblod/vendor-data-distribution-service:1.6.1
+    image: lblod/vendor-data-distribution-service:1.6.2
     environment:
-      LOGLEVEL: "error"
+      LOGLEVEL: "info"
       WRITE_ERRORS: "true"
     volumes:
       - ./config/vendor-data:/config
