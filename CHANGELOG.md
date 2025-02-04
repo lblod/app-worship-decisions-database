@@ -1,4 +1,6 @@
 # Changelog
+## v0.30.3 (2025-02-03)
+- Bump VDDS
 ## v0.30.2 (2025-01-22)
 - Add Jaarrekening PEVA form [DL-6284]
 ## v0.30.1 (2025-01-09)
