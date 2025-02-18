@@ -1,4 +1,17 @@
 # Changelog
+## Unreleased
+- Update semantic forms with `Opdrachthoudende vereniging met private deelname` classification. [DL-6447]
+### Deploy Notes
+#### Update Semantic Forms
+```
+drc restart migrations && drc logs -ft --tail=200 migrations
+```
+```
+drc restart resource cache
+```
+```
+drc up -d enrich-submission
+```
 ## v0.30.3 (2025-02-03)
 - Bump VDDS
 ## v0.30.2 (2025-01-22)
