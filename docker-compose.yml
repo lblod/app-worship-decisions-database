@@ -221,6 +221,8 @@ services:
       - ./config/submissions-consumer/submissions-dispatching:/config/triples-dispatching/custom-dispatching
       - ./data/files/consumer-files/submissions:/consumer-files/
       - ./data/files:/share
+    labels:
+      - "logging=true"
     restart: always
     logging: *default-logging
   files-consumer:
@@ -233,6 +235,10 @@ services:
       SOURCE_FILES_DATA_GRAPH: "http://mu.semte.ch/graphs/temp/original-physical-files-data"
     volumes:
       - ./data/files:/share
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
   vendor-management-consumer:
     image: lblod/delta-consumer:0.0.24
     environment:
@@ -248,6 +254,8 @@ services:
       DCR_DELTA_FILE_FOLDER: "/consumer-files"
       DCR_DELTA_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/consumer/VendorManagementFileSyncing"
       INGEST_GRAPH: "http://mu.semte.ch/graphs/vendor-management-data"
+    labels:
+      - "logging=true"
     restart: always
     logging: *default-logging
   ################################################################################
@@ -294,6 +302,8 @@ services:
       OUTBOX_FOLDER_URI: "http://data.lblod.info/id/mail-folders/2"
       FROM_EMAIL_ADDRESS: "Agentschap Binnenlands Bestuur Vlaanderen <noreply-binnenland@vlaanderen.be>"
       WORSHIP_DECISIONS_APP_BASEURL: "https://databankerediensten.lokaalbestuur.vlaanderen.be/"
+    labels:
+      - "logging=true"
     restart: always
     logging: *default-logging
   ##############################################################################
@@ -301,12 +311,16 @@ services:
   ##############################################################################
   vendor-login:
     image: lblod/vendor-login-service:1.1.0
+    labels:
+      - "logging=true"
     restart: always
     logging: *default-logging
   sparql-authorization-wrapper:
     image: lblod/sparql-authorization-wrapper-service:1.1.0
     volumes:
       - ./config/sparql-authorization-wrapper:/config
+    labels:
+      - "logging=true"
     restart: always
     logging: *default-logging
   vendor-data-distribution:
@@ -316,5 +330,7 @@ services:
       WRITE_ERRORS: "true"
     volumes:
       - ./config/vendor-data:/config
+    labels:
+      - "logging=true"
     restart: always
     logging: *default-logging
