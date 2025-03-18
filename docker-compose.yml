@@ -218,7 +218,7 @@ services:
       INGEST_GRAPH: "http://mu.semte.ch/graphs/temp/for-dispatch"
       FILE_SYNC_GRAPH: "http://mu.semte.ch/graphs/temp/original-physical-files-data"
     volumes:
-      - ./config/submissions-consumer/submissions-dispatching:/config/triples-dispatching/custom-dispatching
+      - ./config/delta-consumers/submissions-consumer/submissions-dispatching:/config/triples-dispatching/custom-dispatching
       - ./data/files/consumer-files/submissions:/consumer-files/
       - ./data/files:/share
     labels:
@@ -282,7 +282,7 @@ services:
       SUDO_QUERY_RETRY: "true"
     volumes:
       - ./data/files/consumer-files/op-public:/consumer-files/
-      - ./config/op-consumer/mapping:/config/mapping
+      - ./config/delta-consumers/op-consumer/mapping:/config/mapping
     restart: always
     labels:
       - "logging=true"

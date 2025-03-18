@@ -1,9 +1,10 @@
 # Changelog
 ## Unreleased
 - Add missing compose keys. [DL-6490]
+- Reorganize delta consumers config to harmonize with the ecosystem
 ### Deploy Notes
 ```
-drc up -d submissions-consumer files-consumer vendor-management-consumer worship-submissions-email-notification-service vendor-login sparql-authorization-wrapper vendor-data-distribution
+drc up -d submissions-consumer files-consumer vendor-management-consumer worship-submissions-email-notification-service vendor-login sparql-authorization-wrapper vendor-data-distribution op-public-consumer
 ```
 ## v0.30.4 (2025-02-27)
 - Update semantic forms with `Opdrachthoudende vereniging met private deelname` classification. [DL-6447]
