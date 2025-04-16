@@ -1,11 +1,31 @@
 # Changelog
+
 ## Unreleased
+
 - Add missing compose keys. [DL-6490]
 - Reorganize delta consumers config to harmonize with the ecosystem
+- Bump VDDS (vendor-data-distribution-service) for more async processing and
+  reduced load on database/Virtuoso. [DL-6595]
+
 ### Deploy Notes
+
 ```
 drc up -d submissions-consumer files-consumer vendor-management-consumer worship-submissions-email-notification-service vendor-login sparql-authorization-wrapper vendor-data-distribution op-public-consumer
 ```
+
+**Bump of the VDDS and to run healing**
+
+Set the VDDS healing operations directly onto Virtuoso. See the environment
+variable config here:
+https://github.com/lblod/vendor-data-distribution-service?tab=readme-ov-file#environment-variables,
+and run the new deploy and (full) healing commands. This healing can take a
+while; perhaps something for after work hours?
+
+```
+docker compose up -d vendor-data-distribution
+docker compose exec vendor-data-distribution curl -X POST http://localhost/healing
+```
+
 ## v0.30.4 (2025-02-27)
 - Update semantic forms with `Opdrachthoudende vereniging met private deelname` classification. [DL-6447]
 ### Deploy Notes
