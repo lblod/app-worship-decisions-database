@@ -6,6 +6,7 @@
 - Reorganize delta consumers config to harmonize with the ecosystem
 - Bump VDDS (vendor-data-distribution-service) for more async processing and
   reduced load on database/Virtuoso. [DL-6595]
+- Update multiple forms. [DL-6602] [DL-6486] [DL-6487] [DL-6488]
 
 ### Deploy Notes
 
@@ -24,6 +25,13 @@ while; perhaps something for after work hours?
 ```
 docker compose up -d vendor-data-distribution
 docker compose exec vendor-data-distribution curl -X POST http://localhost/healing
+```
+
+**For updating the forms**
+
+```
+drc restart migrations && drc logs -ft --tail=200 migrations
+drc up -d enrich-submission
 ```
 
 ## v0.30.4 (2025-02-27)
