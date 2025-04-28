@@ -147,7 +147,7 @@ services:
     restart: always
     logging: *default-logging
   enrich-submission:
-    image: lblod/enrich-submission-service:1.13.2
+    image: lblod/enrich-submission-service:1.13.5
     volumes:
       - ./config/semantic-forms:/share/semantic-forms
       - ./data/files/submissions:/share/submissions
@@ -168,7 +168,7 @@ services:
     restart: always
     logging: *default-logging
   submissions-dispatcher:
-    image: lblod/worship-submissions-graph-dispatcher-service:0.16.4
+    image: lblod/worship-submissions-graph-dispatcher-service:0.16.5
     environment:
       ORG_GRAPH_SUFFIX: "LoketLB-databankEredienstenGebruiker"
       SUDO_QUERY_RETRY: "true"
