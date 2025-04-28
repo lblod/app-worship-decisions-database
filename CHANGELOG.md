@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased
+
+- Add new form 'melding interne beslissing tot samenvoeging', bump services [DL-6361]
+
+### Deploy Notes
+
+```
+drc restart migrations && drc logs -ft --tail=200 migrations
+drc up -d enrich-submission
+drc up -d submissions-dispatcher`
+```
+
 ## v0.31.0 (2025-04-17)
 
 - Add missing compose keys. [DL-6490]
