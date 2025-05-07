@@ -79,7 +79,7 @@ services:
     restart: always
     logging: *default-logging
   login:
-    image: lblod/acmidm-login-service:0.11.0
+    image: lblod/acmidm-login-service:0.12.0
     environment:
       MU_APPLICATION_AUTH_DISCOVERY_URL: "https://authenticatie-ti.vlaanderen.be/op"
       MU_APPLICATION_AUTH_CLIENT_ID: "00b13445-d560-43e9-bed9-61ffc7ee412f"
