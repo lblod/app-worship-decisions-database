@@ -31,8 +31,12 @@ services:
     restart: "no"
   cache:
     restart: "no"
+  login:
+    restart: "no"
+  impersonation:
+    restart: "no"
   mocklogin:
-    image: lblod/mock-login-service:0.4.0
+    image: lblod/mock-login-service:0.7.0
     restart: "no"
   migrations:
     restart: "no"

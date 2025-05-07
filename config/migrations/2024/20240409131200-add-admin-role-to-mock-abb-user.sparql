@@ -1,0 +1,30 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX ext:<http://mu.semte.ch/vocabularies/ext/>
+
+DELETE {
+  GRAPH ?j {
+    ?person foaf:firstName ?firstName .
+  }
+}
+INSERT {
+  GRAPH ?g {
+    ?account ext:sessionRole "LoketLB-admin" .
+  }
+  GRAPH ?j {
+    ?person foaf:firstName "Lezer & Admin" .
+  }
+}
+WHERE {
+  VALUES ?account {
+    <http://data.lblod.info/id/account/3a91ff60-07c1-4136-ac5e-55cf401e0956>
+  }
+
+  GRAPH ?g {
+    ?account ext:sessionRole ?role .
+  }
+
+  GRAPH ?j {
+    ?person foaf:account ?account ;
+      foaf:firstName ?firstName .
+  }
+}

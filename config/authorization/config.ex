@@ -2,6 +2,7 @@ alias Acl.Accessibility.Always, as: AlwaysAccessible
 alias Acl.Accessibility.ByQuery, as: AccessByQuery
 alias Acl.GraphSpec.Constraint.Resource.NoPredicates, as: NoPredicates
 alias Acl.GraphSpec.Constraint.Resource, as: ResourceConstraint
+alias Acl.GraphSpec.Constraint.ResourceFormat, as: ResourceFormatConstraint
 alias Acl.GraphSpec, as: GraphSpec
 alias Acl.GroupSpec, as: GroupSpec
 alias Acl.GroupSpec.GraphCleanup, as: GraphCleanup
@@ -13,6 +14,12 @@ defmodule Acl.UserGroups.Config do
       query: sparql_query_for_access_role( group_string ) }
   end
 
+  defp access_by_role_for_single_graph( group_string ) do
+    %AccessByQuery{
+      vars: [],
+      query: sparql_query_for_access_role( group_string ) }
+  end
+
   defp sparql_query_for_access_role( group_string ) do
     "PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
     PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
@@ -21,6 +28,31 @@ defmodule Acl.UserGroups.Config do
                    ext:sessionRole ?session_role.
       FILTER( ?session_role = \"#{group_string}\" )
     }"
+  end
+
+
+  defp is_admin() do
+    %AccessByQuery{
+      vars: [],
+      query: "PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
+
+        SELECT DISTINCT ?session_role WHERE {
+          VALUES ?session_role {
+            \"LoketLB-admin\"
+          }
+
+          VALUES ?session_id {
+            <SESSION_ID>
+          }
+
+          {
+            ?session_id ext:sessionRole ?session_role .
+          } UNION {
+            ?session_id ext:originalSessionRole ?session_role .
+          }
+        }
+        LIMIT 1"
+      }
   end
 
   defp can_access_dashboard() do
@@ -89,9 +121,13 @@ defmodule Acl.UserGroups.Config do
           vars: ["session_group"],
           query: "PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
                   PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
-                  SELECT ?session_group ?session_role WHERE {
-                    <SESSION_ID> ext:sessionGroup/mu:uuid ?session_group.
-                    }" },
+                  SELECT DISTINCT ?session_group WHERE {
+                    {
+                      <SESSION_ID> ext:sessionGroup/mu:uuid ?session_group.
+                    } UNION {
+                      <SESSION_ID> ext:originalSessionGroup/mu:uuid ?session_group.
+                    }
+                  }" },
         graphs: [ %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/organizations/",
                     constraint: %ResourceConstraint{
@@ -127,6 +163,35 @@ defmodule Acl.UserGroups.Config do
                         "http://www.w3.org/ns/prov#Location"
                       ]
                     } } ] },
+      # // Admin users
+      %GroupSpec{
+        name: "o-admin-sessions-rwf",
+        useage: [:read, :write, :read_for_write],
+        access: is_admin(),
+        graphs: [
+          %GraphSpec{
+            graph: "http://mu.semte.ch/graphs/sessions",
+            constraint: %ResourceFormatConstraint{
+              resource_prefix: "http://mu.semte.ch/sessions/"
+            }
+          },
+        ]
+      },
+      %GroupSpec{
+        name: "o-admin-sessions-rwf",
+        useage: [:read_for_write],
+        access: is_admin(),
+        graphs: [
+          %GraphSpec{
+            graph: "http://mu.semte.ch/graphs/public",
+            constraint: %ResourceConstraint {
+              resource_types: [
+                "http://xmlns.com/foaf/0.1/OnlineAccount"
+                ],
+            }
+          },
+        ]
+      },
       # // subscribe for email notifications
       %GroupSpec{
         name: "subscribed-for-notifications",
