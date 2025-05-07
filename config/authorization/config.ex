@@ -177,6 +177,21 @@ defmodule Acl.UserGroups.Config do
           },
         ]
       },
+      %GroupSpec{
+        name: "o-admin-sessions-rwf",
+        useage: [:read_for_write],
+        access: is_admin(),
+        graphs: [
+          %GraphSpec{
+            graph: "http://mu.semte.ch/graphs/public",
+            constraint: %ResourceConstraint {
+              resource_types: [
+                "http://xmlns.com/foaf/0.1/OnlineAccount"
+                ],
+            }
+          },
+        ]
+      },
       # // subscribe for email notifications
       %GroupSpec{
         name: "subscribed-for-notifications",
