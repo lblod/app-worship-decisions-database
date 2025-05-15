@@ -18,7 +18,7 @@ drc up -d submissions-dispatcher`
 > Migrations need restarting, but that is already included in the lines above.
 
 ```
-drc up -d impersonation login mocklogin
+drc up -d impersonation login mocklogin frontend
 ```
 
 ```
