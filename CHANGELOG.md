@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v0.32.0 (2025-05-21)
 
 - Add new form 'melding interne beslissing tot samenvoeging', bump services [DL-6361]
 - Allow admin users to impersonate other accounts. [DL-5848]
@@ -10,7 +10,7 @@
 ```
 drc restart migrations && drc logs -ft --tail=200 migrations
 drc up -d enrich-submission
-drc up -d submissions-dispatcher`
+drc up -d submissions-dispatcher
 ```
 
 **For enabling impersonation**
