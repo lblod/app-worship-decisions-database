@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Allow admin users to impersonate other accounts. [DL-5848]
+- Bump frontend to `v0.15.1`.
 
 ### Deploy Notes
 
