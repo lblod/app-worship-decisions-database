@@ -21,6 +21,18 @@ drc up -d impersonation login mocklogin frontend
 drc restart database dispatcher && drc logs -ft --tail=200 database dispatcher
 ```
 
+## v0.32.1 (2025-05-28)
+
+### General
+
+- Fix municipalities not able to reference worship service document when the CKB is inactive [DL-6614]
+
+### Deploy instructions
+
+```
+drc up -d worship-decisions-cross-reference
+```
+
 ## v0.32.0 (2025-05-21)
 
 - Add new form 'melding interne beslissing tot samenvoeging', bump services [DL-6361]
