@@ -38,7 +38,7 @@ defmodule Acl.UserGroups.Config do
 
         SELECT DISTINCT ?session_role WHERE {
           VALUES ?session_role {
-            \"LoketLB-admin\"
+            \"LoketLB-AdminDatabankErediensten\"
           }
 
           VALUES ?session_id {

@@ -50,6 +50,8 @@ services:
     restart: "no"
   submissions-consumer:
     restart: "no"
+  files-consumer:
+    restart: "no"
   submissions-dispatcher:
     restart: "no"
   update-bestuurseenheid-mock-login:
