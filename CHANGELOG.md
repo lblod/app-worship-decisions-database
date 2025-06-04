@@ -1,9 +1,9 @@
 # Changelog
 
-## Unreleased
+## v0.33.0 (2025-06-04)
 
 - Allow admin users to impersonate other accounts. [DL-5848]
-- Bump frontend to `v0.15.1`.
+- Bump frontend to `v0.15.1`. [DL-6294]
 
 ### Deploy Notes
 
