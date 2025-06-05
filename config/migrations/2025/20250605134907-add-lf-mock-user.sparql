@@ -1,0 +1,53 @@
+# This creates a mock user for ABB with LF session role
+# The update-mock-login-service doesn't support 2 distinct mock users for the same organizations
+PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#>
+PREFIX mandaat: <http://data.vlaanderen.be/ns/mandaat#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+INSERT {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?persoon a foaf:Person;
+           mu:uuid ?uuidPersoon;
+           foaf:firstName "LF departement van";
+           foaf:familyName "ABB";
+           foaf:member ?bestuurseenheid;
+           foaf:account ?account.
+  ?account a foaf:OnlineAccount;
+           mu:uuid ?uuidAccount;
+           foaf:accountServiceHomepage <https://github.com/lblod/mock-login-service>;
+           ext:sessionRole "LoketLB-databankEredienstenGebruiker-LF".
+           }
+  GRAPH ?g {
+  ?persoon a foaf:Person;
+           mu:uuid ?uuidPersoon;
+           foaf:firstName "LF departement van";
+           foaf:familyName "ABB";
+           foaf:member ?bestuurseenheid;
+           foaf:account ?account.
+  ?account a foaf:OnlineAccount;
+           mu:uuid ?uuidAccount;
+           foaf:accountServiceHomepage <https://github.com/lblod/mock-login-service>;
+           ext:sessionRole "LoketLB-databankEredienstenGebruiker-LF".
+          }
+}
+WHERE {
+     ?bestuurseenheid a besluit:Bestuurseenheid;
+     mu:uuid ?uuid;
+     skos:prefLabel ?naam;
+     besluit:classificatie/skos:prefLabel ?classificatie.
+
+     BIND(CONCAT(?classificatie, " ", ?naam, "als LF") as ?volledigeNaam)
+     BIND(MD5(?volledigeNaam) as ?uuidPersoon)
+     BIND(MD5(CONCAT(?volledigeNaam,"ACCOUNT")) as ?uuidAccount)
+     BIND(IRI(CONCAT("http://data.lblod.info/id/persoon/", ?uuidPersoon)) AS ?persoon)
+     BIND(IRI(CONCAT("http://data.lblod.info/id/account/", ?uuidAccount)) AS ?account)
+     BIND(IRI(CONCAT("http://mu.semte.ch/graphs/organizations/",?uuid)) AS ?g )
+
+     VALUES ?bestuurseenheid  {
+       <http://data.lblod.info/id/bestuurseenheden/141d9d6b-54af-4d17-b313-8d1c30bc3f5b>
+     }
+}
