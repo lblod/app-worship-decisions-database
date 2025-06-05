@@ -4,6 +4,10 @@
 
 - Bump frontend to `v0.15.3` [DL-5635]
 
+### Deploy Notes
+
+`drc up -d frontend`
+
 ## v0.33.0 (2025-06-04)
 
 - Allow admin users to impersonate other accounts. [DL-5848]
