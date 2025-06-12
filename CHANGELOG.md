@@ -1,6 +1,6 @@
 # Changelog
 
-## unreleased
+## v0.34.0 (2025-06-12)
 
 - Bump frontend to `v0.15.3` [DL-5635]
 - Update form of LEKP - Fietspaden [DL-6612]
