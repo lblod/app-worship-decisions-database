@@ -1,18 +1,23 @@
 # Changelog
+
 ## Unreleased
+
 ### General
- - Bump updated version from `submissions-dispatcher`. See also [DL-6512]
-   - In essence: extra complication in the dispatch rules. If ABB is a destinator, we need to split the dispatching between "default" and "ABB-LF".
-   - See also: https://github.com/lblod/worship-submissions-graph-dispatcher-service/pull/31
-   - Added new ABB mock user with this right only
+
+- Bump updated version from `submissions-dispatcher`. See also [DL-6512]
+  - In essence: extra complication in the dispatch rules. If ABB is a destinator, we need to split the dispatching between "default" and "ABB-LF".
+  - See also: https://github.com/lblod/worship-submissions-graph-dispatcher-service/pull/31
+  - Added new ABB mock user with this right only
 
 ### Deploy Notes
+
 ```
 drc restart migrations
 drc up -d submissions-dispatcher
 drc exec submissions-dispatcher curl http://localhost/heal-submission
 ```
-Then kick in the healing
+
+Then kick in the healing.
 
 ## v0.33.0 (2025-06-04)
 
