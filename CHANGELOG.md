@@ -17,7 +17,12 @@ drc up -d submissions-dispatcher
 drc exec submissions-dispatcher curl http://localhost/heal-submission
 ```
 
-Then kick in the healing.
+This last command starts the healing of all submissions. This will take a long
+while. Check the logs of the `submission-dispatcher` for its process.
+
+```
+docker compose logs --tail 1000 -f submissions-dispatcher
+```
 
 ## v0.33.0 (2025-06-04)
 
