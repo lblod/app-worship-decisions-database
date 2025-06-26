@@ -24,6 +24,17 @@ while. Check the logs of the `submission-dispatcher` for its process.
 docker compose logs --tail 1000 -f submissions-dispatcher
 ```
 
+## v0.34.0 (2025-06-12)
+
+- Bump frontend to `v0.15.3` [DL-5635]
+- Update form of LEKP - Fietspaden [DL-6612]
+
+```
+drc up -d frontend
+drc restart migrations && drc logs -ft --tail=200 migrations
+drc up -d enrich-submission
+```
+
 ## v0.33.0 (2025-06-04)
 
 - Allow admin users to impersonate other accounts. [DL-5848]
