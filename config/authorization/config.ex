@@ -163,6 +163,32 @@ defmodule Acl.UserGroups.Config do
                         "http://www.w3.org/ns/prov#Location"
                       ]
                     } } ] },
+      %GroupSpec{
+        name: "readers",
+        useage: [:read],
+      access: access_by_role("LoketLB-databankEredienstenGebruiker-LF"),
+        graphs: [ %GraphSpec{
+                    graph: "http://mu.semte.ch/graphs/organizations/",
+                    constraint: %ResourceConstraint{
+                      resource_types: [
+                        "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject",
+                        "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject",
+                        "http://xmlns.com/foaf/0.1/Document",
+                        "http://rdf.myexperiment.org/ontologies/base/Submission",
+                        "http://mu.semte.ch/vocabularies/ext/SubmissionDocument",
+                        "http://lblod.data.gift/vocabularies/automatische-melding/FormData",
+                        "http://xmlns.com/foaf/0.1/Person",
+                        "http://xmlns.com/foaf/0.1/OnlineAccount",
+                        "http://data.vlaanderen.be/ns/besluit#Bestuurseenheid",
+                        "http://mu.semte.ch/vocabularies/ext/BestuurseenheidClassificatieCode",
+                        "http://data.vlaanderen.be/ns/besluit#Bestuursorgaan",
+                        "http://mu.semte.ch/vocabularies/ext/BestuursorgaanClassificatieCode",
+                        "http://mu.semte.ch/vocabularies/ext/AuthenticityType",
+                        "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+                        "http://www.w3.org/2004/02/skos/core#Concept",
+                        "http://www.w3.org/ns/prov#Location"
+                      ]
+                    } } ] },
       # // Admin users
       %GroupSpec{
         name: "o-admin-sessions-rwf",

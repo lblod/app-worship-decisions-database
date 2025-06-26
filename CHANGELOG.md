@@ -1,11 +1,33 @@
 # Changelog
 
+## Unreleased
+
+### General
+
+- Bump updated version from `submissions-dispatcher`. See also [DL-6512]
+  - In essence: extra complication in the dispatch rules. If ABB is a destinator, we need to split the dispatching between "default" and "ABB-LF".
+  - See also: https://github.com/lblod/worship-submissions-graph-dispatcher-service/pull/31
+  - Added new ABB mock user with this right only
+
+### Deploy Notes
+
+```
+drc restart migrations
+drc up -d submissions-dispatcher
+drc exec submissions-dispatcher curl http://localhost/heal-submission
+```
+
+This last command starts the healing of all submissions. This will take a long
+while. Check the logs of the `submission-dispatcher` for its process.
+
+```
+docker compose logs --tail 1000 -f submissions-dispatcher
+```
+
 ## v0.34.0 (2025-06-12)
 
 - Bump frontend to `v0.15.3` [DL-5635]
 - Update form of LEKP - Fietspaden [DL-6612]
-
-### Deploy Notes
 
 ```
 drc up -d frontend
