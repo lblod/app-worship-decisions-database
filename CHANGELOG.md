@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v0.35.1 (2025-06-27)
 
 - Bump frontend to `v0.15.4` [DL-6665]
 
