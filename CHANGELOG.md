@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+- Bump frontend to `v0.15.4` [DL-6665]
+
+### Deploy Notes
+
+```
+drc up -d frontend
+```
+
 ## v0.35.0 (2025-06-26)
 
 ### General
