@@ -194,7 +194,7 @@ For now, we use specic logins for the dashboard users. Each environement has its
 To add a user, make sure to have installed [mu-cli](https://github.com/mu-semtech/mu-cli) first.
 Then in `docker-compose.override.yml`
 ```
-  dashboard-login
+  login-dashboard
     environment:
       MU_APPLICATION_SALT: 'a_random_string_with_sufficient_entropy_hence_not_this_one'
 ```

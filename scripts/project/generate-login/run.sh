@@ -16,7 +16,7 @@ salt = ""
 begin
   File.open("/project/docker-compose.override.yml") do |file|
     config = YAML.load(file)
-    salt = config.dig("services", "dashboard-login", "environment", "MU_APPLICATION_SALT")
+    salt = config.dig("services", "login-dashboard", "environment", "MU_APPLICATION_SALT")
     throw "invalid salt" unless salt
    end
 rescue

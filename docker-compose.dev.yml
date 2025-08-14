@@ -33,6 +33,8 @@ services:
     restart: "no"
   login:
     restart: "no"
+  login-dashboard:
+    restart: "no"
   impersonation:
     restart: "no"
   mocklogin:

@@ -26,7 +26,7 @@ defmodule Dispatcher do
 
   match "/sessions/*path", %{ reverse_host: ["dashboard" | _rest] } do
     IO.inspect("dashboard says hello")
-    Proxy.forward conn, path, "http://dashboard-login/sessions/"
+    Proxy.forward conn, path, "http://login-dashboard/sessions/"
   end
 
   match "/sessions/*path", @json do
