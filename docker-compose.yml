@@ -22,9 +22,14 @@ services:
     restart: always
     logging: *default-logging
   frontend-dashboard:
-    image: lblod/frontend-dashboard:1.6.0
-    links:
-      - identifier:backend
+    image: lblod/frontend-dashboard:1.9.0
+    environment:
+      EMBER_LOGIN_ROUTE: "acmidm-login"
+      EMBER_ACMIDM_CLIENT_ID: "<CLIENT_ID>"
+      EMBER_ACMIDM_BASE_URL: "<BASE_URL>"
+      EMBER_ACMIDM_REDIRECT_URL: "<REDIRECT_URL>"
+      EMBER_ACMIDM_LOGOUT_URL: "<LOGOUT_URL>"
+      EMBER_ACMIDM_SCOPE: "openid profile vo abb_databankerediensten"
     restart: always
     logging: *default-logging
     labels:
