@@ -59,11 +59,9 @@ defmodule Acl.UserGroups.Config do
     %AccessByQuery{
       vars: [],
       query: "PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
-        PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
-        SELECT DISTINCT ?account WHERE {
-          <SESSION_ID> <http://mu.semte.ch/vocabularies/session/account> ?account.
-          ?account <http://mu.semte.ch/vocabularies/ext/sessionRole> ?session_role.
-          FILTER( ?session_role = \"DatabankErediensten-dashboard-user\" )
+        SELECT DISTINCT ?session WHERE {
+          VALUES ?session { <SESSION_ID> }
+          ?session ext:sessionRole \"LoketLB-AdminDashboardDatabankEredienstenGebruiker\" .
         }"
       }
   end
@@ -233,10 +231,10 @@ defmodule Acl.UserGroups.Config do
                           "http://mu.semte.ch/vocabularies/ext/wilMailOntvangen"
                         ] }
                     } } ] },
-      # // dashboard users
+      # // Dashboard admin
       %GroupSpec{
-        name: "dashboard-users",
-        useage: [:read],
+        name: "o-admin-rwf",
+        useage: [:read, :write, :read_for_write],
         access: can_access_dashboard(),
         graphs: [ %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/reports",
