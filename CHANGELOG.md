@@ -1,5 +1,42 @@
 # Changelog
 
+## Unreleased
+- Enable ACM/IDM for the dashboard [DL-6592]
+
+### Deploy Notes
+
+#### Dashboard
+
+##### QA
+Configure the environment variables for the QA ACM/IDM environment:
+
+```yml
+  frontend-dashboard:
+    environment:
+      EMBER_ACMIDM_CLIENT_ID: "5b931981-630d-4074-9ef7-311b1954dbcb"
+      EMBER_ACMIDM_BASE_URL: "https://authenticatie-ti.vlaanderen.be/op/v1/auth"
+      EMBER_ACMIDM_REDIRECT_URL: "https://dashboard.databankerediensten.lblod.info/authorization/callback"
+      EMBER_ACMIDM_LOGOUT_URL: "https://authenticatie-ti.vlaanderen.be/op/v1/logout"
+      EMBER_ACMIDM_SCOPE: "openid vo profile abb_databankerediensten"
+
+  login-dashboard:
+    environment:
+      MU_APPLICATION_AUTH_DISCOVERY_URL: "https://authenticatie-ti.vlaanderen.be/op"
+      MU_APPLICATION_AUTH_CLIENT_ID: "5b931981-630d-4074-9ef7-311b1954dbcb"
+      MU_APPLICATION_AUTH_REDIRECT_URI: "https://dashboard.databankerediensten.lblod.info/authorization/callback"
+      MU_APPLICATION_AUTH_CLIENT_SECRET: "snip" # see ticket for secret
+```
+
+##### PROD
+Configure the environment variables for the PROD ACM/IDM environment once the values are known.
+
+#### CLI
+```
+drc restart migrations
+drc restart dispatcher database
+drc up -d --remove-orphans
+```
+
 ## v0.35.1 (2025-06-27)
 
 - Bump frontend to `v0.15.4` [DL-6665]
