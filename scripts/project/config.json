@@ -16,21 +16,6 @@
       "mounts": {
         "app": "/data/app/"
       }
-    },
-    {
-      "documentation": {
-        "command": "generate-dashboard-login",
-        "description": "generate a login account",
-        "arguments": []
-      },
-      "environment": {
-        "image": "ruby",
-        "interactive": true,
-        "script": "generate-login/run.sh"
-      },
-      "mounts": {
-        "app": "/project/"
-      }
     }
   ]
 }
