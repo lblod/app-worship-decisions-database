@@ -1,11 +1,19 @@
 version: '3.7'
 
 services:
+  frontend:
+    restart: "no"
+  frontend-dashboard:
+    environment:
+      EMBER_LOGIN_ROUTE: "mock-login"
+    restart: "no"
   identifier:
     ports:
       - "81:80"
     restart: "no"
   dispatcher:
+    restart: "no"
+  deltanotifier:
     restart: "no"
   virtuoso:
     ports:
@@ -56,6 +64,8 @@ services:
     restart: "no"
   submissions-dispatcher:
     restart: "no"
+  report-generation:
+    restart: "no"
   update-bestuurseenheid-mock-login:
     restart: "no"
   op-public-consumer:
@@ -73,4 +83,6 @@ services:
   vendor-data-distribution:
     environment:
       HOSTNAME: "http://localhost"
+    restart: "no"
+  sink:
     restart: "no"
