@@ -12,6 +12,8 @@
 (defparameter sparql:*experimental-no-application-graph-for-sudo-select-queries* t)
 
 (read-domain-file "slave-toezicht-domain.lisp")
+(read-domain-file "slave-organisatie-domain.lisp")
+(read-domain-file "slave-contact-domain.lisp")
 (read-domain-file "slave-files-domain.lisp")
 (read-domain-file "slave-besluit-domain.lisp")
 (read-domain-file "slave-users-domain.lisp")

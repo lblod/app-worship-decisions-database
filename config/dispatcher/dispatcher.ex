@@ -99,6 +99,12 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://resource/files/"
   end
 
+  get "/adressen/*path", @json do
+    Proxy.forward conn, path, "http://cache/adressen/" # TODO change back to cache
+  end
+  get "/vestigingen/*path", @json do
+    Proxy.forward conn, path, "http://cache/vestigingen/"
+  end
 
  ###############################################################
   # Searching

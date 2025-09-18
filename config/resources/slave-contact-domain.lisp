@@ -27,6 +27,8 @@
                 (:volledig-adres :string ,(s-prefix "locn:fullAddress"))
                 (:adres-register-id :number ,(s-prefix "lblodlg:adresRegisterId"))
                 (:adres-register-uri :url ,(s-prefix "adres:verwijstNaar")))
+:has-one `((concept :via ,(s-prefix "adres:adresIsGelegenIn")
+                    :as "provincie"))
   :features '(include-uri)
   :resource-base (s-url "http://data.lblod.info/id/adressen/")
   :on-path "adressen")

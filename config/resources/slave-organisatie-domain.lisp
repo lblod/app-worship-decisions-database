@@ -2,8 +2,8 @@
 ;; this is a shared domain file, maintained in https://github.com/lblod/domain-files
 (define-resource vestiging ()
   :class (s-prefix "org:Site")
-  :has-one `((contact-punt :via ,(s-prefix "schema:contactPoint")
-                           :as "vestigingsadres"))
+  :has-one `((adres        :via ,(s-prefix "organisatie:bestaatUit")
+                           :as "address"))
   :resource-base (s-url "http://data.lblod.info/id/vestiging/")
   :features '(include-uri)
   :on-path "vestigingen"
