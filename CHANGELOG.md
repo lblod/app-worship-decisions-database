@@ -2,8 +2,14 @@
 
 ## Unreleased
 - Enable ACM/IDM for the dashboard [DL-6592]
+- Update URI form "Afwijking principes regiovorming" [DL-6775]
 
 ### Deploy Notes
+
+```
+drc restart migrations && drc logs -ft --tail=200 migrations
+drc up -d enrich-submission
+```
 
 #### Dashboard
 
