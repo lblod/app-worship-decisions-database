@@ -1,4 +1,6 @@
 # Changelog
+## v0.36.1 (2025-09-19)
+- Hotfix 'afwijking principes regiovorming' from BesluitDocumentType to BesluitType [DL-6775]
 
 ## v0.36.0 (2025-09-18)
 - Enable ACM/IDM for the dashboard [DL-6592]
