@@ -5,6 +5,9 @@
 - Ensure the updated data model of provinces is used. See  DL-6804
 
 ### Deploy Notes
+drc restart migrations # Wait for correct finish.
+drc restart dispatcher resource
+drc up -d
 
 #### Dashboard
 
