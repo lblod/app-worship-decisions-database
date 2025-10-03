@@ -2,6 +2,7 @@
 
 ## Unreleased
 - Enable ACM/IDM for the dashboard [DL-6592]
+- Ensure the updated data model of provinces is used. See  DL-6804
 
 ### Deploy Notes
 

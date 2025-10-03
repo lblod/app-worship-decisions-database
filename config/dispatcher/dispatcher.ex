@@ -100,7 +100,7 @@ defmodule Dispatcher do
   end
 
   get "/adressen/*path", @json do
-    Proxy.forward conn, path, "http://cache/adressen/" # TODO change back to cache
+    Proxy.forward conn, path, "http://cache/adressen/"
   end
   get "/vestigingen/*path", @json do
     Proxy.forward conn, path, "http://cache/vestigingen/"
