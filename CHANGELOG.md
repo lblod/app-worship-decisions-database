@@ -8,6 +8,13 @@
 drc restart deltanotifier
 drc up -d
 ```
+Ensure in `docker-compose.override.yml`
+```
+  error-alert:
+    environment:
+      EMAIL_FROM: "from@example.com"
+      EMAIL_TO: "to@example.com"
+```
 ## v0.36.1 (2025-09-19)
 - Hotfix 'afwijking principes regiovorming' from BesluitDocumentType to BesluitType [DL-6775]
 
