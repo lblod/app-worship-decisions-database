@@ -1,4 +1,15 @@
 # Changelog
+
+## Unreleased
+- Ensure the updated data model of provinces is used. See  DL-6804
+
+### Deploy Notes
+```
+drc restart migrations # Wait for correct finish.
+drc restart dispatcher resource
+drc up -d
+```
+
 ## v0.36.3 (2025-10-18)
  - Bump deliver email-service
    - seeAlso: https://binnenland.atlassian.net/browse/DL-6941
@@ -29,7 +40,7 @@ Ensure in `docker-compose.override.yml`
 - Enable ACM/IDM for the dashboard [DL-6592]
 - Update URI form "Afwijking principes regiovorming" [DL-6775]
 
-### Deploy Notes
+
 
 ```
 drc restart migrations && drc logs -ft --tail=200 migrations
