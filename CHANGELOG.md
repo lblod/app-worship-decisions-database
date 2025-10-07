@@ -3,6 +3,13 @@
 ## Unreleased
 - Ensure the updated data model of provinces is used. See  DL-6804
 
+### Deploy Notes
+```
+drc restart migrations # Wait for correct finish.
+drc restart dispatcher resource
+drc up -d
+```
+
 ## v0.36.2 (2025-10-18)
 - Fix `worship-submissions-email-notification-service`: avoid mails piling up if one email fails.
   - And also some general maintenance.
@@ -26,10 +33,7 @@ Ensure in `docker-compose.override.yml`
 - Enable ACM/IDM for the dashboard [DL-6592]
 - Update URI form "Afwijking principes regiovorming" [DL-6775]
 
-### Deploy Notes
-drc restart migrations # Wait for correct finish.
-drc restart dispatcher resource
-drc up -d
+
 
 ```
 drc restart migrations && drc logs -ft --tail=200 migrations
