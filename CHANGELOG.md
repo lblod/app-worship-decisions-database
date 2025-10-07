@@ -3,6 +3,22 @@
 ## Unreleased
 - Ensure the updated data model of provinces is used. See  DL-6804
 
+## v0.36.2 (2025-10-18)
+- Fix `worship-submissions-email-notification-service`: avoid mails piling up if one email fails.
+  - And also some general maintenance.
+  - seeAlso: https://binnenland.atlassian.net/browse/DL-6941
+### Deploy instructions
+```
+drc restart deltanotifier
+drc up -d
+```
+Ensure in `docker-compose.override.yml`
+```
+  error-alert:
+    environment:
+      EMAIL_FROM: "from@example.com"
+      EMAIL_TO: "to@example.com"
+```
 ## v0.36.1 (2025-09-19)
 - Hotfix 'afwijking principes regiovorming' from BesluitDocumentType to BesluitType [DL-6775]
 
