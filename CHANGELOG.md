@@ -1,13 +1,21 @@
 # Changelog
+## v0.36.1 (2025-09-19)
+- Hotfix 'afwijking principes regiovorming' from BesluitDocumentType to BesluitType [DL-6775]
 
-## Unreleased
+## v0.36.0 (2025-09-18)
 - Enable ACM/IDM for the dashboard [DL-6592]
 - Ensure the updated data model of provinces is used. See  DL-6804
+- Update URI form "Afwijking principes regiovorming" [DL-6775]
 
 ### Deploy Notes
 drc restart migrations # Wait for correct finish.
 drc restart dispatcher resource
 drc up -d
+
+```
+drc restart migrations && drc logs -ft --tail=200 migrations
+drc up -d enrich-submission
+```
 
 #### Dashboard
 
