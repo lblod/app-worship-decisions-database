@@ -1,4 +1,11 @@
 # Changelog
+## v0.36.3 (2025-10-18)
+ - Bump deliver email-service
+   - seeAlso: https://binnenland.atlassian.net/browse/DL-6941
+### Deploy instructions
+```
+drc up -d deliver-email-service
+```
 ## v0.36.2 (2025-10-18)
 - Fix `worship-submissions-email-notification-service`: avoid mails piling up if one email fails.
   - And also some general maintenance.
