@@ -2,6 +2,8 @@
 ## v0.36.2 (2025-10-18)
 - Fix `worship-submissions-email-notification-service`: avoid mails piling up if one email fails.
   - And also some general maintenance.
+  - seeAlso: https://binnenland.atlassian.net/browse/DL-6941
+
 ## v0.36.1 (2025-09-19)
 - Hotfix 'afwijking principes regiovorming' from BesluitDocumentType to BesluitType [DL-6775]
 
