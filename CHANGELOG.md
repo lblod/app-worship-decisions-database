@@ -1,12 +1,25 @@
 # Changelog
-## v0.36.3 (2025-10-18)
+## v0.36.4 (2025-10-11)
+- Ensure vendor-login deals with hashed keys [DL-6543]
+### Deploy instrucations
+```
+drc up -d vendor-login
+```
+#### For production
+Ensure in `docker-compose.override.yml` the `entrypoint` and `restart` directive is removed.
+```
+  vendor-management-consumer:
+    entrypoint: ["echo", "Temporarily disabled, because we want to make sure vendor-login works properly with hashes on loket. See tag: v1.115.0. (Contact felix in case of problems)"]
+    restart: "no"
+```
+## v0.36.3 (2025-10-10)
  - Bump deliver email-service
    - seeAlso: https://binnenland.atlassian.net/browse/DL-6941
 ### Deploy instructions
 ```
 drc up -d deliver-email-service
 ```
-## v0.36.2 (2025-10-18)
+## v0.36.2 (2025-10-09)
 - Fix `worship-submissions-email-notification-service`: avoid mails piling up if one email fails.
   - And also some general maintenance.
   - seeAlso: https://binnenland.atlassian.net/browse/DL-6941
