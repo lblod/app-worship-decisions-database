@@ -10,6 +10,12 @@ drc restart dispatcher resource
 drc up -d
 ```
 
+## v0.36.4 (2025-10-23)
+- Bump submissions-dispatcher
+### Deploy instructions
+```
+drc up -d submissions-dispatcher
+```
 ## v0.36.3 (2025-10-18)
  - Bump deliver email-service
    - seeAlso: https://binnenland.atlassian.net/browse/DL-6941
