@@ -1,13 +1,19 @@
 # Changelog
-
 ## Unreleased
 - Ensure the updated data model of provinces is used. See  DL-6804
+- Update forms [DL-6988]
 
 ### Deploy Notes
 ```
 drc restart migrations # Wait for correct finish.
 drc restart dispatcher resource
 drc up -d
+```
+*updating forms*
+
+```
+drc restart migrations && drc logs -ft --tail=200 migrations
+drc up -d enrich-submission
 ```
 
 ## v0.36.4 (2025-10-23)
