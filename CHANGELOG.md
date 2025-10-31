@@ -1,9 +1,15 @@
 # Changelog
 ## Unreleased
-
+- Ensure the updated data model of provinces is used. See  DL-6804
 - Update forms [DL-6988]
 
 ### Deploy Notes
+```
+drc restart migrations # Wait for correct finish.
+drc restart dispatcher resource
+drc up -d
+```
+*updating forms*
 
 ```
 drc restart migrations && drc logs -ft --tail=200 migrations
@@ -46,7 +52,7 @@ Ensure in `docker-compose.override.yml`
 - Enable ACM/IDM for the dashboard [DL-6592]
 - Update URI form "Afwijking principes regiovorming" [DL-6775]
 
-### Deploy Notes
+
 
 ```
 drc restart migrations && drc logs -ft --tail=200 migrations
