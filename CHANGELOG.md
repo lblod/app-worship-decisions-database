@@ -1,4 +1,15 @@
 # Changelog
+## Unreleased
+
+- Update forms [DL-6988]
+
+### Deploy Notes
+
+```
+drc restart migrations && drc logs -ft --tail=200 migrations
+drc up -d enrich-submission
+```
+
 ## v0.36.4 (2025-10-23)
 - Bump submissions-dispatcher
 ### Deploy instructions
