@@ -1,5 +1,5 @@
 # Changelog
-## Unreleased
+## v0.37.0 (2025-11-07)
 - Ensure the updated data model of provinces is used. See  DL-6804
 - Update forms [DL-6988]
 - update frontend to `v0.15.6` [DL-6994]
