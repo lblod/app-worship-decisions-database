@@ -2,6 +2,7 @@
 ## Unreleased
 - Ensure the updated data model of provinces is used. See  DL-6804
 - Update forms [DL-6988]
+- update frontend to `v0.15.6` [DL-6994]
 
 ### Deploy Notes
 ```
@@ -14,6 +15,7 @@ drc up -d
 ```
 drc restart migrations && drc logs -ft --tail=200 migrations
 drc up -d enrich-submission
+drc up -d frontend
 ```
 
 ## v0.36.4 (2025-10-23)
