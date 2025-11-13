@@ -5,5 +5,6 @@ CONSTRUCT {
   ?s skos:topConceptOf <http://lblod.data.gift/concept-schemes/7e2b965e-c824-474f-b5d5-b1c115740083> ;
     skos:inScheme <http://lblod.data.gift/concept-schemes/7e2b965e-c824-474f-b5d5-b1c115740083> .
 } WHERE {
-  ?s a besluit:Bestuurseenheid.
+  ?s a besluit:Bestuurseenheid;
+     <http://www.w3.org/ns/org#classification> <http://data.vlaanderen.be/id/concept/BestuurseenheidClassificatieCode/5ab0e9b8a3b2ca7c5e000001>.
 }
