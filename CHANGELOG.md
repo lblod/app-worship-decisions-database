@@ -1,4 +1,41 @@
 # Changelog
+# Unreleased
+- add bestuurseenheden to op-consumer mapping [DL-7001]
+
+### Deploy Notes
+**Re-running the initial-sync**
+
+First update the override config to
+```
+  op-public-consumer:
+    environment:
+      DCR_LANDING_ZONE_DATABASE: "virtuoso"
+      DCR_REMAPPING_DATABASE: "virtuoso"
+      DCR_DISABLE_DELTA_INGEST: "true"
+      DCR_DISABLE_INITIAL_SYNC: "false"
+```
+
+Then run
+```
+drc exec op-public-consumer curl -X DELETE http://localhost/initial-sync-jobs
+drc up -d op-public-consumer; drc logs -ft --tail=200 op-public-consumer # wait for the initial sync to complete
+```
+
+Then update the override config back to
+```
+  op-public-consumer:
+    environment:
+      DCR_LANDING_ZONE_DATABASE: "database"
+      DCR_REMAPPING_DATABASE: "database"
+      DCR_DISABLE_DELTA_INGEST: "false"
+      DCR_DISABLE_INITIAL_SYNC: "false"
+```
+
+Finally run
+```
+drc up -d op-public-consumer
+```
+
 ## v0.37.0 (2025-11-07)
 - Ensure the updated data model of provinces is used. See  DL-6804
 - Update forms [DL-6988]
