@@ -1,4 +1,17 @@
 # Changelog
+## v0.37.1 (2025-11-14)
+- Ensure vendor-login deals with hashed keys [DL-6543]
+### Deploy instrucations
+```
+drc up -d vendor-login
+```
+#### For production
+Ensure in `docker-compose.override.yml` the `entrypoint` and `restart` directive is removed.
+```
+  vendor-management-consumer:
+    entrypoint: ["echo", "Temporarily disabled, because we want to make sure vendor-login works properly with hashes on loket. See tag: v1.115.0. (Contact felix in case of problems)"]
+    restart: "no"
+```
 ## v0.37.0 (2025-11-07)
 - Ensure the updated data model of provinces is used. See  DL-6804
 - Update forms [DL-6988]
