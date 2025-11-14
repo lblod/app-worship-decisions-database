@@ -6,7 +6,7 @@
 
 ```
 drc restart migrations && drc logs -ft --tail=200 migrations
-drc restart op-public-consumer
+drc restart op-public-consumer search-query-management
 ```
 
 ## v0.37.0 (2025-11-07)
