@@ -3,7 +3,7 @@
 - Ensure vendor-login deals with hashed keys [DL-6543]
 ### Deploy instrucations
 ```
-drc up -d vendor-login
+drc up -d vendor-login vendor-management-consumer
 ```
 #### For production
 Ensure in `docker-compose.override.yml` the `entrypoint` and `restart` directive is removed.
