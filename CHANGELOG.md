@@ -1,4 +1,14 @@
 # Changelog
+## Unreleased
+- add bestuurseenheden to op-consumer mapping [DL-7001]
+
+### Deploy Notes
+
+```
+drc restart migrations && drc logs -ft --tail=200 migrations
+drc restart op-public-consumer search-query-management
+```
+
 ## v0.37.1 (2025-11-14)
 - Ensure vendor-login deals with hashed keys [DL-6543]
 ### Deploy instrucations
