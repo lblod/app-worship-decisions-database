@@ -1,5 +1,5 @@
 # Changelog
-## Unreleased
+## v0.37.2 (2025-11-18)
 - add bestuurseenheden to op-consumer mapping [DL-7001]
 
 ### Deploy Notes
