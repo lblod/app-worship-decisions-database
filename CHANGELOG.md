@@ -1,4 +1,12 @@
 # Changelog
+
+## v0.37.3 (2025-12-05)
+- Display KBO numbers in the administrative unit selector in the search filters section.
+### Deploy instructions
+```
+drc up -d search-query-management
+```
+
 ## v0.37.2 (2025-11-18)
 - add bestuurseenheden to op-consumer mapping [DL-7001]
 
