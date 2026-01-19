@@ -124,12 +124,23 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+#  database:
+#    image: semtech/mu-authorization:feature-service-roam-r1.1
+#    environment:
+#      MU_SPARQL_ENDPOINT: "http://virtuoso:8890/sparql"
+#    volumes:
+#      - ./config/authorization:/config
+#    labels:
+#      - "logging=true"
+#    restart: always
+#    logging: *default-logging
   database:
-    image: semtech/mu-authorization:feature-service-roam-r1.1
+    image: semtech/sparql-parser:0.0.15
     environment:
       MU_SPARQL_ENDPOINT: "http://virtuoso:8890/sparql"
     volumes:
       - ./config/authorization:/config
+      - ./data/authorization:/data
     labels:
       - "logging=true"
     restart: always
