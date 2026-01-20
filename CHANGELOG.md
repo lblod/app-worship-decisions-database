@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+- Swap `mu-auth` for `sparql-parser`
+### Deploy instructions
+```
+drc up -d database
+drc restart resource cache
+```
+
 ## v0.37.3 (2025-12-05)
 - Display KBO numbers in the administrative unit selector in the search filters section.
 ### Deploy instructions
