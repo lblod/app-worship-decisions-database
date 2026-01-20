@@ -71,7 +71,7 @@
   ("prov:Location" -> _))
 
 (define-graph sessions ("http://mu.semte.ch/graphs/sessions")
-  ("http://mu.semte.ch/sessions/" -> _))
+  ("http://mu.semte.ch/vocabularies/session/Session" -> _))
 
 (define-graph admin-sessions-public ("http://mu.semte.ch/graphs/public")
   ("foaf:OnlineAccount" -> _))
