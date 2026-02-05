@@ -1,7 +1,7 @@
 # Changelog
 
 ## Unreleased
-- Swap `mu-auth` for `sparql-parser`
+- Swap `mu-auth` for `sparql-parser` [DL-6573]
 ### Deploy instructions
 ```
 drc up -d database
