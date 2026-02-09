@@ -2,6 +2,7 @@
 
 ## Unreleased
 - Swap `mu-auth` for `sparql-parser` [DL-6573]
+- Update `frontend` to version [`v0.15.7`](https://github.com/lblod/frontend-worship-decisions/releases/tag/v0.15.7)
 ### Deploy instructions
 ```
 drc up -d database
