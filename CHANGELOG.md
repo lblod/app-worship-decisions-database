@@ -1,6 +1,6 @@
 # Changelog
+## v0.38.0 (2026-03-18)
 
-## Unreleased
 - Swap `mu-auth` for `sparql-parser` [DL-6573]
 - Update `frontend` to version [`v0.15.7`](https://github.com/lblod/frontend-worship-decisions/releases/tag/v0.15.7)
 ### Deploy instructions
@@ -9,7 +9,7 @@ drc up -d database
 drc restart resource cache
 ```
 
-## v0.37.3 (2025-12-05)
+## v0.37.3 (2025-12-05)p
 - Display KBO numbers in the administrative unit selector in the search filters section.
 ### Deploy instructions
 ```
