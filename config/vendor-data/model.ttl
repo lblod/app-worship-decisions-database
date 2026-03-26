@@ -81,15 +81,22 @@ am:FormData
 <LogicalFile>
   rdf:type vdds:Subclass ;
   vdds:type nfo:FileDataObject ;
+  vdds:postProcessDelete """
+    ${subject} nie:url ?originalDownloadLink .
+  """ ;
   vdds:postProcessInsert """
     ${subject}
       nie:url ?bijlageDownloadLink ;
       prov:hadPrimarySource ?originalDownloadLink .
   """ ;
   vdds:postProcessWhere """
-    ${subject}
-      mu:uuid ?bijlageUUID ;
-      nie:url ?originalDownloadLink .
+    OPTIONAL {
+      GRAPH ?sourceGraph {
+        ${subject} nie:url ?originalDownloadLink .
+      }
+      FILTER(REGEX(STR(?sourceGraph), "organizations"))
+    }
+    ${subject} mu:uuid ?bijlageUUID .
     BIND (CONCAT("#{HOSTNAME}files/", STR(?bijlageUUID), "/download") AS ?bijlageDownloadLink)
   """ .
 
