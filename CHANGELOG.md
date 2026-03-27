@@ -1,4 +1,23 @@
 # Changelog
+
+## Unreleased
+
+- New version of the `vendor-data-distribution-service` [DL-7231]
+
+### Deploy instrucations
+
+**For the new VDDS:**
+
+```
+drc up -d vendor-data-distribution
+```
+
+You could potentially start a healing process:
+
+```
+drc exec vendor-data-distribution-service curl -X POST 'http://localhost/heal'
+```
+
 ## v0.38.0 (2026-03-18)
 
 - Swap `mu-auth` for `sparql-parser` [DL-6573]
