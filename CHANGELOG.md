@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v0.39.0 (2026-03-30)
 
 - New version of the `vendor-data-distribution-service` [DL-7231]
 
