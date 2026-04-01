@@ -9,6 +9,7 @@
 (add-prefix "generiek" "http://data.vlaanderen.be/ns/generiek#")
 
 (add-prefix "eli" "http://data.europa.eu/eli/ontology#")
+(add-prefix "rpioHttp" "http://redpencil.data.gift/vocabularies/http/")
 (add-prefix "m8g" "http://data.europa.eu/m8g/")
 (add-prefix "dct" "http://purl.org/dc/terms/")
 (add-prefix "cpsv" "http://purl.org/vocab/cpsv#")
