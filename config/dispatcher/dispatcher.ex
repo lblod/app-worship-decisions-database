@@ -134,7 +134,7 @@ defmodule Dispatcher do
   #################################################################
 
   get "/remote-data-objects/*path", @json do
-    forward conn, path, "http://cache/remote-data-objects/"
+    Proxy.forward conn, path, "http://cache/remote-data-objects/"
   end
 
   get "/inzendingen-voor-toezicht/*path", @json do
