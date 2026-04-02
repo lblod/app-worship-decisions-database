@@ -3,8 +3,8 @@
 ## Unreleased
 
 - New version of the `vendor-data-distribution-service` [DL-7231]
-- Bump `image: semtech/mu-cl-resources:1.27.2`
-- Bump `worship-submissions-graph-dispatcher`
+- Bump `image: semtech/mu-cl-resources:1.27.2` [DL-7259]
+- Bump `worship-submissions-graph-dispatcher` [DL-7201]
 
 ### Deploy instrucations
 
