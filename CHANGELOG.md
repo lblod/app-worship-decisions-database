@@ -1,10 +1,14 @@
 # Changelog
 
 ## Unreleased
-
+- Adjust frontend for new URL-formatting [DL-7236]
 - New version of the `vendor-data-distribution-service` [DL-7231]
 
 ### Deploy instrucations
+```
+drc pull frontend && drc up -d frontend
+drc restart dispatcher resource
+```
 
 **For the new VDDS:**
 
