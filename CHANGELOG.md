@@ -3,6 +3,7 @@
 ## Unreleased
 
 - New version of the `vendor-data-distribution-service` [DL-7231]
+- Bump `image: semtech/mu-cl-resources:1.27.2`
 
 ### Deploy instrucations
 
@@ -16,6 +17,16 @@ You could potentially start a healing process:
 
 ```
 drc exec vendor-data-distribution-service curl -X POST 'http://localhost/heal'
+```
+#### On prod only
+Remove statement in `docker-compose.override.yml`
+```
+  resource:`
+    image: semtech/mu-cl-resources:1.27.2
+```
+
+```
+drc up -d resource
 ```
 
 ## v0.38.0 (2026-03-18)
