@@ -1,12 +1,16 @@
 # Changelog
 
 ## Unreleased
-
+- Adjust frontend for new URL-formatting [DL-7236]
 - New version of the `vendor-data-distribution-service` [DL-7231]
 - Bump `image: semtech/mu-cl-resources:1.27.2` [DL-7259]
 - Bump `worship-submissions-graph-dispatcher` [DL-7201]
 
 ### Deploy instrucations
+```
+drc pull frontend && drc up -d frontend
+drc restart dispatcher resource
+```
 
 **For the new VDDS:**
 
