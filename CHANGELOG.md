@@ -3,7 +3,8 @@
 ## Unreleased
 
 - New version of the `vendor-data-distribution-service` [DL-7231]
-- Bump `image: semtech/mu-cl-resources:1.27.2`
+- Bump `image: semtech/mu-cl-resources:1.27.2` [DL-7259]
+- Bump `worship-submissions-graph-dispatcher` [DL-7201]
 
 ### Deploy instrucations
 
@@ -24,9 +25,9 @@ Remove statement in `docker-compose.override.yml`
   resource:`
     image: semtech/mu-cl-resources:1.27.2
 ```
-
+#### All environment
 ```
-drc up -d resource
+drc up -d resource submissions-dispatcher
 ```
 
 ## v0.38.0 (2026-03-18)
