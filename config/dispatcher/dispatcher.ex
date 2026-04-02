@@ -133,7 +133,7 @@ defmodule Dispatcher do
   # Submissions
   #################################################################
 
-  get "/remote-data-objects/*path" @json do
+  get "/remote-data-objects/*path", @json do
     forward conn, path, "http://cache/remote-data-objects/"
   end
 
