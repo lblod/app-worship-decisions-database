@@ -5,6 +5,7 @@
 - New version of the `vendor-data-distribution-service` [DL-7231]
 - Bump `image: semtech/mu-cl-resources:1.27.2` [DL-7259]
 - Bump `worship-submissions-graph-dispatcher` [DL-7201]
+- Bump frontend to `v0.16.1` [DL-7266]
 
 ### Deploy instrucations
 ```
