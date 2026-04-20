@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v0.39.1 (2026-04-20)
 - Adjust frontend for new URL-formatting [DL-7236]
 - Bump `image: semtech/mu-cl-resources:1.27.2` [DL-7259]
 - Bump `worship-submissions-graph-dispatcher` [DL-7201]
