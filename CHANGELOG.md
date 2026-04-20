@@ -2,7 +2,6 @@
 
 ## Unreleased
 - Adjust frontend for new URL-formatting [DL-7236]
-- New version of the `vendor-data-distribution-service` [DL-7231]
 - Bump `image: semtech/mu-cl-resources:1.27.2` [DL-7259]
 - Bump `worship-submissions-graph-dispatcher` [DL-7201]
 - Bump frontend to `v0.16.1` [DL-7266]
@@ -12,6 +11,22 @@
 drc pull frontend && drc up -d frontend
 drc restart dispatcher resource
 ```
+#### On prod only
+Remove statement in `docker-compose.override.yml`
+```
+  resource:`
+    image: semtech/mu-cl-resources:1.27.2
+```
+#### All environment
+```
+drc up -d resource submissions-dispatcher
+```
+
+## v0.39.0 (2026-03-30)
+
+- New version of the `vendor-data-distribution-service` [DL-7231]
+
+### Deploy instrucations
 
 **For the new VDDS:**
 
@@ -24,16 +39,7 @@ You could potentially start a healing process:
 ```
 drc exec vendor-data-distribution-service curl -X POST 'http://localhost/heal'
 ```
-#### On prod only
-Remove statement in `docker-compose.override.yml`
-```
-  resource:`
-    image: semtech/mu-cl-resources:1.27.2
-```
-#### All environment
-```
-drc up -d resource submissions-dispatcher
-```
+
 
 ## v0.38.0 (2026-03-18)
 
