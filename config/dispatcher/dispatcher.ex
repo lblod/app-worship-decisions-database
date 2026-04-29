@@ -227,11 +227,6 @@ defmodule Dispatcher do
     forward conn, [], "http://frontend-dashboard/index.html"
   end
 
-  match "/authorization/callback" , @html do
-    # For ACM/IDM login and torii
-    forward conn, [], "http://frontend/torii/redirect.html"
-  end
-
   get "/assets/*path", @any do
     forward conn, path, "http://frontend/assets/"
   end

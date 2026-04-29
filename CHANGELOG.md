@@ -1,4 +1,22 @@
 # Changelog
+## Unreleased
+- frontend [v0.17.1](https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#v0171-2026-04-29), [v0.17.0](https://github.com/lblod/frontend-worship-decisions/blob/8a6d8c3ba60b791b9c3fc31085701938cb574ea9/CHANGELOG.md#v0170-2026-04-27)
+
+### Deploy instructions
+
+Rename the ACM/IDM variable names to match the new setup.
+
+```
+  EMBER_ACMIDM_BASE_URL: ".."
+  EMBER_ACMIDM_CLIENT_ID: ".."
+  EMBER_ACMIDM_REDIRECT_URL: ".."
+  EMBER_ACMIDM_LOGOUT_URL: ".."
+```
+
+```
+drc up -d frontend
+drc restart dispatcher 
+```
 
 ## v0.39.1 (2026-04-20)
 - Adjust frontend for new URL-formatting [DL-7236]
@@ -6,7 +24,7 @@
 - Bump `worship-submissions-graph-dispatcher` [DL-7201]
 - Bump frontend to `v0.16.1` [DL-7266]
 
-### Deploy instrucations
+### Deploy instructions
 ```
 drc pull frontend && drc up -d frontend
 drc restart dispatcher resource
