@@ -77,8 +77,8 @@
   ("foaf:OnlineAccount" -> _))
 
 (define-graph subscribed-for-notifications ("http://mu.semte.ch/graphs/organizations/")
-  ("ext:mailAdresVoorNotificaties" -> _)
-  ("ext:wilMailOntvangen" -> _))
+  ("besluit:Bestuurseenheid" -> "ext:mailAdresVoorNotificaties"
+                             -> "ext:wilMailOntvangen"))
 
 (define-graph reports ("http://mu.semte.ch/graphs/reports")
   ("http://lblod.data.gift/vocabularies/reporting/Report" -> _)
