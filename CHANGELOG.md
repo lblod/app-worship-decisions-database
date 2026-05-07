@@ -1,6 +1,7 @@
 # Changelog
 ## Unreleased
 - frontend [v0.17.1](https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#v0171-2026-04-29), [v0.17.0](https://github.com/lblod/frontend-worship-decisions/blob/8a6d8c3ba60b791b9c3fc31085701938cb574ea9/CHANGELOG.md#v0170-2026-04-27)
+- fix an issue with persisting the notification settings [DL-7339]
 
 ### Deploy instructions
 
@@ -15,7 +16,7 @@ Rename the ACM/IDM variable names to match the new setup.
 
 ```
 drc up -d frontend
-drc restart dispatcher 
+drc restart dispatcher database
 ```
 
 ## v0.39.1 (2026-04-20)
