@@ -1,4 +1,13 @@
 # Changelog
+## v0.39.3 (2026-05-13)
+- Update `frontend` to version [`v0.18.0`](https://github.com/lblod/frontend-worship-decisions/releases/tag/v0.18.0)
+
+### Deploy instructions
+
+```
+drc up -d frontend
+```
+
 ## v0.39.2 (2026-05-07)
 - frontend [v0.17.1](https://github.com/lblod/frontend-worship-decisions/blob/master/CHANGELOG.md#v0171-2026-04-29), [v0.17.0](https://github.com/lblod/frontend-worship-decisions/blob/8a6d8c3ba60b791b9c3fc31085701938cb574ea9/CHANGELOG.md#v0170-2026-04-27)
 - fix an issue with persisting the notification settings [DL-7339]
