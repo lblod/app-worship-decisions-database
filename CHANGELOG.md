@@ -1,13 +1,20 @@
 # Changelog
 ## Unreleased
 
-- frontend [v0.18.0](https://github.com/lblod/frontend-worship-decisions/blob/928d187708df312a9a569c5926064c1ed4cc0a89/CHANGELOG.md#v0180-2026-05-07)
 - Bump acm-login service [DL-7346]
 
 ### Deploy instructions
 
 ```
 drc up -d frontend login login-dashboard
+```
+## v0.39.3 (2026-05-13)
+- Update `frontend` to version [`v0.18.0`](https://github.com/lblod/frontend-worship-decisions/releases/tag/v0.18.0)
+
+### Deploy instructions
+
+```
+drc up -d frontend
 drc restart dispatcher 
 ```
 
