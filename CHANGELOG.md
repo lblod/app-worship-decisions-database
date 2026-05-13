@@ -6,7 +6,7 @@
 ### Deploy instructions
 
 ```
-drc up -d frontend login login-dashboard
+drc up -d login login-dashboard
 ```
 ## v0.39.3 (2026-05-13)
 - Update `frontend` to version [`v0.18.0`](https://github.com/lblod/frontend-worship-decisions/releases/tag/v0.18.0)
