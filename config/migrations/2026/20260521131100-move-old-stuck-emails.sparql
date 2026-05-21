@@ -1,0 +1,15 @@
+PREFIX nmo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nmo#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+DELETE {
+  ?email nmo:isPartOf <http://data.lblod.info/id/mail-folders/4> .
+}
+INSERT {
+  ?email nmo:isPartOf <http://data.lblod.info/id/mail-folders/6> .
+}
+WHERE {
+  ?email a nmo:Email ;
+         nmo:isPartOf <http://data.lblod.info/id/mail-folders/4> ;
+         nmo:sentDate ?sentDate .
+  FILTER(?sentDate < (NOW() - "P30D"^^xsd:duration))
+}
