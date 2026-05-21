@@ -43,6 +43,8 @@ meb:Submission
         mu:uuid ?organisationUuid .
     }
   """ ;
+  vdds:sourceGraphTemplate "http://mu.semte.ch/graphs/organizations/${organisationUuid}/LoketLB-databankEredienstenGebruiker" ;
+  vdds:sourceGraphTemplate "http://mu.semte.ch/graphs/organizations/${organisationUuid}/LoketLB-databankEredienstenGebruiker-LF" ;
   vdds:targetGraphTemplate "http://mu.semte.ch/graphs/vendors/${vendorUuid}/${organisationUuid}" .
 
 ext:SubmissionDocument
