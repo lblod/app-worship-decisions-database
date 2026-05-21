@@ -8,6 +8,7 @@
 ### Deploy instructions
 
 ```
+drc restart migrations
 drc up -d login login-dashboard submissions-dispatcher deliver-email-service
 ```
 ## v0.39.3 (2026-05-13)
