@@ -3,11 +3,12 @@
 
 - Bump acm-login service [DL-7346]
 - Bump submissions-dispatcher [DL-7352]
+- fix an issue with emails getting stuck in the "sending" folder due [DL-7339], [DL-7354]
 
 ### Deploy instructions
 
 ```
-drc up -d login login-dashboard submissions-dispatcher
+drc up -d login login-dashboard submissions-dispatcher deliver-email-service
 ```
 ## v0.39.3 (2026-05-13)
 - Update `frontend` to version [`v0.18.0`](https://github.com/lblod/frontend-worship-decisions/releases/tag/v0.18.0)
