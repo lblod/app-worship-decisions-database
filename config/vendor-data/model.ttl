@@ -27,7 +27,7 @@
 
 meb:Submission
   rdf:type vdds:Class ;
-  vdds:targetGraphQuery """
+  vdds:graphQuery """
     SELECT DISTINCT ?organisationUuid ?vendorUuid
     WHERE {
       GRAPH ?g {
