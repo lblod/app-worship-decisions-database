@@ -1,6 +1,5 @@
 # Changelog
-## Unreleased
-
+## v0.39.4 (2026-05-26)
 - Bump acm-login service [DL-7346]
 - Bump submissions-dispatcher [DL-7352]
 - fix an issue with emails getting stuck in the "sending" folder due [DL-7339], [DL-7354]
