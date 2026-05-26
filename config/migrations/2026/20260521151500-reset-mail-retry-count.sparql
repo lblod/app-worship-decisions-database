@@ -2,13 +2,20 @@ PREFIX nmo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nmo#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 DELETE {
-  ?email <http://redpencil.data.gift/vocabularies/tasks/numberOfRetries> ?retryCount .
+  GRAPH ?g {
+    ?email <http://redpencil.data.gift/vocabularies/tasks/numberOfRetries> ?retryCount .
+  }
 }
 INSERT {
-  ?email <http://redpencil.data.gift/vocabularies/tasks/numberOfRetries> "0"^^xsd:integer .
+  GRAPH ?g {
+    ?email <http://redpencil.data.gift/vocabularies/tasks/numberOfRetries> "0"^^xsd:integer .
+  }
 }
 WHERE {
-  ?email a nmo:Email ;
-         nmo:isPartOf <http://data.lblod.info/id/mail-folders/4> ;
-         <http://redpencil.data.gift/vocabularies/tasks/numberOfRetries> ?retryCount .
+  GRAPH ?g {
+    ?email a nmo:Email ;
+      nmo:isPartOf <http://data.lblod.info/id/mail-folders/4> ;
+      <http://redpencil.data.gift/vocabularies/tasks/numberOfRetries> ?retryCount .
+  }
 }
+
