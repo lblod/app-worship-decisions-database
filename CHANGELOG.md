@@ -1,4 +1,7 @@
 # Changelog
+## v0.39.5 (2026-05-26)
+Rerelease of v0.39.4 but with fixed migrations. Use the same deployment instructions.
+
 ## v0.39.4 (2026-05-26)
 - Bump acm-login service [DL-7346]
 - Bump submissions-dispatcher [DL-7352]
