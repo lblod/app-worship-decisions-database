@@ -1,4 +1,24 @@
 # Changelog
+
+## v0.39.6 (2026-05-28)
+
+- New version of the `vendor-data-distribution-service` [DL-7378] for better
+  source graph selection
+
+### Deploy instructions
+
+**For the new VDDS:**
+
+```
+drc up -d vendor-data-distribution
+```
+
+You could potentially start a healing process (this could take hours):
+
+```
+drc exec vendor-data-distribution-service curl -X POST 'http://localhost/heal'
+```
+
 ## v0.39.5 (2026-05-26)
 Rerelease of v0.39.4 but with fixed migrations. Use the same deployment instructions.
 
