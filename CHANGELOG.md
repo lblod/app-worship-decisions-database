@@ -1,4 +1,12 @@
 # Changelog
+## Unreleased
+- Bump submissions-dispatcher [DL-7417].
+  - Ensure child submissions are forwarded to ABB/LF
+
+### Deploy notes
+```
+drc up -d submissions-dispatcher
+```
 
 ## v0.39.6 (2026-05-28)
 
