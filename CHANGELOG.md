@@ -3,7 +3,7 @@
 - Bump submissions-dispatcher [DL-7417].
   - Ensure child submissions are forwarded to ABB/LF
   - Changed op-consumer mapping query [DL-7422]
-  - bump delta-consumer
+  - bump op-public-consumer
 
 ### Deploy notes
 ```
