@@ -8,7 +8,6 @@
 ### Deploy notes
 ```
 drc up -d submissions-dispatcher op-public-consumer
-drc restart op-public-consumer
 ```
 
 ## v0.39.6 (2026-05-28)
