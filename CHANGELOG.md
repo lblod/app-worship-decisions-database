@@ -2,10 +2,12 @@
 ## Unreleased
 - Bump submissions-dispatcher [DL-7417].
   - Ensure child submissions are forwarded to ABB/LF
+  - Changed op-consumer mapping query [DL-7422]
 
 ### Deploy notes
 ```
 drc up -d submissions-dispatcher
+drc restart op-public-consumer
 ```
 
 ## v0.39.6 (2026-05-28)
