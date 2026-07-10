@@ -1,5 +1,7 @@
 # Changelog
-## Unreleased
+## v0.40.0 (2026-07-10)
+- Fixes related to cross-referencing: [DL-7456] [DL-7450]
+  - If worship has no centraal bestuur, the service crashed.
 - Bump submissions-dispatcher [DL-7417].
   - Ensure child submissions are forwarded to ABB/LF
   - Changed op-consumer mapping query [DL-7422]
