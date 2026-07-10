@@ -4,10 +4,11 @@
   - Ensure child submissions are forwarded to ABB/LF
   - Changed op-consumer mapping query [DL-7422]
   - bump op-public-consumer
+  - bump frontend [DL-7363]
 
 ### Deploy notes
 ```
-drc up -d submissions-dispatcher op-public-consumer
+drc up -d submissions-dispatcher op-public-consumer frontend
 ```
 
 ## v0.39.6 (2026-05-28)
