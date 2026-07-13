@@ -1,4 +1,12 @@
 # Changelog
+## Unreleased
+- bump frontend [DL-7363]
+
+### Deploy notes
+```
+drc up -d frontend
+```
+
 ## v0.40.0 (2026-07-10)
 - Fixes related to cross-referencing: [DL-7456] [DL-7450]
   - If worship has no centraal bestuur, the service crashed.
@@ -6,7 +14,6 @@
   - Ensure child submissions are forwarded to ABB/LF
   - Changed op-consumer mapping query [DL-7422]
   - bump op-public-consumer
-  - bump frontend [DL-7363]
 
 ### Deploy notes
 ```
