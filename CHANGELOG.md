@@ -1,10 +1,13 @@
 # Changelog
-## Unreleased
+## v0.41.0 (2026-07-14)
 - bump frontend [DL-7363]
+- Update forms [DL-7470]
 
 ### Deploy notes
 ```
 drc up -d frontend
+drc restart migrations && drc logs -ft --tail=200 migrations
+drc up -d enrich-submission
 ```
 
 ## v0.40.0 (2026-07-10)
