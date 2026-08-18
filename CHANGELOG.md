@@ -1,4 +1,12 @@
 # Changelog
+## v0.41.1 (2026-08-18)
+- Bump submissions-dispatcher [DL-7505].
+
+### Deploy notes
+```
+drc up -d submissions-dispatcher
+```
+
 ## v0.41.0 (2026-07-14)
 - bump frontend [DL-7363]
 - Update forms [DL-7470]
