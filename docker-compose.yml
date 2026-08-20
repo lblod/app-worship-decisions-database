@@ -228,7 +228,8 @@ services:
   # DELTAS
   ################################################################################
   submissions-consumer:
-    image: lblod/delta-consumer:0.0.24
+    # image: lblod/delta-consumer:0.0.24
+    build: https://github.com/lblod/delta-consumer.git#DL-7513-replay-feature
     environment:
       DCR_SYNC_BASE_URL: "https://loket.lblod.info/"
       DCR_SYNC_LOGIN_ENDPOINT: 'https://loket.lblod.info/sync/worship-submissions/login' # don't forget DCR_SECRET_KEY in docker-compose.override.yml
