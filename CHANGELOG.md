@@ -1,6 +1,6 @@
 # Changelog
 ## Unreleased (2026-08-21)
-- bump consumers: mu-cli scripts to ease development.
+- bump consumers: mu-cli scripts to ease development. see: DL-7513, DL-7504
 
 ### Deploy notes
 ```
