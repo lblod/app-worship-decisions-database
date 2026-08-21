@@ -1,4 +1,13 @@
 # Changelog
+## Unreleased (2026-08-21)
+- bump consumers: mu-cli scripts to ease development.
+
+### Deploy notes
+```
+drc up -d
+drc restart migrations
+```
+
 ## v0.41.1 (2026-08-18)
 - Bump submissions-dispatcher [DL-7505].
 
