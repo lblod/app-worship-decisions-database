@@ -1,5 +1,5 @@
 # Changelog
-## Unreleased (2026-08-21)
+## v0.41.2 (2026-08-28)
 - bump consumers: mu-cli scripts to ease development. see: DL-7513, DL-7504
 - Bump submissions-dispatcher [DL-7548].
 
