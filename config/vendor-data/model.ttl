@@ -37,6 +37,7 @@ meb:Submission
       BIND(STRAFTER(STR(?g), "http://mu.semte.ch/graphs/organizations/") AS ?afterPrefix)
       BIND(STRBEFORE(?afterPrefix, "/LoketLB-databankEredienstenGebruiker") AS ?organisationUuid)
       ?vendor
+        rdf:type ext:Vendor ;
         muAccount:canActOnBehalfOf ?organisation ;
         mu:uuid ?vendorUuid .
       ?organisation
