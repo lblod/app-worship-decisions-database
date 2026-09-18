@@ -1,5 +1,5 @@
 # Changelog
-## Unreleased
+## v0.41.3 (2026-09-18)
 - Bump consumers (consumer errors will now send emails)
 
 ### Deploy notes
