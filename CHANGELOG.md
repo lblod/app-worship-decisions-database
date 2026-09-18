@@ -1,10 +1,12 @@
 # Changelog
 ## Unreleased
 - Bump consumers (consumer errors will now send emails)
+- Bump submissions-dispatcher [DL-7569]
 
 ### Deploy notes
 ```
 drc up -d
+drc up -d submissions-dispatcher
 ```
 ## v0.41.2 (2026-08-28)
 - bump consumers: mu-cli scripts to ease development. see: DL-7513, DL-7504
