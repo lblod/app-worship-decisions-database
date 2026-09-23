@@ -102,7 +102,7 @@ services:
     restart: always
     logging: *default-logging
   db-cleanup:
-    image: lblod/db-cleanup-service:0.5.0
+    image: lblod/db-cleanup-service:0.5.1
     links:
       - virtuoso:database
     labels:
