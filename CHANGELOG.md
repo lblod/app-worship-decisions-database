@@ -1,4 +1,11 @@
 # Changelog
+## v0.41.4 (2026-09-24)
+- Bump vendor-data-distribution service - periodic healing via cron job [DL-7536]
+
+### Deploy notes
+```
+drc up -d vendor-data-distribution
+```
 ## v0.41.3 (2026-09-18)
 - Bump consumers (consumer errors will now send emails)
 - Bump submissions-dispatcher [DL-7569]
