@@ -101,6 +101,14 @@ services:
     image: lblod/impersonation-service:0.2.0
     restart: always
     logging: *default-logging
+  db-cleanup:
+    image: lblod/db-cleanup-service:0.5.1
+    links:
+      - virtuoso:database
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
   login-dashboard:
     image: lblod/acmidm-login-service:0.12.1.rc-2
     environment:
