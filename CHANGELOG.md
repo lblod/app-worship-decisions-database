@@ -1,5 +1,5 @@
 # Changelog
-## Unreleased
+## v0.41.5 (2026-09-29)
 - Bump submissions-dispatcher to version [0.20.4](https://github.com/lblod/worship-submissions-graph-dispatcher-service/releases/tag/v0.20.4) [DL-7604]
 
 ### Deploy notes
