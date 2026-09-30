@@ -1,4 +1,14 @@
 # Changelog
+## Unreleased
+- Ensure the VDDS only gets relevant deltas from the deltanotifier [DL-7615].
+
+### Deploy notes
+```
+drc up -d deltanotifier
+```
+
+The VDDS will be processing its queue for a while but eventually it should clear itself.
+
 ## v0.41.4 (2026-09-24)
 - Bump vendor-data-distribution service - periodic healing via cron job [DL-7536]
 
