@@ -9,6 +9,14 @@ drc up -d deltanotifier
 
 The VDDS will be processing its queue for a while but eventually it should clear itself.
 
+## v0.41.5 (2026-09-29)
+- Bump submissions-dispatcher to version [0.20.4](https://github.com/lblod/worship-submissions-graph-dispatcher-service/releases/tag/v0.20.4) [DL-7604]
+
+### Deploy notes
+```bash
+drc up -d submissions-dispatcher
+```
+
 ## v0.41.4 (2026-09-24)
 - Bump vendor-data-distribution service - periodic healing via cron job [DL-7536]
 
