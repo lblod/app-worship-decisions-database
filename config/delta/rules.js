@@ -58,6 +58,10 @@ export default [
       // Looking at the VDDS config, we only need Submission, FormData and
       // RemoteDataObject but what if a new attachment was added to the
       // FormData well after the FormData itself has been processed?
+      graph: {
+        type: 'uri',
+        value: /^http:\/\/mu\.semte\.ch\/graphs\/organizations\/[^\/]+\/LoketLB-databankEredienstenGebruiker(-LF)?$/
+      }
     },
     callback: {
       url: 'http://vendor-data-distribution/delta',
@@ -67,6 +71,7 @@ export default [
       resourceFormat: "v0.0.1",
       gracePeriod: 10000,
       ignoreFromSelf: true,
+      sendMatchesOnly: true,
     },
   },
   {
