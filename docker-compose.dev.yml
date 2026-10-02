@@ -19,6 +19,8 @@ services:
     restart: "no"
   resource:
     restart: "no"
+  db-cleanup:
+    restart: "no"
   database:
     environment:
       LOG_OUTGOING_SPARQL_QUERIES: "true"
