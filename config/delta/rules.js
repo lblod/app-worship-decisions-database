@@ -54,10 +54,13 @@ export default [
   },
   {
     match: {
-      // Everything. We hoped to be more selective, but that is not possible.
-      // Looking at the VDDS config, we only need Submission, FormData and
-      // RemoteDataObject but what if a new attachment was added to the
-      // FormData well after the FormData itself has been processed?
+      // Everything from organisation graphs. Being more selective is not
+      // possible. Graphs defined in mu-authorization.
+      // The VDDS needs to react to individual triples, without context, and
+      // make up for itself if the subject and its hierarchy is worth copying.
+      // Also, withouth scopes as in the old mu-auth, we need to ignore data
+      // that has already been passed through the VDDS, so anything already in
+      // a vendor graph. Regex filter for everything in an organisation graph.
       graph: {
         type: 'uri',
         value: /^http:\/\/mu\.semte\.ch\/graphs\/organizations\/[^\/]+\/LoketLB-databankEredienstenGebruiker(-LF)?$/
