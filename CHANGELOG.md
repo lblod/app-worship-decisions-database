@@ -1,14 +1,24 @@
 # Changelog
+
 ## Unreleased
+
 - Ensure the VDDS only gets relevant deltas from the deltanotifier [DL-7615].
 
 ### Deploy notes
+
 ```
 drc up -d deltanotifier
 ```
 
 The VDDS will be processing its queue for a while but eventually it should clear itself.
 
+## v0.42.0 (2026-10-02)
+- Add db-cleanup service + cleanup job that removes sessions older then 3 months
+### Deploy notes
+```bash
+drc up -d 
+drc restart migrations resource cache
+```
 ## v0.41.5 (2026-09-29)
 - Bump submissions-dispatcher to version [0.20.4](https://github.com/lblod/worship-submissions-graph-dispatcher-service/releases/tag/v0.20.4) [DL-7604]
 
