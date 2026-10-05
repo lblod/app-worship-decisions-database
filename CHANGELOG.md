@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v0.42.1 (2026-10-05)
 
 - Ensure the VDDS only gets relevant deltas from the deltanotifier [DL-7615].
 
