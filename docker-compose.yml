@@ -52,7 +52,10 @@ services:
     restart: always
     logging: *default-logging
   deltanotifier:
-    image: cecemel/delta-notifier:0.2.0-beta.6
+    image: cecemel/delta-notifier:regex-fix
+    pull_policy: build
+    build:
+      context: https://github.com/cecemel/delta-notifier.git#feature/regex-based-filtering-fix
     volumes:
       - ./config/delta:/config
     labels:
