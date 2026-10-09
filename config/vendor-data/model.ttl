@@ -27,6 +27,16 @@
 
 meb:Submission
   rdf:type vdds:Class ;
+  # Sometimes the datatype is not correct (`xsd:datetime` vs `xsd:dateTime`), so there is a conversion with `STRDT()`.
+  # DateTime arithmetic is with seconds. 86400*10 is 10 days.
+  vdds:partialHealingTrigger """
+    ${subject}
+      dct:modified ?modified .
+
+    BIND ((NOW() - (86400 * 10)) AS ?thresholdDate)
+    BIND (STRDT(?modified, xsd:dateTime) AS ?modifiedDate)
+    FILTER (?modifiedDate > ?thresholdDate)
+  """ ;
   vdds:graphQuery """
     SELECT DISTINCT ?organisationUuid ?vendorUuid
     WHERE {
