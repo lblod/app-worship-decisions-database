@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v0.42.2 (2026-10-16)
 
 - Bump VDDS and use its new partial healing feature for lighter healing and periodic healing [DL-7537]
 
