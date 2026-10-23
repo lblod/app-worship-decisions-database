@@ -185,6 +185,10 @@ defmodule Dispatcher do
     forward conn, path, "http://worship-decisions-cross-reference/document-information/"
   end
 
+  match "/check-link/*path", @json do
+    forward conn, path, "http://check-url/"
+  end
+
   #################################################################
   # Vendor Login for SPARQL endpoint
   #################################################################
