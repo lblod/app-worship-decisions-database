@@ -1,4 +1,12 @@
 # Changelog
+# Unreleased
+- Add `check-url` to dispatcher [DL-7568]
+
+## Deploy notes
+```
+drc up -d check-url
+drc restart dispatcher
+```
 
 ## v0.42.2 (2026-10-16)
 
