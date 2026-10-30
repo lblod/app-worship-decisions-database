@@ -235,6 +235,12 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  check-url:
+    image: lblod/check-url-service:0.1.0
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
   ################################################################################
   # DELTAS
   ################################################################################

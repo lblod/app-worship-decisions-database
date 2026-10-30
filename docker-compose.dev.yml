@@ -91,3 +91,5 @@ services:
       EMAIL_FROM: "error-alert@example.com"
       EMAIL_TO: "to-error-alert-recipient@example.com"
     restart: "no"
+  check-url:
+    restart: "no"
