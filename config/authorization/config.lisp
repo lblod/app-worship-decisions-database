@@ -239,6 +239,16 @@ locking.
                          muAccount:account/mu:uuid ?vendor_id.
           }")
 
+(supply-allowed-group "logged-in"
+  :parameters ()
+  :query "PREFIX session: <http://mu.semte.ch/vocabularies/session/>
+          SELECT ?account WHERE { <SESSION_ID> session:account ?account } LIMIT 1")
+
+(with-scope "http://services.semantic.works/check-url-service"
+  (grant (read)
+    :to-graph (sessions)
+    :for-allowed-group "logged-in"))
+
 (grant (read)
   :to-graph (public)
   :for-allowed-group "public")

@@ -1,4 +1,12 @@
 # Changelog
+# Unreleased
+- Add `check-url-service` [DL-7568]
+
+## Deploy notes
+```
+drc restart dispatcher database
+drc up -d check-url frontend
+```
 
 ## v0.42.2 (2026-10-16)
 
