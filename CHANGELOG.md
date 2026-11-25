@@ -5,7 +5,7 @@
 ## Deploy notes
 ```
 drc restart dispatcher database
-drc up -d check-url frontend
+drc up -d check-url frontend dispatcher database
 ```
 
 ## v0.42.2 (2026-10-16)
