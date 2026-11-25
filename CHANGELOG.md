@@ -1,11 +1,11 @@
 # Changelog
 # Unreleased
-- Add `check-url` to dispatcher [DL-7568]
+- Add `check-url-service` [DL-7568]
 
 ## Deploy notes
 ```
-drc up -d check-url
-drc restart dispatcher
+drc restart dispatcher database
+drc up -d check-url frontend
 ```
 
 ## v0.42.2 (2026-10-16)
